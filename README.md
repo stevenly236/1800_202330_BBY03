@@ -8,7 +8,7 @@ This browser based web application to ...
 List team members and/or short bio's here... 
 * Hi, my name is Henry. I am looking forward to working on this project and learning about web apps! 
 * Hi, my name is Victor. I am excited to work on this project with you!
-* Hi, my name is Steven. I am looking forward to working on web applications!
+* Hi, my name is Steven. I am looking forward to working on web applications! This is my added edit 
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
