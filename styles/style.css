@@ -22,3 +22,10 @@ body {
     color: black;
 }
 
+.bg {
+    background-color: #333; 
+}
+
+.icon {
+    color: white;
+}
