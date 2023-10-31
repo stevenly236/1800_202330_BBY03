@@ -1,6 +1,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -28,6 +30,16 @@ body {
 
 .icon {
     color: white;
+}
+
+.responsive {
+    width: 60%;
+    height: auto;
+  }
+
+.container {
+    padding-top: 7%;
+    padding-bottom: 7%;
 }
 
 .responsive {
