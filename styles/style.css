@@ -29,3 +29,12 @@ body {
 .icon {
     color: white;
 }
+
+.responsive {
+    width: 60%;
+    height: auto;
+  }
+
+.bookmark {
+    float: right;
+}
