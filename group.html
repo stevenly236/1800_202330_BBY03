@@ -18,7 +18,16 @@
     crossorigin="anonymous"></script>
   <!-- Other libraries go here -->
 
-  <!-- Other libraries go here -->
+  <!-------------------------------------------------------->
+  <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+  <!-------------------------------------------------------->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
 
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="./styles/style.css">
@@ -26,8 +35,6 @@
   <link rel="preconnect" href="https://fonts.google.com/icons">
 
 </head>
-
-<body>
 
   <body>
 
@@ -37,34 +44,7 @@
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
-    <nav class="navbar sticky-top">
-      <div class="container-fluid">
-        <a href="main.html" class="back-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-            <path fill-rule="evenodd"
-              d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
-          </svg>
-        </a>
-          <span class="material-icons text-white">groups</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse navbar-light text-white" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Settings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <nav id="footerPlaceholder"></nav>
 
 
     <div class="container">
@@ -164,27 +144,7 @@
       </div>
     </div>
 
-
-
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-
-    <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
-
-
-    <footer class="navbar justify-content-evenly sticky-bottom py-3 bg">
-      <div class="container text-center py-3 icon">
-        <span class="material-icons">home</span>
-        <span class="material-icons">search</span>
-        <span class="material-icons">camera</span>
-        <span class="material-icons">groups</span>
-        <span class="material-icons">person</span>
-      </div>
-    </footer>
+    <nav id="footerPlaceholder"></nav>
 
 
 
@@ -192,11 +152,9 @@
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-
-
-
-    <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebaseAPI_BBY03.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/script.js"></script>
 
   </body>
 
