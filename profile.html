@@ -25,7 +25,7 @@
         stroke="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
         <circle cx="8" cy="8" r="7.5" />
         </svg>
-        <button class="follow-button">Follow</button>
+        <button id="followButton" class="follow-button">Follow</button>
         </div>
         <div class="right">
             <div class="first-lastname"> <b> Victor Wong</b></div>
@@ -46,7 +46,15 @@
         <img id="image10" src="../images/drink2.jpg" alt="Image 10">
 
     </div>
-    <nav id="footerPlaceholder"></nav>
+    <footer class="navbar justify-content-evenly sticky-bottom py-3 bg">
+        <div class="container text-center py-3 icon">
+            <span class="material-icons">home</span>
+            <span class="material-icons">search</span>
+            <span class="material-icons">camera</span>
+            <span class="material-icons">groups</span>
+            <span class="material-icons">person</span>
+        </div>
+    </footer>
 
   <!---------------------------------------------->
   <!-- Your own JavaScript functions go here    -->
@@ -57,6 +65,7 @@
   <script src="./scripts/script.js"></script>
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/profile.js"></script>
 
 </body>
 
