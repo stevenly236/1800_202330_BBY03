@@ -44,7 +44,7 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-
+<!---
   <div class="container">
     <div class="row g-5">
       <div class="col-6">
@@ -78,8 +78,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
+  <div class="container">
+    <div id="meals-go-here" class="row g-5 col-6"></div>
+  </div>
+  <template id="mealTemplate">
+    <div class="meals" class="h-100 p-5 border bg-light">
+      <a><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
+    </div>
+  </template>
   <nav id="footerPlaceholder"></nav>
 
   <!---------------------------------------------->
@@ -91,6 +99,8 @@
   <script src="./scripts/script.js"></script>
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/savedmeals.js"></script>
 
 </body>
 
