@@ -8,9 +8,7 @@ function displaymealsDynamically(collection) {
                 let newmeal = mealTemplate.content.cloneNode(true); 
 
                 newmeal.querySelector('a').href = "meal.html?docID="+docID;
-               
-
-
+            
                 document.getElementById(collection + "-go-here").appendChild(newmeal);
 
             })
