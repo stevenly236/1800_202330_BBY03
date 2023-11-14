@@ -24,14 +24,23 @@ function getNameFromAuth() {
 getNameFromAuth(); //run the function
 
 function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("captionTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+    let cardTemplate = document.getElementById("groupTemplate"); 
 
-    db.collection(collection).get()   //the collection called "hikes"
+    db.collection(collection).get()   
         .then(allCaptions=> {
             allCaptions.forEach(doc => { 
-                var cap = doc.data().caption;      
-                let newcard = captionTemplate.content.cloneNode(true); 
+                var cap = doc.data().caption;     // name of caption key
+                var img1 = doc.data().caption; 
+                // var cap = doc.data().caption;     // name of caption key
+                // var cap = doc.data().caption;     // name of caption key
+                // var cap = doc.data().caption;     // name of caption key
+                // var cap = doc.data().caption;     // name of caption key
+                let newcard = groupTemplate.content.cloneNode(true); 
 
+                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg` //image 1
+                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg` //image 2
+                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg` //image 3
+                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg` //image 4
                 newcard.querySelector('.caption').innerHTML = cap;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
@@ -40,4 +49,4 @@ function displayCardsDynamically(collection) {
         })
 }
 
-displayCardsDynamically("captions");  //input param is the name of the collection
+displayCardsDynamically("captions"); // database name

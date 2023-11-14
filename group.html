@@ -25,7 +25,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
 
@@ -36,17 +36,21 @@
 
 </head>
 
-  <body>
+<body>
 
 
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
+  <!------------------------------>
+  <!-- Your HTML Layout go here -->
 
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-    <nav id="navbarPlaceholder"></nav>
+  <!------------------------------>
+  <!-- Stuff for body goes here -->
+  <nav id="navbarPlaceholder"></nav>
 
+  <div class="container">
+    <div id="groupName-goes-here" class="rows rows-cols-auto"></div>
+  </div>
 
+  <template id="groupTemplate">
     <div class="container">
       <div class="row g-5">
         <div class="col-6">
@@ -64,98 +68,25 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 1</div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink2.jpg" class="img-fluid" alt=""></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink3.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 2</div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink2.jpg" class="img-fluid" alt=""></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink3.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 3</div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink2.jpg" class="img-fluid" alt=""></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink3.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 4</div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink2.jpg" class="img-fluid" alt=""></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink3.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 5</div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink2.jpg" class="img-fluid" alt=""></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"><img src="images/drink3.jpg" class="img-fluid" alt=""></div>
-              <div class="col-md-6"><img src="images/drink1.jpg" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">Group 6</div>
+          <div class="h-100 p-5 border bg-light text-start">
+            <p class="groupName"></p></div>
         </div>
       </div>
     </div>
+  </template>
 
-    <nav id="footerPlaceholder"></nav>
+  <nav id="footerPlaceholder"></nav>
 
 
 
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-    <script src="./scripts/firebaseAPI_BBY03.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/script.js"></script>
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
+  <script src="./scripts/firebaseAPI_BBY03.js"></script>
+  <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/script.js"></script>
 
-  </body>
+</body>
 
 </html>
