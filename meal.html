@@ -55,10 +55,14 @@
       </svg>
     </div>
   </div>
-  <div class="text-center">
-    <img src="./images/drink1.jpg" class="rounded responsive" alt="food">
-  </div><br>
-
+  <div class="container">
+    <div class="d-flex justify-content-center">
+    <h1><span id="mealName"></span></h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img class="meal-img rounded-4 responsive" src="" alt="foot">
+    </div>
+  </div>
   <div class="card-mb-3">
     <div class="card-body">
       <div class="d-flex flex-start">
@@ -71,12 +75,23 @@
     </div>
   </div><br>
 
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2" >
+      <label for="exampleFormControlTextarea1">Write a Comment</label>
+      <textarea class="form-control" id="usercomment" rows="3"></textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary mb-2" onclick="writeComment()">Submit</button>
+    </div>
+  </form>
+
   <div class="container">
     <div class="container">
-      <div id="comments-go-here" class="row row-cols-auto">
+      <div id="comments-go-here" class="col-6 row gy-4">
       </div>
     </div>
   </div>
+  <!--
   <section style="background-color: #f7f6f6;">
     <template id="commentTemplate">
       <div class="card mb-3">
@@ -100,6 +115,19 @@
       </div>
     </template>
   </section>
+-->
+
+  <template id="commentTemplate">
+  <div class="d-flex justify-content-center">
+  <div class="card text-center" style="width: 80rem;">
+    <div class="username card-header">
+    </div>
+    <ul class="list-group list-group-flush">
+      <p class="content"></p>
+    </ul>
+  </div>
+</div>
+  </template>
 
   <!-- our own footer goes here-->
   <nav id="footerPlaceholder"></nav>
