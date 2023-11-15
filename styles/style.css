@@ -60,3 +60,21 @@ body {
 .bookmark {
     float: right;
 }
+
+.edit-button {
+    background-color: #0095f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    width: 75%;
+    float:bottom;
+}
+
+.follow-button:hover {
+    background-color: #0077cc;
+}

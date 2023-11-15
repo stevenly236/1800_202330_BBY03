@@ -38,9 +38,10 @@
         <circle cx="8" cy="8" r="7.5" />
         </svg>
         </div> 
+        <button id="editButton" class="edit-button" onclick="saveProfileDocumentIDAndRedirect()">Edit Profile</button>
         <div class="right">
-            <div class="first-lastname"> <b> Victor Wong</b></div>
-            <div class="bio"> vancouver <br> big foodie <br> dog lover <br>father of 3<br> loving husband
+          <h1 class="name"><span id="name-goes-here"></span></h1>
+            <div class="bio"><span id="bio-goes-here"></span>
             </div>
         </div>
     </div>
@@ -70,6 +71,7 @@
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
   <script src="./scripts/profile.js"></script>
+  <script src="./scripts/profileSelf.js"></script>
 
 </body>
 
