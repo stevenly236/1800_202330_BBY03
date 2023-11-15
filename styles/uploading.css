@@ -118,3 +118,21 @@ body {
     border: 0;
     transition: all .2s ease;
 }
+
+h1 {
+    text-align: center;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mypic-goes-here {
+    width: 60vw;
+    height: 60vh;
+}
+
+#description {
+    width: 60vw;
+}

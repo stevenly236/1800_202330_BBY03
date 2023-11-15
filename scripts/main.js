@@ -29,9 +29,12 @@ function displayCardsDynamically(collection) {
     db.collection(collection).get()   //the collection called "hikes"
         .then(allCaptions=> {
             allCaptions.forEach(doc => { 
-                var cap = doc.data().caption;      
-                let newcard = captionTemplate.content.cloneNode(true); 
+                var cap = doc.data().caption;    
+                var card = doc.data().image;  
 
+                let newcard = captionTemplate.content.cloneNode(true); 
+                
+                newcard.querySelector('.image').innerHTML = card;
                 newcard.querySelector('.caption').innerHTML = cap;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
@@ -41,3 +44,5 @@ function displayCardsDynamically(collection) {
 }
 
 displayCardsDynamically("captions");  //input param is the name of the collection
+
+document.getElementById().addEventListener();

@@ -26,7 +26,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
   <!-- Link to styles of your own -->
@@ -45,7 +46,7 @@
   <nav id="navbarPlaceholder"></nav>
 
   <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <div class="file-upload">
+  <!-- <div class="file-upload">
     <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
   
     <div class="image-upload-wrap">
@@ -60,6 +61,27 @@
         <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
       </div>
     </div>
+  </div> -->
+
+  <h1>Upload your meal! </h1>
+
+  <div class="container">
+    <form>
+      <img id="mypic-goes-here" width=100vw height=100vh /> <br>
+      <div class="container py-3">
+        <!-- <img id="mypic-goes-here" width=100vw height=100vh /> <br> -->
+        <input type="file" id="mypic-input" accept="image/*" /> </br>
+      </div>
+      <div class="form-group">
+        <label>Caption:</label></br>
+        <textarea id="description" rows="4" cols="50"></textarea>
+      </div>
+      <div class="d-flex mt-5">
+        <button type="button" class="btn btn-info" onclick="savePost()">Post</button>
+      </div>
+      <div class="image-title-wrap">
+      </div>
+    </form>
   </div>
 
   <nav id="footerPlaceholder"></nav>
@@ -74,6 +96,8 @@
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
   <script src="./scripts/uploading.js"></script>
+  
+  
 
 </body>
 
