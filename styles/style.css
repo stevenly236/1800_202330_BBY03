@@ -83,3 +83,37 @@ body {
     height: 100%;
     width: 100%;
 }
+
+/* Example CSS for styling the profile picture container and image */
+.profile-picture-container {
+    width: 200px; /* Set the width of the container */
+    height: 200px; /* Set the height of the container */
+    border-radius: 50%; /* Make it circular */
+    overflow: hidden; /* Hide overflow to ensure the circular shape */
+    border: 2px solid #ccc; /* Add a border for aesthetics */
+  }
+  
+  .profile-picture {
+    max-width: 200px; /* Ensure the image fills its container */
+    max-height: 200px; /* Maintain aspect ratio */
+    display: block; /* Ensure the image behaves as a block element */
+  }
+
+  .gallery {
+    display: none; /* Initially hide the gallery */
+    flex-wrap: wrap; /* Allow images to wrap */
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .gallery img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  .gallery img:hover {
+    border-color: blue;
+  }

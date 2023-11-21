@@ -46,6 +46,7 @@ function insertNameFromFirestore() {
                       var userUsername = userDoc.data().username;
                       var userGender = userDoc.data().gender;
                       var userBiography= userDoc.data().biography;
+                      
   
                       //if the data fields are not empty, then write them in to the form.
                       if (userName != null) {

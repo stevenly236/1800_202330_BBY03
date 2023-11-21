@@ -58,4 +58,4 @@ function insertNameFromFirestore() {
         // document.getElementByID("name-goes-here").innetText=user_Name;
     })
   }
-  
+
