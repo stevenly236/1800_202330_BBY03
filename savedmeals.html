@@ -30,7 +30,7 @@
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
   <!-- Link to styles of your own -->
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/savedmeals.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.google.com/icons">
 
@@ -44,51 +44,26 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-<!---
   <div class="container">
-    <div class="row g-5">
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-          <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-            <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-            <a href="meal.html"><img src="images/drink3.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-            <a href="meal.html"><img src="images/drink3.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-          <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="h-100 p-5 border bg-light">
-            <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <div class="container">
-    <div id="meals-go-here" class="row g-5 col-6"></div>
+    <div id="meals-go-here" class="row g-0 col-10"></div>
   </div>
-  <template id="mealTemplate">
-    <div class="meals" class="h-100 p-5 border bg-light">
-      <a><img src="images/drink1.jpg" class="img-fluid mx-auto d-block rounded-4" alt=""></a>
-    </div>
-  </template>
+
   <nav id="footerPlaceholder"></nav>
+<template id="mealTemplate">
+  <div class="card" style="width: 20rem;">
+    <img class="meal-img" src="..." alt="">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="update"></li>
+    </ul>
+    <div class="card-body">
+      <a class="btn btn-primary card-href">View more</a>
+    </div>
+  </div>
+  </template>
 
   <!---------------------------------------------->
   <!-- Your own JavaScript functions go here    -->
@@ -99,7 +74,6 @@
   <script src="./scripts/script.js"></script>
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
-  <script src="./scripts/main.js"></script>
   <script src="./scripts/savedmeals.js"></script>
 
 </body>

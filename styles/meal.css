@@ -46,3 +46,7 @@ body {
 .bookmark {
     float: right;
 }
+
+.material-icons{
+    cursor: pointer;
+  }
