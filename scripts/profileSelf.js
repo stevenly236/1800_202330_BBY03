@@ -17,6 +17,7 @@ function doAll() {
           
             insertNameFromFirestore();
             insertBiographyFirestore();
+            insertUserNameFromFirestore();
         
         } else {
             // No user is signed in.
@@ -34,6 +35,16 @@ function insertNameFromFirestore() {
         var user_Name = userDoc.data().name;
         console.log(user_Name);
         $("#name-goes-here").text(user_Name); //jquery
+        // document.getElementByID("name-goes-here").innetText=user_Name;
+    })
+  }
+
+  function insertUserNameFromFirestore() {
+    currentUser.get().then(userDoc => {
+        //get the user name
+        var user_userName = userDoc.data().username;
+        console.log(user_userName);
+        $("#username-goes-here").text(user_userName); //jquery
         // document.getElementByID("name-goes-here").innetText=user_Name;
     })
   }
