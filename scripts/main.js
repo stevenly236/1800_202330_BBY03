@@ -25,12 +25,13 @@ getNameFromAuth(); //run the function
 
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("mealTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
-
+    //currentUser = db.collection("users").doc(user.uid)
     db.collection(collection)
     .orderBy('last_updated', 'desc')
-    .get()   //the collection called "hikes"
+    .get()  
         .then(allMeals=> {
             allMeals.forEach(doc => { 
+                //if (currentUser === doc.data().author){
                 var cap = doc.data().description;
                 var user = doc.data().name;
                 var imageURL = doc.data().image;
@@ -42,7 +43,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.name').innerHTML = user;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-
+                //}
             })
         })
 }
@@ -50,3 +51,7 @@ function displayCardsDynamically(collection) {
 displayCardsDynamically("meals");  //input param is the name of the collection
 
 document.getElementById().addEventListener();
+
+function displayMeal() {
+
+}

@@ -28,6 +28,12 @@ function doAll() {
 }
 doAll();
 
+//THIS SHOULD BE YOUR CODE TO MAKE ONLY USERS POSTS APPEAR
+//function x{
+    // db.collection.get whatever ...
+// if (user.uid === doc.data().author){
+    // document.query whatever to display it
+//}
 
 function insertNameFromFirestore() {
     currentUser.get().then(userDoc => {
@@ -59,3 +65,40 @@ function insertNameFromFirestore() {
     })
   }
 
+  function displayCardsDynamically(collection) {
+    let cardTemplate = document.getElementById("mealTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
+    
+    
+    db.collection(collection)
+    .orderBy('last_updated', 'desc')
+    .get()  
+    .then(allMeals=> {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) { 
+    
+            let currentUser = user.uid;
+            allMeals.forEach(doc => { 
+                if (doc.data().author.includes(currentUser)){
+
+                var cap = doc.data().description;
+                var user = doc.data().name;
+                var imageURL = doc.data().image;
+
+                let newcard = mealTemplate.content.cloneNode(true); 
+                
+                newcard.querySelector('.image').src = imageURL;
+                newcard.querySelector('.description').innerHTML = cap;
+                newcard.querySelector('.name').innerHTML = user;
+
+                document.getElementById(collection + "-go-here").appendChild(newcard);
+                }
+            })
+        }
+    })
+    })
+
+    
+    
+}
+
+displayCardsDynamically("meals");

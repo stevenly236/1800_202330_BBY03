@@ -12,7 +12,6 @@ function listenFileSelect() {
 listenFileSelect();
 
 function savePost() {
-  alert ("Posted!");
   firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
           var desc = document.getElementById("description").value;

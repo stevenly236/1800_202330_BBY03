@@ -124,11 +124,12 @@ function writeMeals() {
 
 function displayMealsDynamically(collection) {
   let mealTemplate = document.getElementById("mealTemplate"); 
-
+  
   db.collection(collection).get() 
       .then(allMeals=> {
-  
+          
           allMeals.forEach(doc => { //iterate thru each doc
+            
               var meal = doc.data().image;       
             
               let newmeals = mealTemplate.content.cloneNode(true);  

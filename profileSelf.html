@@ -47,19 +47,26 @@
             </div>
         </div>
     </div>
-    <div class="image-grid">
-        <img id="image1" src="../images/drink2.jpg" alt="Image 1">
-        <img id="image2" src="../images/drink2.jpg" alt="Image 2">
-        <img id="image3" src="../images/drink2.jpg" alt="Image 3">
-        <img id="image4" src="../images/drink2.jpg" alt="Image 4">
-        <img id="image5" src="../images/drink2.jpg" alt="Image 5">
-        <img id="image6" src="../images/drink2.jpg" alt="Image 6">
-        <img id="image7" src="../images/drink2.jpg" alt="Image 7">
-        <img id="image8" src="../images/drink2.jpg" alt="Image 8">
-        <img id="image9" src="../images/drink2.jpg" alt="Image 9">
-        <img id="image10" src="../images/drink2.jpg" alt="Image 10">
+    <div id="meals-go-here" class="row row-cols-auto"></div>
+  </div>
 
-    </div>
+  <template id="mealTemplate">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-6">
+          <div class="h-100 p-5 border bg-light">
+            <img class="image" alt="Meal Image">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="h-100 p-5 border bg-light text-start">
+            <p class="description"></p>
+            <br>
+            <b>Posted by:</b><p class="name"></p>
+          </div>
+        </div>
+      </div>
+  </template>
    
   <nav id="footerPlaceholder"></nav>
 
