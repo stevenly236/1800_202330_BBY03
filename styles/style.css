@@ -78,3 +78,8 @@ body {
 .follow-button:hover {
     background-color: #0077cc;
 }
+
+.image {
+    height: 100%;
+    width: 100%;
+}
