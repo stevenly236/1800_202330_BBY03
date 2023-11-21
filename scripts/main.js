@@ -32,12 +32,14 @@ function displayCardsDynamically(collection) {
         .then(allMeals=> {
             allMeals.forEach(doc => { 
                 var cap = doc.data().description;
+                var user = doc.data().name;
                 var imageURL = doc.data().image;
 
                 let newcard = mealTemplate.content.cloneNode(true); 
                 
                 newcard.querySelector('.image').src = imageURL;
                 newcard.querySelector('.description').innerHTML = cap;
+                newcard.querySelector('.name').innerHTML = user;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 

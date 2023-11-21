@@ -17,8 +17,9 @@ function savePost() {
       if (user) {
           var desc = document.getElementById("description").value;
           db.collection("meals").add({
-              owner: user.uid,
+              author: user.uid,
               description: desc,
+              name: user.displayName,
               last_updated: firebase.firestore.FieldValue
                   .serverTimestamp() 
           }).then(doc => {
