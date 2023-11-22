@@ -10,24 +10,25 @@ function writeComment() {
     console.log(usercontent);
 
     var user = firebase.auth().currentUser;
-        if (user) {
-            var currentUser = db.collection("users").doc(user.uid);
-            var userID = user.uid;
+    if (user) {
+        var currentUser = db.collection("users").doc(user.uid);
+        var userID = user.uid;
 
-            // Get the document for the current user.
-            db.collection("comments").add({
-                docID: ID,
-                userID: userID,
-                content: usercontent,
-                username: user.displayName,
-            }).then(() => {
-                window.location.href = "meal.html?docID=" + ID;
-            });
-        } else {
-            console.log("No user is signed in");
-            window.location.href = 'index.html';
-        }
-} 
+        // Get the document for the current user.
+        db.collection("comments").add({
+            docID: ID,
+            userID: userID,
+            content: usercontent,
+            username: user.displayName,
+        }).then(() => {
+            window.location.href = "meal.html?docID=" + ID;
+        });
+    } else {
+        console.log("No user is signed in");
+        window.location.href = 'index.html';
+    }
+}
+
 function displaymealInfo() {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
@@ -44,15 +45,28 @@ function displaymealInfo() {
                 .then(doc => {
                     thisMeal = doc.data();
                     mealName = doc.data().name;
+                    rating = doc.data().rating;
 
                     // only populate title, and image
                     document.getElementById("mealName").innerHTML = mealName;
                     let imgEvent = document.querySelector(".meal-img");
                     imgEvent.src = doc.data().image;
                     //assigning unique ID to the bookmark icon 
-                    //attatching an onclick. calling callback function (with hike's ID)
+                    //attatching an onclick. calling callback function (with meal's ID)
                     document.querySelector('i').id = 'save-' + ID;   //guaranteed to be unique
-                    document.querySelector('i').onclick = () => saveBookmark(ID);
+                    document.querySelector('i').onclick = () => toggleBookmark(ID);
+
+                    // Initialize an empty string to store the star rating HTML
+                    let starRating = "";
+                    // This loop runs from i=0 to i<rating, where 'rating' is a variable holding the rating value.
+                    for (let i = 0; i < rating; i++) {
+                        starRating += '<span class="material-icons">star</span>';
+                    }
+                    // After the first loop, this second loop runs from i=rating to i<5.
+                    for (let i = rating; i < 5; i++) {
+                        starRating += '<span class="material-icons">star_outline</span>';
+                    }
+                    document.querySelector(".star-rating").innerHTML = starRating;
 
                     currentUser.get().then(userDoc => {
                         //get the user name
@@ -87,7 +101,6 @@ function displayCommentsDynamically(collection) {
                 newcomment.querySelector(".content").innerHTML = content;
                 newcomment.querySelector(".username").innerHTML = usernamee;
 
-
                 document.getElementById(collection + "-go-here").appendChild(newcomment);
 
             })
@@ -95,19 +108,84 @@ function displayCommentsDynamically(collection) {
 }
 displayCommentsDynamically("comments");
 
-function saveBookmark(mealDocID) {
-    // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
-    currentUser.update({
-        // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
-        // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(mealDocID)
-    })
-        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
-        .then(function () {
-            console.log("bookmark has been saved for" + mealDocID);
-            var iconID = 'save-' + mealDocID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
+function toggleBookmark(mealDocID) {
+    var currentUser = firebase.auth().currentUser;
+    var userDocRef = db.collection("users").doc(currentUser.uid);
+
+    userDocRef.get()
+        .then(function (doc) {
+            if (doc.exists) {
+                var isBookmarked = doc.data().bookmarks && doc.data().bookmarks.includes(mealDocID);
+
+                if (isBookmarked) {
+                    // If already bookmarked, remove it from the bookmarks array
+                    return userDocRef.update({
+                        bookmarks: firebase.firestore.FieldValue.arrayRemove(mealDocID)
+                    })
+                        .then(function () {
+                            console.log("Bookmark has been removed for " + mealDocID);
+                            var iconID = 'save-' + mealDocID;
+                            document.getElementById(iconID).innerText = 'bookmark_border';
+                        })
+                } else {
+                    // If not bookmarked, add it to the bookmarks array
+                    return userDocRef.update({
+                        bookmarks: firebase.firestore.FieldValue.arrayUnion(mealDocID)
+                    })
+                        .then(function () {
+                            console.log("Bookmark has been saved for " + mealDocID);
+                            var iconID = 'save-' + mealDocID;
+                            document.getElementById(iconID).innerText = 'bookmark';
+                        })
+                }
+            }
+        })
 }
+
+
+
+// Select all elements with the class name "star" and store them in the "stars" variable
+const stars = document.querySelectorAll('.star');
+
+// Iterate through each star element
+stars.forEach((star, index) => {
+    // Add a click event listener to the current star
+    star.addEventListener('click', () => {
+        // Fill in clicked star and stars before it
+        for (let i = 0; i <= index; i++) {
+            // Change the text content of stars to 'star' (filled)
+            document.getElementById(`star${i + 1}`).textContent = 'star';
+        }
+    });
+});
+
+function writeRating() {
+    let params = new URL(window.location.href); //get URL of search bar
+    let ID = params.searchParams.get("docID"); //get value for key "id"
+    // Get the star rating
+    // Get all the elements with the class "star" and store them in the 'stars' variable
+    const stars = document.querySelectorAll('.star');
+    // Initialize a variable 'mealRating' to keep track of the rating count
+    let mealRating = 0;
+    // Iterate through each element in the 'stars' NodeList using the forEach method
+    stars.forEach((star) => {
+        // Check if the text content of the current 'star' element is equal to the string 'star'
+        if (star.textContent === 'star') {
+            // If the condition is met, increment the 'mealRating' by 1
+            mealRating++;
+        }
+    });
+
+    var user = firebase.auth().currentUser;
+    if (user) {
+        var currentUser = db.collection("users").doc(user.uid);
+        var userID = user.uid;
+
+        db.collection("meals").doc(ID).update({
+            rating: mealRating
+        })
+    } else {
+        console.log("No user is signed in");
+    }
+}
+document.getElementById("profile").href = "profile.html?docID=" + doc.id;

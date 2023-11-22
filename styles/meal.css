@@ -50,3 +50,18 @@ body {
 .material-icons{
     cursor: pointer;
   }
+
+#rating {
+    margin-left: 2%;
+    margin-bottom: 4%;
+}
+
+#profile {
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+#myRating {
+    float: right;
+    padding-right: 2%;
+}

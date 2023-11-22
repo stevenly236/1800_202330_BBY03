@@ -31,7 +31,6 @@ function displayCardsDynamically(collection) {
     .get()  
         .then(allMeals=> {
             allMeals.forEach(doc => { 
-                //if (currentUser === doc.data().author){
                 var cap = doc.data().description;
                 var user = doc.data().name;
                 var imageURL = doc.data().image;
@@ -41,17 +40,11 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.image').src = imageURL;
                 newcard.querySelector('.description').innerHTML = cap;
                 newcard.querySelector('.name').innerHTML = user;
+                newcard.querySelector('a').href = "meal.html?docID=" + doc.id;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-                //}
             })
         })
 }
 
 displayCardsDynamically("meals");  //input param is the name of the collection
-
-document.getElementById().addEventListener();
-
-function displayMeal() {
-
-}

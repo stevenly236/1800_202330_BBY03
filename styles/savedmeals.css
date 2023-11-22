@@ -1,7 +1,14 @@
+#mealTemplate {
+    width: 50%;
+}
+
 .card {
     text-align: center;
+    width: 50%;
+    margin-left: 24%;
 }
 
 .card ul {
     list-style-type: none;
 }
+
