@@ -27,7 +27,7 @@ function writeComment() {
             console.log("No user is signed in");
             window.location.href = 'index.html';
         }
-}
+} 
 function displaymealInfo() {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
