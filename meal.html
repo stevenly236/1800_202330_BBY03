@@ -49,13 +49,14 @@
   <!-- the body of your page goes here -->
   <div class="profile-grid">
     <div class="left">
-      <svg xmlns="http://www.w3.org/2000/svg" width="250" height="260" fill="none" stroke="currentColor"
-        class="bi bi-circle" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="7.5" />
-      </svg>
+      <div class="profile-picture-container" onclick="toggleGallery()">
+        <img src="./images/logo.jpg" alt="Profile Picture" id="profilePicture" class="profile-picture">
+      </div>
     </div>
   </div>
   <div class="container">
+    <a class="btn btn-primary card-href" href="profile.html?docID=">View Profile</a>
+
     <div class="d-flex justify-content-center">
     <h1><span id="mealName"></span></h1>
     </div>
