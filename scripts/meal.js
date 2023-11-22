@@ -87,7 +87,6 @@ function displayCommentsDynamically(collection) {
                 newcomment.querySelector(".content").innerHTML = content;
                 newcomment.querySelector(".username").innerHTML = usernamee;
 
-
                 document.getElementById(collection + "-go-here").appendChild(newcomment);
 
             })
