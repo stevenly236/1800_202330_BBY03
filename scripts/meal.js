@@ -68,7 +68,32 @@ function displaymealInfo() {
                         starRating += '<span class="material-icons">star_outline</span>';
                     }
                     document.querySelector(".star-rating").innerHTML = starRating;
+                   function displaymealInfo() {
+    let params = new URL(window.location.href); //get URL of search bar
+    let ID = params.searchParams.get("docID"); //get value for key "id"
+    console.log(ID);
 
+    // doublecheck: is your collection called "Reviews" or "reviews"?
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            currentUser = db.collection("users").doc(user.uid); //global
+            console.log(currentUser);
+            db.collection("meals")
+                .doc(ID)
+                .get()
+                .then(doc => {
+                    thisMeal = doc.data();
+                    mealName = doc.data().name;
+
+                    // only populate title, and image
+                    document.getElementById("mealName").innerHTML = mealName;
+                    let imgEvent = document.querySelector(".meal-img");
+                    imgEvent.src = doc.data().image;
+                    //assigning unique ID to the bookmark icon 
+                    //attatching an onclick. calling callback function (with hike's ID)
+                    document.querySelector('i').id = 'save-' + ID;   //guaranteed to be unique
+                    document.querySelector('i').onclick = () => saveBookmark(ID);
+                    document.querySelector('a').href = "profile.html?user.uid=" + user.uid;
                 
 
                     currentUser.get().then(userDoc => {
@@ -199,4 +224,9 @@ function writeRating() {
         console.log("No user is signed in");
     }
 }
-document.getElementById("profile").href = "profile.html?docID=" + doc.id;
+
+document.querySelector("#viewPoster").addEventListener('click', function() {
+    let params = new URL(window.location.href);
+    let ID = params.searchParams.get("docID");
+
+    window.location.assign("profile.html?docID=" + ID)})

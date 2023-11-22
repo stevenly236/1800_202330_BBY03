@@ -66,7 +66,7 @@ function insertNameFromFirestore() {
   }
 
   function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("mealTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
+    let cardTemplate = document.getElementById("mealTemplate"); 
     
     
     db.collection(collection)
@@ -96,9 +96,6 @@ function insertNameFromFirestore() {
         }
     })
     })
-
-    
-    
 }
 
 displayCardsDynamically("meals");
