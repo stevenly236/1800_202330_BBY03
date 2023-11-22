@@ -87,15 +87,7 @@ body {
     font-size: 20pt;
     align-content: center;
 }
-.image-grid {
-    display: grid;
-    grid-template-columns: 50vw 50vw;
-    grid-template-rows: 21vh 21vh 21vh 21vh 21vh;
-    height: 100%;
-    margin-top: 5%;
-    overflow:scroll;
 
-}
 
 
 

@@ -15,9 +15,7 @@ function doAll() {
 
           // the following functions are always called when someone is logged in
         
-          insertNameFromFirestore();
-          insertBiographyFirestore();
-          insertUserNameFromFirestore();
+          
       
       } else {
           // No user is signed in.
@@ -35,28 +33,27 @@ doAll();
   // document.query whatever to display it
 //}
 
-function insertNameFromFirestore() {
-  currentUser.get().then(userDoc => {
-      //get the user name
-      var user_Name = userDoc.data().name;
-      console.log(user_Name);
-      $("#name-goes-here").text(user_Name); //jquery
-      // document.getElementByID("name-goes-here").innetText=user_Name;
+function insertNameFromFirestore(currentUser) {
+  db.collection("users").doc(currentUser).get().then((userDoc) => {
+    var user_Name = userDoc.data().name;
+    console.log(user_Name);
+    $("#name-goes-here").text(user_Name); //jquery
+    // document.getElementByID("name-goes-here").innetText=user_Name;
+  })
+
+}
+
+function insertUserNameFromFirestore(currentUser) {
+  db.collection("users").doc(currentUser).get().then((userDoc) => {
+    var user_Name = userDoc.data().username;
+    console.log(user_Name);
+    $("#username-goes-here").text(user_Name); //jquery
+    // document.getElementByID("name-goes-here").innetText=user_Name;
   })
 }
 
-function insertUserNameFromFirestore() {
-  currentUser.get().then(userDoc => {
-      //get the user name
-      var user_userName = userDoc.data().username;
-      console.log(user_userName);
-      $("#username-goes-here").text(user_userName); //jquery
-      // document.getElementByID("name-goes-here").innetText=user_Name;
-  })
-}
-
-function insertBiographyFirestore() {
-  currentUser.get().then(userDoc => {
+function insertBiographyFirestore(currentUser) {    
+  db.collection("users").doc(currentUser).get().then((userDoc) => {
       //get the user name
       var biography = userDoc.data().biography;
       console.log(biography);
@@ -75,24 +72,44 @@ function displayCardsDynamically(collection) {
   .then(allMeals=> {
       firebase.auth().onAuthStateChanged(user => {
           if (user) { 
-  
-          let currentUser = user.uid;
+            let params = new URL(window.location.href);
+            let ID = params.searchParams.get("docID");
+
+            db.collection('meals').doc(ID).get().then((mealDoc) => {
+              let currentUser = mealDoc.data().author;
+
+              
+
+
+            
+          
           allMeals.forEach(doc => { 
               if (doc.data().author.includes(currentUser)){
+                db.collection("users").doc(currentUser).get().then((userDoc) =>{
+                  insertNameFromFirestore(currentUser);
+                  insertBiographyFirestore(currentUser);
+                  insertUserNameFromFirestore(currentUser);
+                })
 
-              var cap = doc.data().description;
-              var user = doc.data().name;
-              var imageURL = doc.data().image;
-
-              let newcard = mealTemplate.content.cloneNode(true); 
-              
+                  var cap = mealDoc.data().description;
+                  var user = mealDoc.data().name;
+                  var imageURL = mealDoc.data().image;
+                  let newcard = mealTemplate.content.cloneNode(true); 
+              console.log(imageURL);
+              console.log(mealDoc.data())
               newcard.querySelector('.image').src = imageURL;
               newcard.querySelector('.description').innerHTML = cap;
               newcard.querySelector('.name').innerHTML = user;
 
+
               document.getElementById(collection + "-go-here").appendChild(newcard);
+                
+              
+
+              
               }
           })
+        })
       }
   })
   })
