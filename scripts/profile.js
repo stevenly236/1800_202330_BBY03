@@ -1,71 +1,39 @@
-const followButton = document.getElementById("followButton");
-
-// This function will handle the click event on the follow button
-followButton.addEventListener("click", function() {
-  if (followButton.classList.contains("following")) {
-    // Remove user from 'followers' collection
-    removeFollower(currentUser); // Assuming currentUser is defined elsewhere
-    followButton.textContent = "Follow";
-    followButton.classList.remove("following");
-    followButton.style.backgroundColor = "#4da6ff";
-  } else {
-    // Add user to 'followers' collection
-    addFollower(currentUser); // Assuming currentUser is defined elsewhere
-    followButton.textContent = "Following";
-    followButton.classList.add("following");
-    followButton.style.backgroundColor = "#99ccff";
-  }
-});
-
-// Function to add a user to the 'followers' collection in Firestore
-function addFollower(user) {
-  db.collection("followers").doc(user.id).set({
-    // You can store additional data or just use a timestamp
-    followedAt: firebase.firestore.FieldValue.serverTimestamp()
-  })
-  .then(() => {
-    console.log("User added to followers");
-  })
-  .catch((error) => {
-    console.error("Error adding user to followers: ", error);
-  });
-}
-
-// Function to remove a user from the 'followers' collection in Firestore
-function removeFollower(user) {
-  db.collection("followers").doc(user.id).delete()
-  .then(() => {
-    console.log("User removed from followers");
-  })
-  .catch((error) => {
-    console.error("Error removing user from followers: ", error);
-  });
+function saveProfileDocumentIDAndRedirect(){
+  let params = new URL(window.location.href) //get the url from the search bar
+  let ID = params.searchParams.get("docID");
+  localStorage.setItem('profileDocID', ID);
+  window.location.href = 'editProfile.html';
 }
 
 
-var currentUser;   
-
-//Function that calls everything needed for the main page  
 function doAll() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            currentUser = db.collection("users").doc(user.uid); //global
-            console.log(currentUser);
+  firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+          currentUser = db.collection("users").doc(user.uid); //global
+          console.log(currentUser);
 
 
-            // the following functions are always called when someone is logged in
-          
-            insertNameFromFirestore();
+          // the following functions are always called when someone is logged in
         
-        } else {
-            // No user is signed in.
-            console.log("No user is signed in");
-            window.location.href = "login.html";
-        }
-    });
+          insertNameFromFirestore();
+          insertBiographyFirestore();
+          insertUserNameFromFirestore();
+      
+      } else {
+          // No user is signed in.
+          console.log("No user is signed in");
+          window.location.href = "login.html";
+      }
+  });
 }
 doAll();
 
+//THIS SHOULD BE YOUR CODE TO MAKE ONLY USERS POSTS APPEAR
+//function x{
+  // db.collection.get whatever ...
+// if (user.uid === doc.data().author){
+  // document.query whatever to display it
+//}
 
 function insertNameFromFirestore() {
   currentUser.get().then(userDoc => {
@@ -77,70 +45,61 @@ function insertNameFromFirestore() {
   })
 }
 
-
-function writeFollowers() {
-  //define a variable for the collection you want to create in Firestore to populate data
-  var followersRef = db.collection("followers");
-
-  followersRef.add({
-      number: 100,
-      last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023")) //current system time
-  });
+function insertUserNameFromFirestore() {
+  currentUser.get().then(userDoc => {
+      //get the user name
+      var user_userName = userDoc.data().username;
+      console.log(user_userName);
+      $("#username-goes-here").text(user_userName); //jquery
+      // document.getElementByID("name-goes-here").innetText=user_Name;
+  })
 }
 
-function displayFollowersDynamically(collection) {
-  let followerTemplate = document.getElementById("followerTemplate"); 
+function insertBiographyFirestore() {
+  currentUser.get().then(userDoc => {
+      //get the user name
+      var biography = userDoc.data().biography;
+      console.log(biography);
+      $("#bio-goes-here").text(biography); //jquery
+      // document.getElementByID("name-goes-here").innetText=user_Name;
+  })
+}
 
-  db.collection(collection).get() 
-      .then(allFollowers=> {
+function displayCardsDynamically(collection) {
+  let cardTemplate = document.getElementById("mealTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
   
-          allFollowers.forEach(doc => { //iterate thru each doc
-              var follower = doc.data().number;       
-            
-              let newfollowers = followerTemplate.content.cloneNode(true);  
-
-              newfollowers.querySelector('.followers').innerHTML = follower;
-              
-              document.getElementById(collection + "-go-here").appendChild(newfollowers);
-
-          })
-      })
-}
-
-displayFollowersDynamically("followers");  //input param is the name of the collection
-
-
-
-
-function writeMeals() {
-  //define a variable for the collection you want to create in Firestore to populate data
-  var mealssRef = db.collection("meals");
-
-  mealsRef.add({
-      image: null, 
-      last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023")) //current system time
-  });
-}
-
-function displayMealsDynamically(collection) {
-  let mealTemplate = document.getElementById("mealTemplate"); 
   
-  db.collection(collection).get() 
-      .then(allMeals=> {
-          
-          allMeals.forEach(doc => { //iterate thru each doc
-            
-              var meal = doc.data().image;       
-            
-              let newmeals = mealTemplate.content.cloneNode(true);  
+  db.collection(collection)
+  .orderBy('last_updated', 'desc')
+  .get()  
+  .then(allMeals=> {
+      firebase.auth().onAuthStateChanged(user => {
+          if (user) { 
+  
+          let currentUser = user.uid;
+          allMeals.forEach(doc => { 
+              if (doc.data().author.includes(currentUser)){
 
-              newmeals.querySelector('.followers').innerHTML = meal;
+              var cap = doc.data().description;
+              var user = doc.data().name;
+              var imageURL = doc.data().image;
+
+              let newcard = mealTemplate.content.cloneNode(true); 
               
-              document.getElementById(collection + "-go-here").appendChild(newmeals);
+              newcard.querySelector('.image').src = imageURL;
+              newcard.querySelector('.description').innerHTML = cap;
+              newcard.querySelector('.name').innerHTML = user;
 
+              document.getElementById(collection + "-go-here").appendChild(newcard);
+              }
           })
-      })
+      }
+  })
+  })
+
+  
+  
 }
 
-displayMealsDynamically("meals");  //input param is the name of the collection
+displayCardsDynamically("meals");
 

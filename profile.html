@@ -38,8 +38,7 @@
           </div>
         
             <div class="container">
-                <div id="followers-go-here" class=" row row-cols-auto"> Followers:
-                </div>
+  
                 <section>
                     <template id="followerTemplate">
                         <h1 class="followers"></h1>
@@ -49,77 +48,34 @@
             <button id="followButton" class="follow-button">Follow</button>
         </div>
         <div class="right">
-          <div>
-          <h1 class="display-4"><span id="name-goes-here"></span></h1>
+         
+            <h1 class="name"><span id="name-goes-here"></span></h1>
+            <h2 class="username">@<span id="username-goes-here"></span></h2>
+              <div class="bio"><span id="bio-goes-here"></span>
+              </div>
           </div>
-            <div class="bio"> vancouver <br> big foodie <br> dog lover <br>father of 3<br> loving husband
-            </div>
-        </div>
+      </div>
+      <div id="meals-go-here" class="row row-cols-auto"></div>
     </div>
-    <div class="container">
+  
+    <template id="mealTemplate">
+      <div class="container">
         <div class="row g-5">
           <div class="col-6">
             <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
+              <img class="image" alt="Meal Image">
             </div>
           </div>
           <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img src="images/drink3.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img src="images/drink1.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img src="images/drink3.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img src="images/drink1.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img src="images/drink2.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <a href="meal.html"><img src="images/drink1.jpg" class="img-fluid" alt=""></a>
+            <div class="h-100 p-5 border bg-light text-start">
+              <p class="description"></p>
+              <br>
+              <b>Posted by:</b><p class="name"></p>
             </div>
           </div>
         </div>
-      </div>
+        </div>
+    </template>
 
 
     <nav id="footerPlaceholder"></nav>

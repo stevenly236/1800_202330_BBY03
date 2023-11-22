@@ -85,7 +85,7 @@ function insertNameFromFirestore() {
     // Check if name, username, and biography are not blank
     if (userName !== '' && userUsername !== '' && userBiography !== '') {
         // Validate 'Name' field to accept only letters and have at least 3 characters
-        if (!/^[a-zA-Z]{3,}$/.test(userName)) {
+        if (!/^[a-zA-Z\s]{3,}$/.test(userName)) {
             // If the 'Name' field contains non-letter characters or is less than 3 characters, highlight it and show a message
             document.getElementById('name').style.borderColor = 'red';
             alert("Please enter at least 3 letters in the Name field.");
