@@ -5,10 +5,11 @@ body {
     overflow-x: hidden;
     margin-top: 7vh;
     margin-bottom: 7vh;
+    background-color: #F5F5F5;
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #FF7F50;
     overflow: hidden;
     color: black;
 }
@@ -16,7 +17,7 @@ body {
 .navbar a {
     float: left;
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
@@ -35,11 +36,11 @@ body {
 }
 
 .bg {
-    background-color: #333; 
+    background-color: #FF7F50; 
 }
 
 .icon {
-    color: white;
+    color: black;
 }
 
 .responsive {
