@@ -27,3 +27,11 @@ h1 {
 #description {
     width: 45vw;
 }
+
+#title {
+    width: 45vw;
+}
+
+#post {
+    float: right;
+}

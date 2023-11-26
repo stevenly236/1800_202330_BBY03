@@ -114,6 +114,7 @@ body {
     border: 2px solid transparent;
   }
 
-  .gallery img:hover {
-    border-color: blue;
+  .post-info {
+    font-size: .5em;
   }
+  

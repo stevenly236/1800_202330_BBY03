@@ -15,10 +15,16 @@ function savePost() {
   firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
           var desc = document.getElementById("description").value;
+          var type = document.querySelector('input[name="type"]:checked').value;
+          var title = document.getElementById("title").value;
+
           db.collection("meals").add({
+              mealTitle: title,
               author: user.uid,
               description: desc,
               name: user.displayName,
+              rating: null,
+              mealTime: type,
               last_updated: firebase.firestore.FieldValue
                   .serverTimestamp() 
           }).then(doc => {
