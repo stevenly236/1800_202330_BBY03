@@ -117,4 +117,14 @@ body {
   .post-info {
     font-size: .5em;
   }
+
+  #image-container {
+    width: 50vw;
+    height: auto;
+  }
   
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }

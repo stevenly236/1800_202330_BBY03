@@ -51,26 +51,31 @@
 
   <template id="mealTemplate">
     <div class="container">
-      <div class="row g-5">
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <img class="image" alt="Meal Image">
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">
-            <b><p class="mealTitle"></p></b>
-            <p class="description"></p>
-            <br>
-            <div class="post-info">
-            <b class="postedBy">Posted by:</b><p class="name"></p>
-            <b class="whatMeal">What Meal:</b><p class="mealType"></p>
+        <div class="row g-0">
+            <div class="col-12">
+                <div class="h-100 border bg-light">
+                    <img class="image" alt="Meal Image">
+                </div>
             </div>
-          </div>
+            <div class="col-12">
+                <div class="h-100 p-5 border bg-light text-start">
+                    <b><p class="mealTitle"></p></b>
+                    <p class="description"></p>
+                    <br>
+                    <div class="post-info">
+                        <b class="postedBy">Posted by:</b><p class="name"></p>
+                        <b class="whatMeal">What Meal:</b><p class="mealType"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <a class="btn btn-success card-href w-100">View this meal!</a>
+            </div>
         </div>
-        <a class="btn btn-primary card-href">View this meal!</a>
-      </div>
-  </template>
+</template>
+
+
+
 
   <nav id="footerPlaceholder"></nav>
 

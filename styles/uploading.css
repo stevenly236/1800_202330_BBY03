@@ -17,10 +17,7 @@ h1 {
 #mypic-goes-here {
     display: block;
     margin: 0 auto;
-    min-width: 45vw;
-    min-height: 45vw;
-    max-width: 45vw;
-    max-height: 45vw;
+    max-width: 25%;
     height: auto;
 }
 
@@ -28,7 +25,7 @@ h1 {
     width: 45vw;
 }
 
-#title {
+#description {
     width: 45vw;
 }
 
