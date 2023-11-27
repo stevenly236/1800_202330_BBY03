@@ -88,6 +88,23 @@ body {
     align-content: center;
 }
 
+.container {
+    display: flex; 
+}
 
+.col-6 {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+}
 
+.description {
+    display: flex;
+    width: 100vw;
+    height: 0.5vh;
+}
+
+.name {
+    display: none;
+}
 
