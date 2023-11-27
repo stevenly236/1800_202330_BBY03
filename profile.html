@@ -23,17 +23,19 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <link rel="stylesheet" href="./styles/profile.css">
+  
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.google.com/icons">
+    <link rel="stylesheet" href="./styles/profile.css">
 </head>
 
 <body>
 
-    <nav id="navbarPlaceholder"></nav>
+  <nav id="navbarPlaceholder"></nav>
+
     <div class="profile-grid">
         <div class="left">
-          <div class="profile-picture-container" onclick="toggleGallery()">
+          <div class="profile-picturecontainer" >
             <img src="./images/logo.jpg" alt="Profile Picture" id="profilePicture" class="profile-picture">
           </div>
         
@@ -68,9 +70,9 @@
           </div>
           <div class="col-6">
             <div class="h-100 p-5 border bg-light text-start">
-              <p class="description"></p>
+              <p id="description2" class="description"></p>
               <br>
-              <b>Posted by:</b><p id="name2" class="name"></p>
+              <b></b><p id="name2" class="name"></p>
             </div>
           </div>
         </div>
