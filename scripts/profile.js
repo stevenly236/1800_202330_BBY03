@@ -1,9 +1,17 @@
-function saveProfileDocumentIDAndRedirect(){
-  let params = new URL(window.location.href) //get the url from the search bar
-  let ID = params.searchParams.get("docID");
-  localStorage.setItem('profileDocID', ID);
-  window.location.href = 'editProfile.html';
+function changeButtonText() {
+  let followButton = document.querySelector('.follow-button');
+  if (followButton.innerHTML === 'Follow') {
+    followButton.innerHTML = 'Following';
+    // Call a function to save the followed user's ID into Firestore
+    saveFollowedUserID();
+  } else {
+    followButton.innerHTML = 'Follow';
+    // Call a function to remove the followed user's ID from Firestore
+    removeFollowedUserID();
+  }
 }
+
+
 
 
 function doAll() {
@@ -63,7 +71,7 @@ function insertBiographyFirestore(currentUser) {
 }
 
 function displayCardsDynamically(collection) {
-  let cardTemplate = document.getElementById("mealTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
+  let cardTemplate = document.getElementById("mealTemplate"); 
   
   
   db.collection(collection)
@@ -112,11 +120,9 @@ function displayCardsDynamically(collection) {
         })
       }
   })
-  })
-
-  
-  
+  }) 
 }
 
 displayCardsDynamically("meals");
+
 

@@ -3,13 +3,135 @@ body {
     font-family: Arial, sans-serif;
     margin-bottom: 10vh;
     overflow-x: hidden;
+}
 
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #FF6347;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 40rem;
+}
+
+.card-1 {
+    background-color: #ffeeba;
+    border: 1px solid #FF6347;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    padding: 20px;
+    max-width: 580px; 
+    margin: 0 auto; 
+}
+
+.card-2 {
+    background-color: #ffeeba;
+    border: 1px solid #FF6347;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    padding: 20px;
+    margin: 0 auto; 
+    width: 44rem;
+}
+
+
+
+#usercomment {
+    border: 2px solid #343a40; 
+    border-radius: 5px;
+    color: #343a40;
+  }
+
+
+.card-header {
+    background-color: #FF6347;
+    color: #fff;
+    font-weight: bold;
+}
+
+#commentbutton {
+    margin-top: 2%;
+}
+
+
+.username {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.content {
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.form-inline {
+    margin-top: 20px;
+}
+
+.form-container {
+    background-color: #87CEEB;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-group label {
+    color: #343a40;
+}
+
+.form-group textarea {
+    border: 2px solid #343a40;
+    border-radius: 5px;
+    color: #343a40;
+}
+
+.form-group button {
+    background-color: #ffc107;
+    color: #343a40;
+    border-radius: 5px;
+}
+
+.meal-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#mealName {
+    color: #3A833A;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+    font-size: 1.3em; 
+  font-weight: bold; 
+}
+
+#comments-go-here {
+    margin-top: 20px;
+}
+
+.btn-primary,
+.btn-success,
+.btn-secondary {
+    border-radius: 5px;
+}
+
+#star1,
+#star2,
+#star3,
+#star4,
+#star5 {
+    cursor: pointer;
 }
 
 .navbar {
     background-color: #333;
     overflow: hidden;
 }
+
+
 
 .navbar a {
     float: left;
@@ -26,7 +148,7 @@ body {
 }
 
 .bg {
-    background-color: #333; 
+    background-color: #333;
 }
 
 .icon {
@@ -36,7 +158,7 @@ body {
 .responsive {
     width: 60%;
     height: auto;
-  }
+}
 
 .container {
     padding-top: 7%;
@@ -45,13 +167,19 @@ body {
 
 #bookmark {
     float: right;
-    margin-top: 6%;
+    padding-top: 8%;
     margin-right: 2%;
+    cursor: pointer;
+    font-size: 24px;
 }
 
-.material-icons{
-    cursor: pointer;
-  }
+
+.star-rating {
+    font-size: 2rem;
+    color: #343a40;
+    padding: 0;
+    margin: 0;
+}
 
 #rating {
     margin-left: 2%;
@@ -60,11 +188,42 @@ body {
 
 #profile {
     display: inline-block;
-    padding-top: 5%;
+    padding-bottom: 5%;
     padding-left: 2%;
 }
 
 #myRating {
     float: right;
     padding-right: 2%;
+    position: relative;
+    top: -20px;
+}
+
+#myRating p {
+    padding: 0;
+    margin: 0;
+}
+
+.star {
+    font-size: 2rem;
+    color: #343a40;
+}
+
+#mealRating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteButton {
+    position: absolute; 
+    bottom: 5px; 
+    right: 5px; 
+    display: none;
+}
+
+#meal-description {
+    text-align: center;
+    font-size: 22px;
 }

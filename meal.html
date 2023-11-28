@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>My BCIT Project</title>
+  <title>PlatePals</title>
   <meta name="comp1800 template" content="My 1800 App">
 
   <!------------------------>
@@ -46,31 +46,38 @@
   <!-- our own navbar goes here -->
   <nav id="navbarPlaceholder"></nav>
   <!-- the body of your page goes here -->
-  <div id="profile">
-  <button type="button" class="btn btn-info">View Profile</button>
-  </div>
   <div id="bookmark">
     <i class="material-icons">bookmark_border</i>
   </div>
 
-  <div class="container">
-    <div class="btn btn-primary card-href" id="viewPoster" >View Profile</div>
+  <div id="profile" class="container">
+    <div class="btn btn-success card-href" id="viewPoster">View Profile</div>
+  </div>
 
+
+  <div class="card-2 mx-auto">
     <div class="d-flex justify-content-center">
       <h1><span id="mealName"></span></h1>
     </div>
-    <div class="d-flex justify-content-center">
-      <img class="meal-img rounded-4 responsive" src="" alt="foot">
+    <div id="mealRating" class="card-body">
+      <p class="average-rating"></p>
     </div>
-  </div><br>
+    <img src="" class="meal-img" alt="">
+    <br>
+    <div class="card-body">
+      <p id="meal-description" class="card-text"></p>
+    </div>
+  </div>
+  <br>
+  <br>
 
   <!-- Button trigger modal -->
   <div id="myRating" class="card-body">
-    <p>My Rating:</p>
+    <p>My Rating: </p>
     <p class="star-rating"></p>
-</div>
-  <button id="rating" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Rate This!
+  </div>
+  <button id="rating" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Rate this Meal!
   </button>
 
   <!-- Modal -->
@@ -93,40 +100,43 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="writeRating()">Save changes</button>
+          <button type="button" class="btn btn-success" onclick="writeRating()">Save changes</button>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="card-1">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Write a Comment</label>
+        <textarea class="form-control" id="usercomment" rows="3"></textarea>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button id="commentbutton" type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+          data-bs-target="#exampleModal1">Submit</button>
+      </div>
+    </form>
+  </div>
 
-  <form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="exampleFormControlTextarea1">Write a Comment</label>
-      <textarea class="form-control" id="usercomment" rows="3"></textarea>
-    </div>
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">Submit</button>
-    </div>
-  </form>
 
   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" onclick="writeComment()">Yes</button>
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-success" onclick="writeComment()">Yes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <div class="container">
     <div class="container">
@@ -134,39 +144,14 @@
       </div>
     </div>
   </div>
-  <!--
-  <section style="background-color: #f7f6f6;">
-    <template id="commentTemplate">
-      <div class="card mb-3">
-        <div class="card-body">
-          <div class="d-flex flex-start">
-            <span class="material-icons">account_circle</span>
-            <div class="w-100">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="username" class="text-primary fw-bold mb-0"> </h6>
-                <p class="content" class="mb-0"></p>
-                <p class="last_updated" class="mb-0"></p>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex flex-row">
-                  <i class="far fa-check-circle text-primary"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-  </section>
--->
 
   <template id="commentTemplate">
     <div class="d-flex justify-content-center">
-      <div class="card text-center" style="width: 100rem;">
-        <div class="username card-header">
-        </div>
+      <div class="card text-center">
+        <div class="username card-header"></div>
         <ul class="list-group list-group-flush">
-          <p class="content"></p>
+          <br>
+          <p class="content"></p> 
         </ul>
       </div>
     </div>

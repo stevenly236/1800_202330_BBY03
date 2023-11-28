@@ -15,10 +15,16 @@ function savePost() {
   firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
           var desc = document.getElementById("description").value;
+          var type = document.querySelector('input[name="type"]:checked').value;
+          var title = document.getElementById("title").value;
+
           db.collection("meals").add({
+              mealTitle: title,
               author: user.uid,
               description: desc,
               name: user.displayName,
+              rating: null,
+              mealTime: type,
               last_updated: firebase.firestore.FieldValue
                   .serverTimestamp() 
           }).then(doc => {
@@ -33,9 +39,11 @@ function savePost() {
   });
 }
 
+
 function uploadPic(mealDocID) {
   console.log("inside uploadPic " + mealDocID);
   var storageRef = storage.ref("images/" + mealDocID + ".jpg");
+
 
   storageRef.put(ImageFile)   
  
@@ -72,6 +80,8 @@ function saveMealIDforUser(mealDocID) {
         .then(() =>{
               console.log("5. Saved to user's document!");
               alert ("Post is complete!");
+              window.location.href = "main.html";
+
          })
          .catch((error) => {
               console.error("Error writing document: ", error);
