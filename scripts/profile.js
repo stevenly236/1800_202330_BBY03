@@ -1,15 +1,18 @@
 function changeButtonText() {
   let followButton = document.querySelector('.follow-button');
+
   if (followButton.innerHTML === 'Follow') {
     followButton.innerHTML = 'Following';
+    // Call a function to save the followed user's ID into Firestore
     let params = new URL(window.location.href)
     let ID = params.searchParams.get("docID");
-    // Call a function to save the followed user's ID into Firestore
     saveFollowedUserID(ID);
   } else {
     followButton.innerHTML = 'Follow';
     // Call a function to remove the followed user's ID from Firestore
-    removeFollowedUserID();
+    let params = new URL(window.location.href)
+    let ID = params.searchParams.get("docID");
+    removeFollowedUserID(ID);
   }
 }
 
@@ -24,6 +27,19 @@ function saveFollowedUserID (userID) {
       })
     }
   })
+}
+
+function removeFollowedUserID(userID) {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      db.collection("users").doc(user.uid).update({
+        followerID: firebase.firestore.FieldValue.arrayRemove(userID)
+      }).then(() => {
+        console.log("Unfollow success");
+   
+      });
+    }
+  });
 }
 
 

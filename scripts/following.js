@@ -63,11 +63,7 @@ function diplayFollowPost() {
                 followerArray.forEach(mealID => {
                     console.log(mealID)
                     db.collection("meals").doc(mealID).get().then(mealDoc => {
-                        
-                        
-
-                       
-                           
+    
                                 let description = mealDoc.data().description
                                 let imageurl = mealDoc.data().image
                                 let mealtime = mealDoc.data().mealTime
@@ -82,15 +78,9 @@ function diplayFollowPost() {
                                 newcard.querySelector('.description').innerText = description
                                 newcard.querySelector('.name').innerText = name
                                 newcard.querySelector('.mealType').innerText = mealtime
+                                newcard.querySelector('a').href = "meal.html?docID=" + mealID;
 
                                 document.getElementById("meals-go-here").appendChild(newcard);
-
-
-
-                            
-
-                
-                        
 
                     })
 
