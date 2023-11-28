@@ -306,5 +306,24 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
 
-    window.location.assign("profile.html?docID=" + ID)
+    db.collection('meals').doc(ID).get().then(mealDoc => {
+        let posterID = mealDoc.data().author
+
+        firebase.auth().onAuthStateChanged(user => {
+            let userID = user.uid
+    
+            if (userID == posterID) {
+                console.log("hahaha")
+                window.location.assign("profileSelf.html")
+            } else {
+                console.log("nonono")
+                window.location.assign("profile.html?docID=" + ID)
+            }
+        })
+    })
+
+
+
+
+
 })
