@@ -15,3 +15,49 @@
 body {
     color: #66BB6A;
 }
+
+#noBookmarksMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-top: -56px;
+    text-align: center;
+    color: #3A833A;
+    padding-top: 50%;
+    background-color: #FFFACD;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Change the background color of the dropdown button to white */
+.dropdown-item {
+    background-color: white;
+}

@@ -47,8 +47,13 @@ function displaymealInfo() {
                     thisMeal = doc.data();
                     mealName = doc.data().mealTitle;
                     mealDescription = doc.data().description;
+                    mealPoster = doc.data().name;
+                    mealType = doc.data().mealTime;
 
                     document.getElementById("meal-description").innerHTML = mealDescription;
+                    document.getElementById("mealPoster").innerHTML = mealPoster;
+                    document.getElementById("mealType").innerHTML = mealType;
+
 
                     // Populate title, image, and star rating
                     document.getElementById("mealName").innerHTML = mealName;
@@ -75,10 +80,10 @@ function displaymealInfo() {
                         .doc(user.uid)
                         .get()
                         .then(doc => {
+                            let rating = 0;
                             if (doc.exists) {
                                 rating = doc.data().rating;
                             }
-
 
                             // Initialize an empty string to store the star rating HTML
                             let starRating = "";
@@ -95,6 +100,7 @@ function displaymealInfo() {
                             calculateAverageRating(ID).then(averageRating => {
                                 // Round the average rating to a single decimal place
                                 const roundedAverageRating = averageRating.toFixed(1);
+                                console.log("Average Rating:", roundedAverageRating);
 
                                 // Initialize an empty string to store the star rating HTML
                                 let starRating = "";
