@@ -99,7 +99,7 @@ function displaymealInfo() {
 
                             calculateAverageRating(ID).then(averageRating => {
                                 // Round the average rating to a single decimal place
-                                const roundedAverageRating = averageRating.toFixed(1);
+                                const roundedAverageRating = Math.round(averageRating);
                                 console.log("Average Rating:", roundedAverageRating);
 
                                 // Initialize an empty string to store the star rating HTML
