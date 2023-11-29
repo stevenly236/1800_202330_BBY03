@@ -111,7 +111,6 @@ function filterMealsByTimeAndBookmarks(mealTime) {
                                     document.getElementById("meals-go-here").appendChild(newmeal);
                                 }
                             })
-
                     });
                 })
 
@@ -122,7 +121,6 @@ function filterMealsByTimeAndBookmarks(mealTime) {
 }
 
 // Example usage when the user selects a mealTime
-// Assuming you have HTML elements with IDs like "breakfast", "lunch", "dinner", "snack" for selection
 document.getElementById("breakfast").addEventListener("click", function () {
     filterMealsByTimeAndBookmarks("Breakfast");
 });

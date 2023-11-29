@@ -34,7 +34,7 @@ body {
     margin-bottom: 20px;
     padding: 20px;
     margin: 0 auto;
-    width: 44rem;
+    width: 23rem;
 }
 
 
@@ -223,7 +223,7 @@ body {
 
 #mealRating {
     display: inline-block;
-    margin-left: 41%;
+    margin-left: 32%;
 
 }
 
@@ -241,5 +241,5 @@ body {
 
 #mealType {
     font-weight: bold;
-    margin-left: 46.3%;
+    margin-left: 42.3%;
 }

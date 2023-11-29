@@ -215,8 +215,7 @@ function calculateAverageRating(mealID) {
     });
 }
 
-// Example usage:
-const mealID = "yourMealID"; // Replace with the actual meal ID
+
 calculateAverageRating(mealID).then(averageRating => {
     console.log("Average Rating:", averageRating);
 });
