@@ -26,7 +26,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
   <!-- Link to styles of your own -->
@@ -44,46 +44,38 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-
   <div class="container">
-    <br>
-    <div class="right">
-      <h1 class="name"> Edit Profile for <span id="name-goes-here"></span></h1>
+    <h1>Following</h1>
+      <div id="meals-go-here" class="row row-cols-auto"></div>
+  </div>
 
- </div>
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Full Name</label>
-            <input type="text" class="form-control" id="name" placeholder="First Name Last Name" required="required">
-        </div><br>
-        <div class="form-group">
-          
-            <label for="exampleFormControlSelect1">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username">
-        </div><br>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Gender</label>
-                <select class="form-control" id="gender">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                    <option>Prefer not to say</option>
-                </select>
-                <br>
+  <template id="mealTemplate">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-12">
+                <div class="h-100 border bg-light">
+                    <img class="image" alt="Meal Image">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Bio</label>
-                <textarea class="form-control" id="biography" rows="3"></textarea>
+            <div class="col-12">
+                <div class="h-100 p-5 border bg-light text-start">
+                    <b><p class="mealTitle"></p></b>
+                    <p class="description"></p>
+                    <br>
+                    <div class="post-info">
+                        <b class="postedBy">Posted by:</b><p class="name"></p>
+                        <b class="whatMeal">What Meal:</b><p class="mealType"></p>
+                    </div>
+                </div>
             </div>
-            <br>
-            <br>
-            <div class="d-flex justify-content-end">
-                <button type="button" id="submit" class="btn btn-lg btn-primary pull-right"
-                    onclick="saveProfile()">Submit</button>
+            <div class="col-12">
+                <a class="btn btn-success card-href w-100">View this meal!</a>
             </div>
         </div>
-    </form>
-</div>
+</template>
+
+
+
 
   <nav id="footerPlaceholder"></nav>
 
@@ -96,10 +88,9 @@
   <script src="./scripts/script.js"></script>
   <script src="./scripts/firebaseAPI_BBY03.js"></script>
   <script src="./scripts/skeleton.js"></script>
- <script src="./scripts/editProfile.js"></script>
+  <script src="./scripts/following.js"></script>
 
 </body>
-
 
 
 </html>
