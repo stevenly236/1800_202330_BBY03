@@ -211,11 +211,10 @@ function calculateAverageRating(mealID) {
         // Return the average rating
         return averageRating
 
-
     });
 }
 
-
+const mealID = "MealID";
 calculateAverageRating(mealID).then(averageRating => {
     console.log("Average Rating:", averageRating);
 });
@@ -252,7 +251,7 @@ function toggleBookmark(mealDocID) {
                             document.getElementById(iconID).innerText = 'bookmark';
                             alert("Bookmarked!");
                         })
-                }
+                }    
             }
         })
 }
@@ -310,6 +309,7 @@ function writeRating() {
 document.querySelector("#viewPoster").addEventListener('click', function () {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
+    console.log("working");
 
     db.collection('meals').doc(ID).get().then(mealDoc => {
         let posterID = mealDoc.data().author
@@ -326,9 +326,6 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
             }
         })
     })
-
-
-
 
 
 })

@@ -50,6 +50,7 @@ body {
     background-color: #FF6347;
     color: #fff;
     font-weight: bold;
+    cursor: default;
 }
 
 #commentbutton {
@@ -65,6 +66,7 @@ body {
 .content {
     font-size: 1.1rem;
     color: #343a40;
+    cursor: default;
 }
 
 .form-inline {
@@ -106,6 +108,7 @@ body {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     font-size: 1.3em;
     font-weight: bold;
+    cursor: default;
 }
 
 #comments-go-here {
@@ -200,6 +203,7 @@ body {
     text-align: center;
     margin-top: 20px;
     padding: 10px;
+    cursor: default;
 }
 
 
@@ -209,6 +213,7 @@ body {
     padding-right: 2%;
     position: relative;
     top: -20px;
+    cursor: default;
 }
 
 #myRating p {
@@ -224,6 +229,8 @@ body {
 #mealRating {
     display: inline-block;
     margin-left: 32%;
+    cursor: default;
+
 
 }
 
@@ -237,9 +244,11 @@ body {
 #meal-description {
     text-align: center;
     font-size: 22px;
+    cursor: default;
 }
 
 #mealType {
     font-weight: bold;
     margin-left: 42.3%;
+    cursor: default;
 }
