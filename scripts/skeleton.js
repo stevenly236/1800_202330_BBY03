@@ -13,6 +13,7 @@ function loadSkeleton() {
         } else {
             // No user is signed in.
             console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
+            console.log($('#footerPlaceholder').html(''));
         }
     });
 }

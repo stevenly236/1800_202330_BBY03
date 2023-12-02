@@ -238,7 +238,7 @@ function toggleBookmark(mealDocID) {
                             console.log("Bookmark has been removed for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark_border';
-                            alert("Unbookmarked!");
+                            document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Removed!';
                         })
                 } else {
                     // If not bookmarked, add it to the bookmarks array
@@ -249,7 +249,7 @@ function toggleBookmark(mealDocID) {
                             console.log("Bookmark has been saved for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark';
-                            alert("Bookmarked!");
+                            document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Added!';
                         })
                 }    
             }

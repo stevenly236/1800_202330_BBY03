@@ -9,6 +9,15 @@ function doAll() {
 }
 doAll();
 
+document.getElementById("noBookmarkButton").addEventListener('click', function () {
+    window.location.assign('main.html');
+});
+
+document.getElementById("noBookmarkMealButton").addEventListener('click', function () {
+    window.location.assign('main.html');
+});
+
+
 function getBookmarks(user) {
     document.getElementById("noMealsMessage").style.display = "none";
     db.collection("users").doc(user.uid).get()
@@ -35,6 +44,7 @@ function getBookmarks(user) {
 
 
             // Iterate through the ARRAY of bookmarked hikes (document ID's)
+            
             bookmarks.forEach(thisMeal => {
                 console.log(thisMeal);
                 db.collection("meals")
@@ -218,6 +228,3 @@ function clearFilterAndShowAllBookmarks() {
     });
 }
 
-document.querySelector("#noBookmarkButton").addEventListener('click', function () {
-    window.location.assign("main.html")
-})

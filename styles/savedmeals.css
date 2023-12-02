@@ -33,11 +33,17 @@ body {
     background-color: #3A833A;
     margin-top: 2%;
     color: #fff;
+    box-shadow: 0 4px 8px rgba(1, 0, 0, 1), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-#noBookmarkButton:hover {
-    background-color: #fff !important; 
+#noBookmarkMealButton {
+    background-color: #3A833A;
+    margin-top: 2%;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(1, 0, 0, 1), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
+
+
 
 #noMealsMessage {
     display: flex;
@@ -76,5 +82,11 @@ body {
     display: block;
     color: #333;
     font-weight: bold;
+}
+
+#viewMore {
+    background-color: #3A833A;
+    color: #fff;
+    
 }
 

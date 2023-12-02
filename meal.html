@@ -68,7 +68,8 @@
       <p class="average-rating"></p>
     </div>
     <div id="bookmark">
-      <i class="material-icons">bookmark_border</i>
+      <i class="material-icons" data-bs-toggle="modal"
+      data-bs-target="#bookmarkModal">bookmark_border</i>
     </div>
     <img src="" class="meal-img" alt="">
     <br>
@@ -93,22 +94,20 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Rate This</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="exampleModalLabel">Rate This</h5>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
           <span class="material-icons star" id="star1">star_outline</span>
           <span class="material-icons star" id="star2">star_outline</span>
           <span class="material-icons star" id="star3">star_outline</span>
           <span class="material-icons star" id="star4">star_outline</span>
           <span class="material-icons star" id="star5">star_outline</span>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" onclick="writeRating()">Save changes</button>
+        <div class="modal-footer align-content-center">
+          <button type="button" class="btn btn-success w-100" onclick="writeRating()">Save changes</button>
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+        
         </div>
       </div>
     </div>
@@ -127,20 +126,33 @@
     </form>
   </div>
 
+ 
+<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header text-center">
+              <h5 class="modal-title w-100" id="bookmarkModalLabel">Bookmark Notification</h5> 
+          </div>
+          <div class="modal-body align-content-center" id="bookmarkModalBody">
+            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
 
   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="exampleModalLabel">Are you sure?</h5>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-          <button type="button" class="btn btn-success" onclick="writeComment()">Yes</button>
+        <div class="modal-footer align-content-center">
+          <button type="button" class="btn btn-success w-100" onclick="writeComment()">Yes</button>
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
+
         </div>
       </div>
     </div>
