@@ -4,12 +4,62 @@
 
 .card {
     text-align: center;
-    width: 50%;
-    margin-left: 24%;
+    margin-left: 14%;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.detail-container {
+    background-color: #ffeeba;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#refresh {
+    background-color: #3A833A;
+    color: #fff;
+    margin-left: 77px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+
+.thumbnail-image {
+    border-radius: 10px !important
+}
+
+.meal-img {
+    border-radius: 20px;
 }
 
 .card ul {
     list-style-type: none;
+}
+
+.bookmark {
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    display: flex;
+    margin-top: 10px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.material-icons {
+    font-size: 24px !important
+}
+
+.rating-number {
+    font-size: 15px;
+    color: grey;
+    position: relative;
+    top: -5.5px;
+    left: 4px;
 }
 
 body {
@@ -77,7 +127,7 @@ body {
 }
 
 .dropdown-item {
-    padding: 12px 13.4px;
+    padding: 20px 13.4px;
     text-decoration: none;
     display: block;
     color: #333;
@@ -87,6 +137,15 @@ body {
 #viewMore {
     background-color: #3A833A;
     color: #fff;
-    
+}
+
+.modal-content {
+    background-color: #ffeeba;
+}
+
+.first {
+    position: absolute;
+    width: 100%;
+    padding: 9px
 }
 

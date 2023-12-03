@@ -99,7 +99,7 @@ function displaymealInfo() {
 
                             calculateAverageRating(ID).then(averageRating => {
                                 // Round the average rating to a single decimal place
-                                const roundedAverageRating = Math.round(averageRating);
+                                const roundedAverageRating = Math.round(averageRating || 0);
                                 console.log("Average Rating:", roundedAverageRating);
 
                                 // Initialize an empty string to store the star rating HTML
@@ -113,6 +113,13 @@ function displaymealInfo() {
                                     starRating += '<span class="material-icons">star_outline</span>';
                                 }
                                 document.querySelector(".average-rating").innerHTML = starRating;
+                                
+                                return db.collection("meals")
+                                    .doc(ID)
+                                    .update({ averagerating: Math.round(roundedAverageRating) })
+                                    .then(() => {
+                                        console.log("Average rating updated in the meal document");
+                                    })
                             });
 
 
@@ -251,7 +258,7 @@ function toggleBookmark(mealDocID) {
                             document.getElementById(iconID).innerText = 'bookmark';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Added!';
                         })
-                }    
+                }
             }
         })
 }
@@ -316,7 +323,7 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
 
         firebase.auth().onAuthStateChanged(user => {
             let userID = user.uid
-    
+
             if (userID == posterID) {
                 console.log("hahaha")
                 window.location.assign("profileSelf.html")

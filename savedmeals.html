@@ -56,6 +56,9 @@
     </div>
 </div>
 
+<button id="refresh" class="btn card-href" onclick="refreshPage()">Refresh List</button>
+
+
   <div class="container">
     <div id="meals-go-here"></div>
   </div>
@@ -76,7 +79,7 @@
       <button id="noBookmarkButton" type="button" class="btn">Start Exploring!</button>
     </div>
   </div>
-
+<!---
   <template id="mealTemplate">
     <div class="card">
       <img class="meal-img" src="..." alt="">
@@ -94,6 +97,49 @@
     <br>
     <br>
   </template>
+-->
+  <template id="mealTemplate">
+  <div class="card">
+    <div class="image-container">
+        <div class="first">
+            <div class="d-flex justify-content-between align-items-center"><span></span><span class="bookmark"><i id="bookmarkicon" class="material-icons bookmark-icon" data-bs-toggle="modal"
+              data-bs-target="#bookmarkModal">bookmark_border</i></span> </div>
+        </div> <img src="" class="img-fluid rounded thumbnail-image meal-img">
+    </div>
+    <div class="detail-container p-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title"></h5>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+        <p class="card-poster"></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+            <p class="card-text"></p>
+            <p class="update"></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+            <div> <i class="material-icons">star_outline</i> <span class="rating-number"></span></div> 
+            <a id="viewMore" class="btn card-href">View more</a>
+        </div>
+    </div>
+</div>
+<br>
+</template>
+
+<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header text-center">
+              <h5 class="modal-title w-100" id="bookmarkModalLabel">Bookmark Notification</h5> 
+          </div>
+          <div class="modal-body align-content-center" id="bookmarkModalBody">
+            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
 
 
   <nav id="footerPlaceholder"></nav>
