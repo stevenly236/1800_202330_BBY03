@@ -33,7 +33,8 @@
 
 .profile-picture {
     position: relative;
-    right: -20%;
+    right: -5%;
+    width: 50%;
   }
 
 
@@ -53,13 +54,10 @@
 }
 .bio {
     display: flex;
-    font-size: 20pt;
+    font-size: 14pt;
     align-content: center;
 }
 
-.container {
-    display: flex; 
-}
 
 .col-6 {
     display: flex;
@@ -69,7 +67,7 @@
 
 .description {
     display: flex;
-    width: 100vw;
+    width: 80vw;
     height: 0.5vh;
 }
 
