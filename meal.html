@@ -69,7 +69,7 @@
     </div>
     <div id="bookmark">
       <i class="material-icons" data-bs-toggle="modal"
-      data-bs-target="#bookmarkModal">bookmark_border</i>
+      data-bs-target="#bookmarkModal" id="mealBookmark">bookmark_border</i>
     </div>
     <img src="" class="meal-img" alt="">
     <br>
@@ -95,7 +95,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title w-100" id="exampleModalLabel">Rate This</h5>
+          <h5 class="modal-title w-100" id="Rating-Label">Rate This</h5>
         </div>
         <div class="modal-body text-center">
           <span class="material-icons star" id="star1">star_outline</span>
@@ -147,7 +147,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title w-100" id="exampleModalLabel">Are you sure?</h5>
+          <h5 class="modal-title w-100" id="Comment-Label">Are you sure?</h5>
         </div>
         <div class="modal-footer align-content-center">
           <button type="button" class="btn btn-success w-100" onclick="writeComment()">Yes</button>
@@ -172,6 +172,10 @@
         <ul class="list-group list-group-flush">
           <br>
           <p class="content"></p> 
+          <div class="delete-section">
+            <div id="timeAgo"></div>
+            <div id="delete-icon"></div>
+          </div>
         </ul>
       </div>
     </div>

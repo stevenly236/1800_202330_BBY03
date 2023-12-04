@@ -43,23 +43,25 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-  <div class="dropdown" id="mealTimeDropdown">
-    <button class="dropdown-item" onclick="toggleDropdown()">
-        <span class="material-icons">filter_list</span>
-    </button>
-    <div class="dropdown-content">
-        <a class="dropdown-item" id="breakfast" href="#">Breakfast</a>
-        <a class="dropdown-item" id="lunch" href="#">Lunch</a>
-        <a class="dropdown-item" id="dinner" href="#">Dinner</a>
-        <a class="dropdown-item" id="snack" href="#">Snack</a>
-        <a class="dropdown-item" id="clearFilter" href="#">Clear</a>
-    </div>
+<div class="btn-group" role="group">
+  <button id="sortHighestRatingButton" class="btn card-href">Highest <i class="material-icons">star_outline</i></button>
+  <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
+  <button id="sortLowestRatingButton" class="btn card-href">Lowest <i class="material-icons">star_outline</i></button>
 </div>
 
-<button id="refresh" class="btn card-href" onclick="refreshPage()">Refresh List</button>
-
-
-  <div class="container">
+  <div id="containerone" class="container">
+    <div class="dropdown" id="mealTimeDropdown">
+      <button class="dropdown-item" onclick="toggleDropdown()">
+          <span class="material-icons">filter_list</span>
+      </button>
+      <div class="dropdown-content">
+          <a class="dropdown-item" id="breakfast" href="#">Breakfast</a>
+          <a class="dropdown-item" id="lunch" href="#">Lunch</a>
+          <a class="dropdown-item" id="dinner" href="#">Dinner</a>
+          <a class="dropdown-item" id="snack" href="#">Snack</a>
+          <a class="dropdown-item" id="clearFilter" href="#">Clear</a>
+      </div>
+    </div>
     <div id="meals-go-here"></div>
   </div>
 

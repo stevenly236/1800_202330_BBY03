@@ -113,7 +113,7 @@ function displaymealInfo() {
                                     starRating += '<span class="material-icons">star_outline</span>';
                                 }
                                 document.querySelector(".average-rating").innerHTML = starRating;
-                                
+
                                 return db.collection("meals")
                                     .doc(ID)
                                     .update({ averagerating: Math.round(roundedAverageRating) })
@@ -166,22 +166,45 @@ function displayCommentsDynamically(collection) {
                 let content = doc.data().content;
                 let commentID = doc.id;
                 let userID = doc.data().userID;
+                var date = doc.data().timestamp.toDate();
                 let newcomment = commentTemplate.content.cloneNode(true);
+
+                var timeDiff = Date.now() - date.getTime();
+                const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+
+                // Calculate days, hours, and remaining minutes
+                const daysDiff = Math.floor(minutesDiff / (24 * 60));
+                const hoursDiff = Math.floor((minutesDiff % (24 * 60)) / 60);
+                const remainingMinutes = minutesDiff % 60;
+
+                let timeAgo;
+
+                if (daysDiff > 0) {
+                    timeAgo = daysDiff + " days ago";
+                } else if (hoursDiff > 0) {
+                    timeAgo = hoursDiff + " hours ago";
+                } else {
+                    timeAgo = remainingMinutes + " minutes ago";
+                }
 
                 newcomment.querySelector(".content").innerHTML = content;
                 newcomment.querySelector(".username").innerHTML = usernamee;
+                newcomment.getElementById("timeAgo").innerHTML = timeAgo;
+
+
 
                 var user = firebase.auth().currentUser;
 
                 // Check if the current user created the comment
                 if (user && user.uid == userID) {
-                    let deleteButton = document.createElement("button");
-                    deleteButton.textContent = "Delete";
+                    let deleteButton = document.createElement("span");
+                    deleteButton.innerHTML = '<span class="material-icons">delete</span>';
+                    deleteButton.classList.add("delete-button");
                     deleteButton.addEventListener("click", () => {
                         deleteComment(commentID, collection);
                     });
 
-                    newcomment.appendChild(deleteButton);
+                    newcomment.getElementById("delete-icon").appendChild(deleteButton);
                 }
 
                 document.getElementById(collection + "-go-here").appendChild(newcomment);

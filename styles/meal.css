@@ -129,17 +129,44 @@ body {
     cursor: pointer;
 }
 
+#Rating-Label {
+    font-weight: bold;
+}
+
+#Comment-Label {
+    font-weight: bold;
+}
+
+.delete-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+#timeAgo {
+    flex: 1;
+    color: grey;
+    font-weight: bold;
+    text-align: left;
+    font-size: 14px;
+    position: relative;
+    top: 4px;
+}
+
+#delete-icon {
+    flex: 1;
+    text-align: right;
+}
+
+
 .modal-content {
     background-color: #ffeeba;
-    color:#3A833A;
+    color: #3A833A;
 }
 
 .navbar {
     background-color: #333;
     overflow: hidden;
 }
-
-
 
 .navbar a {
     float: left;
