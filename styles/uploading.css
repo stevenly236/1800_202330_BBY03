@@ -17,18 +17,26 @@ h1 {
 #mypic-goes-here {
     display: block;
     margin: 0 auto;
-    max-width: 25%;
+    width: 60%;
     height: auto;
 }
 
 #description {
-    width: 45vw;
+    width: 100%;
 }
 
-#description {
-    width: 45vw;
+#title {
+    width: 100%;
 }
 
 #post {
     float: right;
+}
+
+label {
+    float: left;
+}
+
+input {
+    padding-left: 15px;
 }
