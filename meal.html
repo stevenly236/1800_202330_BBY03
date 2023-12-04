@@ -47,21 +47,21 @@
   <nav id="navbarPlaceholder"></nav>
   <!-- the body of your page goes here -->
   <br>
+
   <div id= "mealPoster1" class="d-flex justify-content-center">
     <h1><span id="mealPoster"></span></h1>
   </div>
   <br>
   <div id="profile" class="container">
-    <div class="btn btn-success card-href" id="viewPoster">View Profile</div>
+   <div class="btn btn-success card-href" id="viewPoster">View Profile</div>
   </div>
 
-
+  <button id="toggleButton" class="btn btn-success card-href"><span class="material-icons">visibility</span></button>
   <div class="card-2 mx-auto">
     <div class="d-flex justify-content-center">
       <h1><span id="mealName"></span></h1>
     </div>
-    <div id="mealType">
-      <p id="mealTypeStyle"></p>
+    <div id="mealType" class="d-flex justify-content-center">
     </div>
     <br>
     <div id="mealRating" class="card-body">
@@ -128,8 +128,6 @@
 
   <div id="alert-container"></div>
 
-
- 
 <div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -202,6 +200,9 @@
     <br>
   </template>
 
+  <div id="animation-container" class="justify-content-evenly fixed-bottom">
+    <img id="mascot" src="./images/avacado.png">
+  </div>
   <!-- our own footer goes here-->
   <nav id="footerPlaceholder"></nav>
 

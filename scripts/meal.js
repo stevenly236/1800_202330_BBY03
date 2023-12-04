@@ -59,6 +59,11 @@ function displaymealInfo() {
                     document.getElementById("mealName").innerHTML = mealName;
                     let imgEvent = document.querySelector(".meal-img");
                     imgEvent.src = doc.data().image;
+
+                    let animationEvent = document.querySelector("#mascot");
+
+                
+
                     // Assigning unique ID to the bookmark icon
                     // Attaching an onclick. Calling callback function (with meal's ID)
                     document.querySelector('i').id = 'save-' + ID;   // Guaranteed to be unique
@@ -124,9 +129,22 @@ function displaymealInfo() {
                                     })
                             });
 
-
-
                         })
+                        switch (mealType) {
+                            case 'Breakfast':
+                                animationEvent.src = './images/egg.png';
+                                break;
+                            case 'Lunch':
+                                animationEvent.src = './images/sushi.png';
+                                break;
+                            case 'Dinner':
+                                animationEvent.src = './images/burger.png';
+                                break;
+                            case 'Snack':
+                                animationEvent.src = './images/avacado.png';
+                                break;
+                        }
+                        animateMascot();
                 })
         } else {
             console.log("No user is signed in");
@@ -399,3 +417,44 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
 
 
 })
+
+$(function() {
+    var img = $("#mascot"),
+        width = img.get(0).width,
+        screenWidth = $(window).width(),
+        fraction = 1,
+        duration = 4000;
+
+    function animateMascot() {
+        img.css("left", -width).animate({
+            "left": fraction * screenWidth
+        }, duration, function () {
+            img.css("left", (screenWidth + 120) - width);
+            
+            img.animate({
+                "left": -110
+            }, duration, animateMascot);
+        });
+    }
+
+    animateMascot();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const animationContainer = document.getElementById("animation-container");
+    const toggleButton = document.getElementById("toggleButton");
+  
+    let isContainerVisible = true;
+  
+    toggleButton.addEventListener("click", function () {
+      if (isContainerVisible) {
+        animationContainer.style.display = "none";
+        toggleButton.innerHTML = '<span class="material-icons">visibility_off</span>';
+      } else {
+        animationContainer.style.display = "block";
+        toggleButton.innerHTML = '<span class="material-icons">visibility</span>';
+      }
+  
+      isContainerVisible = !isContainerVisible;
+    });
+  });

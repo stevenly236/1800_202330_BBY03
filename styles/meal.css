@@ -219,6 +219,16 @@ body {
     margin: 0;
 }
 
+#toggleButton {
+    padding-top: 4px;
+    padding-bottom: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: 45%;
+    margin-bottom: 10px;
+
+}
+
 #rating {
     margin-left: 2%;
     margin-bottom: 4%;
@@ -286,6 +296,18 @@ body {
 
 #mealType {
     font-weight: bold;
-    margin-left: 42.3%;
     cursor: default;
 }
+
+#mascot {
+    position: absolute;
+    width: 30%;
+    height: auto;
+}
+
+#animation-container {
+    bottom: 145px;
+    width: 100%;
+    pointer-events: none; 
+    display: block;
+  }
