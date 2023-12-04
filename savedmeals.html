@@ -45,8 +45,10 @@
 
 <div class="btn-group" role="group">
   <button id="sortHighestRatingButton" class="btn card-href">Highest <i class="material-icons">star_outline</i></button>
-  <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
   <button id="sortLowestRatingButton" class="btn card-href">Lowest <i class="material-icons">star_outline</i></button>
+  <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
+  <button id="sortRecentButton" class="btn card-href">Recent</button>
+  <button id="sortOldestButton" class="btn card-href">Oldest</button>
 </div>
 
   <div id="containerone" class="container">
@@ -132,7 +134,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header text-center">
-              <h5 class="modal-title w-100" id="bookmarkModalLabel">Bookmark Notification</h5> 
+              <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5> 
           </div>
           <div class="modal-body align-content-center" id="bookmarkModalBody">
             <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>

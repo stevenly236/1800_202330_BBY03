@@ -67,10 +67,12 @@ function displaymealInfo() {
                     // Check if the meal is bookmarked by the current user
                     currentUser.get().then(userDoc => {
                         // get the username
-                        let bookmarks = userDoc.data().bookmarks;
-                        if (bookmarks.includes(ID)) {
-                            document.getElementById('save-' + ID).innerText = 'bookmark';
-                        }
+                        let bookmarksCollectionRef = currentUser.collection("bookmarks");
+                        bookmarksCollectionRef.doc(ID).get().then(bookmarkDoc => {
+                            if (bookmarkDoc.exists) {
+                            document.querySelector('i').innerText = 'bookmark';
+                            }
+                        });
                     });
 
                     // Retrieve the rating from the "rating" subcollection
@@ -161,58 +163,98 @@ function displayCommentsDynamically(collection) {
         .where("docID", "==", ID)
         .get()
         .then(allComments => {
-            allComments.forEach(doc => {
-                let usernamee = doc.data().username;
-                let content = doc.data().content;
-                let commentID = doc.id;
-                let userID = doc.data().userID;
-                var date = doc.data().timestamp.toDate();
-                let newcomment = commentTemplate.content.cloneNode(true);
+            if (allComments.size === 0) {
+                displayNoCommentsAlert();
+            } else {
+                allComments.forEach(doc => {
 
-                var timeDiff = Date.now() - date.getTime();
-                const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+                    let usernamee = doc.data().username;
+                    let content = doc.data().content;
+                    let commentID = doc.id;
+                    let userID = doc.data().userID;
+                    var date = doc.data().timestamp.toDate();
+                    let newcomment = commentTemplate.content.cloneNode(true);
 
-                // Calculate days, hours, and remaining minutes
-                const daysDiff = Math.floor(minutesDiff / (24 * 60));
-                const hoursDiff = Math.floor((minutesDiff % (24 * 60)) / 60);
-                const remainingMinutes = minutesDiff % 60;
+                    var timeDiff = Date.now() - date.getTime();
+                    const minutesDiff = Math.floor(timeDiff / (1000 * 60));
 
-                let timeAgo;
+                    // Calculate days, hours, and remaining minutes
+                    const daysDiff = Math.floor(minutesDiff / (24 * 60));
+                    const hoursDiff = Math.floor((minutesDiff % (24 * 60)) / 60);
+                    const remainingMinutes = minutesDiff % 60;
 
-                if (daysDiff > 0) {
-                    timeAgo = daysDiff + " days ago";
-                } else if (hoursDiff > 0) {
-                    timeAgo = hoursDiff + " hours ago";
-                } else {
-                    timeAgo = remainingMinutes + " minutes ago";
-                }
+                    let timeAgo;
 
-                newcomment.querySelector(".content").innerHTML = content;
-                newcomment.querySelector(".username").innerHTML = usernamee;
-                newcomment.getElementById("timeAgo").innerHTML = timeAgo;
+                    if (daysDiff > 0) {
+                        timeAgo = daysDiff + " days ago";
+                    } else if (hoursDiff > 0) {
+                        timeAgo = hoursDiff + " hours ago";
+                    } else {
+                        timeAgo = remainingMinutes + " minutes ago";
+                    }
 
+                    newcomment.querySelector(".content").innerHTML = content;
+                    newcomment.querySelector(".username").innerHTML = usernamee;
+                    newcomment.getElementById("timeAgo").innerHTML = timeAgo;
 
+                    var user = firebase.auth().currentUser;
 
-                var user = firebase.auth().currentUser;
+                    // Check if the current user created the comment
+                    if (user && user.uid == userID) {
+                        let deleteButton = document.createElement("span");
+                        deleteButton.innerHTML = '<span class="material-icons">delete</span>';
+                        deleteButton.classList.add("delete-button");
+                        deleteButton.addEventListener("click", () => {
+                            openDeleteModal(commentID, collection);
+                        });
 
-                // Check if the current user created the comment
-                if (user && user.uid == userID) {
-                    let deleteButton = document.createElement("span");
-                    deleteButton.innerHTML = '<span class="material-icons">delete</span>';
-                    deleteButton.classList.add("delete-button");
-                    deleteButton.addEventListener("click", () => {
-                        deleteComment(commentID, collection);
-                    });
+                        newcomment.getElementById("delete-icon").appendChild(deleteButton);
+                    }
 
-                    newcomment.getElementById("delete-icon").appendChild(deleteButton);
-                }
+                    document.getElementById(collection + "-go-here").appendChild(newcomment);
+                    removeNoCommentsAlert();
 
-                document.getElementById(collection + "-go-here").appendChild(newcomment);
-
-            })
+                })
+            }
         })
+
 }
 displayCommentsDynamically("comments");
+
+// Function to open the delete confirmation modal
+function openDeleteModal(commentID, collection) {
+    // Get the modal element
+    document.getElementById("deleteModal")
+        .querySelector("#modalDeleteButton")
+        .onclick = function () {
+            // Call the deleteComment function when the modal delete button is clicked
+            deleteComment(commentID, collection);
+            // Close the modal after deletion
+            $('#deleteModal').modal('hide');
+        };
+    // Open the modal
+    $('#deleteModal').modal('show');
+}
+
+function displayNoCommentsAlert() {
+    let alertContainer = document.getElementById("alert-container");
+
+    let alertElement = document.createElement("div");
+    alertElement.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+
+    alertElement.innerHTML = `
+        Be the <strong>first</strong> to leave a comment!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    `;
+
+    alertContainer.appendChild(alertElement);
+}
+
+function removeNoCommentsAlert() {
+    let alertContainer = document.getElementById("alert-container");
+    alertContainer.innerHTML = "";
+}
 
 function calculateAverageRating(mealID) {
     // Reference to the "rating" subcollection for the specified meal
@@ -253,35 +295,33 @@ calculateAverageRating(mealID).then(averageRating => {
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
+    var bookmarksCollectionRef = userDocRef.collection("bookmarks");
 
     userDocRef.get()
         .then(function (doc) {
             if (doc.exists) {
-                var isBookmarked = doc.data().bookmarks && doc.data().bookmarks.includes(mealDocID);
+                return bookmarksCollectionRef.doc(mealDocID).get().then(bookmarkDoc => {
+                    var isBookmarked = bookmarkDoc.exists;
 
-                if (isBookmarked) {
-                    // If already bookmarked, remove it from the bookmarks array
-                    return userDocRef.update({
-                        bookmarks: firebase.firestore.FieldValue.arrayRemove(mealDocID)
-                    })
-                        .then(function () {
+                    if (isBookmarked) {
+                        // If already bookmarked, remove it from the bookmarks array
+                        return bookmarksCollectionRef.doc(mealDocID).delete().then(function () {
                             console.log("Bookmark has been removed for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark_border';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Removed!';
-                        })
-                } else {
-                    // If not bookmarked, add it to the bookmarks array
-                    return userDocRef.update({
-                        bookmarks: firebase.firestore.FieldValue.arrayUnion(mealDocID)
-                    })
-                        .then(function () {
+                        });
+                    } else {
+                        return bookmarksCollectionRef.doc(mealDocID).set({
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        }).then(function () {
                             console.log("Bookmark has been saved for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Added!';
-                        })
-                }
+                        });
+                    }
+                });
             }
         })
 }

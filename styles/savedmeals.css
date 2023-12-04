@@ -24,13 +24,47 @@
 }
 
 .card-href {
+    margin-left: 0.5px;
     background-color: #3A833A;
     color: #fff;
-    margin-left: 18.4%;
     margin-top: 5px;
     margin-right: 7px;
+    transition: background-color 0.8s ease;
 }
 
+#sortHighestRatingButton.btn {
+    padding: 0;
+}
+
+#sortHighestRatingButton.btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#sortLowestRatingButton.btn {
+    padding-top: 0;
+}
+
+#sortLowestRatingButton.btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#sortRecentButton.btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#sortOldestButton.btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.btn {
+    height: 50px;
+    width: 70px;
+    font-size: 12px;
+}
 
 .thumbnail-image {
     border-radius: 10px !important

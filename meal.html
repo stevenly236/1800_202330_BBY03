@@ -126,12 +126,15 @@
     </form>
   </div>
 
+  <div id="alert-container"></div>
+
+
  
 <div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header text-center">
-              <h5 class="modal-title w-100" id="bookmarkModalLabel">Bookmark Notification</h5> 
+              <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5> 
           </div>
           <div class="modal-body align-content-center" id="bookmarkModalBody">
             <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
@@ -147,7 +150,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title w-100" id="Comment-Label">Are you sure?</h5>
+          <h5 class="modal-title w-100" id="Comment-Label">Post Comment?</h5>
         </div>
         <div class="modal-footer align-content-center">
           <button type="button" class="btn btn-success w-100" onclick="writeComment()">Yes</button>
@@ -157,6 +160,22 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title w-100" id="Comment-Label">Delete Comment?</h5>
+      </div>
+      <div class="modal-footer align-content-center">
+        <button type="button" class="btn btn-success w-100" id="modalDeleteButton">Yes</button>
+        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
   <div class="container">
     <div class="container">

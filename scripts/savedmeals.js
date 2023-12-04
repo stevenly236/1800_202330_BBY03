@@ -2,6 +2,23 @@ function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             getBookmarks(user)
+
+            document.getElementById("sortRecentButton").addEventListener("click", function () {
+                sortBookmarksByDate(user, "recentlyAdded");
+            });
+
+            document.getElementById("sortOldestButton").addEventListener("click", function () {
+                sortBookmarksByDate(user, "oldest");
+            });
+
+            document.getElementById("sortHighestRatingButton").addEventListener("click", function () {
+                sortBookmarksByRating(user, "highest");
+            });
+
+            document.getElementById("sortLowestRatingButton").addEventListener("click", function () {
+                sortBookmarksByRating(user, "lowest");
+            });
+
         } else {
             console.log("No user is signed in");
         }
@@ -21,20 +38,15 @@ document.getElementById("noBookmarkMealButton").addEventListener('click', functi
 function getBookmarks(user) {
     document.getElementById("noMealsMessage").style.display = "none";
     var currentUser = firebase.auth().currentUser;
-    db.collection("users").doc(user.uid)
+    db.collection("users").doc(user.uid).collection("bookmarks")
         .get()
-        .then(userDoc => {
-
-            document.getElementById("sortHighestRatingButton").addEventListener("click", function () {
-                sortBookmarksByRating(currentUser, "highest");
-            });
-
-            document.getElementById("sortLowestRatingButton").addEventListener("click", function () {
-                sortBookmarksByRating(currentUser, "lowest");
+        .then(snapshot => {
+            const bookmarks = [];
+            snapshot.forEach(doc => {
+                bookmarks.push(doc.id);
             });
 
             // Get the Array of bookmarks
-            var bookmarks = userDoc.data().bookmarks;
             console.log(bookmarks);
 
             // Get pointer the new card template
@@ -92,15 +104,12 @@ function getBookmarks(user) {
                             })(docID);
                         }
 
-                        // Check if the meal is bookmarked by the current user
-                        db.collection("users").doc(user.uid).get().then(userDoc => {
-                            // get the username
-                            let bookmarks = userDoc.data().bookmarks;
-                            if (bookmarks.includes(docID)) {
+                        let bookmarksCollectionRef = db.collection("users").doc(user.uid).collection("bookmarks");
+                        bookmarksCollectionRef.doc(docID).get().then(bookmarkDoc => {
+                            if (bookmarkDoc.exists) {
                                 if (bookmarkIcon) {
                                     bookmarkIcon.innerText = 'bookmark';
                                 }
-
                             }
                         });
                         document.getElementById("meals-go-here").appendChild(newmeal);
@@ -121,16 +130,14 @@ function filterMealsByTimeAndBookmarks(mealTime) {
     // Get the current user
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-
-
             // Get the user's bookmarks
-            db.collection("users").doc(user.uid)
+            db.collection("users").doc(user.uid).collection("bookmarks")
                 .get()
-                .then(userDoc => {
-                    var bookmarks = userDoc.data().bookmarks;
+                .then(bookmarksSnapshot => {
+                    const bookmarkIDs = bookmarksSnapshot.docs.map(doc => doc.id);
 
                     // Check if there are no bookmarks
-                    if (!bookmarks || bookmarks.length === 0) {
+                    if (!bookmarkIDs || bookmarkIDs.length === 0) {
                         document.getElementById("noBookmarksMessage").style.display = "block"; // Display the Jumbotron
                         document.getElementById("meals-go-here").style.display = "none"; // Hide the meals container
                         return;
@@ -140,7 +147,7 @@ function filterMealsByTimeAndBookmarks(mealTime) {
                     document.getElementById("meals-go-here").style.display = "block";
 
                     // Iterate through the ARRAY of bookmarked meals (document ID's)
-                    bookmarks.forEach(thisMeal => {
+                    bookmarkIDs.forEach(thisMeal => {
                         // Query meals collection based on mealTime and bookmarks
                         db.collection("meals")
                             .doc(thisMeal)
@@ -182,17 +189,11 @@ function filterMealsByTimeAndBookmarks(mealTime) {
                                         })(docID);
                                     }
 
-                                    // Check if the meal is bookmarked by the current user
-                                    db.collection("users").doc(user.uid).get().then(userDoc => {
-                                        // get the username
-                                        let bookmarks = userDoc.data().bookmarks;
-                                        if (bookmarks.includes(docID)) {
-                                            if (bookmarkIcon) {
-                                                bookmarkIcon.innerText = 'bookmark';
-                                            }
-
+                                    if (bookmarkIDs.includes(docID)) {
+                                        if (bookmarkIcon) {
+                                            bookmarkIcon.innerText = 'bookmark';
                                         }
-                                    });
+                                    }
                                     document.getElementById("meals-go-here").appendChild(newmeal);
                                 }
                             })
@@ -240,36 +241,36 @@ function toggleDropdown() {
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
+    var bookmarksCollectionRef = userDocRef.collection("bookmarks");
 
     userDocRef.get()
         .then(function (doc) {
             if (doc.exists) {
-                var isBookmarked = doc.data().bookmarks && doc.data().bookmarks.includes(mealDocID);
+                return bookmarksCollectionRef.doc(mealDocID).get().then(bookmarkDoc => {
+                    var isBookmarked = bookmarkDoc.exists;
 
-                if (isBookmarked) {
-                    // If already bookmarked, remove it from the bookmarks array
-                    return userDocRef.update({
-                        bookmarks: firebase.firestore.FieldValue.arrayRemove(mealDocID)
-                    })
-                        .then(function () {
+                    if (isBookmarked) {
+                        // If already bookmarked, remove it from the bookmarks array
+                        return bookmarksCollectionRef.doc(mealDocID).delete().then(function () {
                             console.log("Bookmark has been removed for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark_border';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Removed!';
-                        })
-                } else {
-                    // If not bookmarked, add it to the bookmarks array
-                    return userDocRef.update({
-                        bookmarks: firebase.firestore.FieldValue.arrayUnion(mealDocID)
-                    })
-                        .then(function () {
+                        });
+                    } else {
+                        // If not bookmarked, add it to the bookmarks subcollection
+                        return bookmarksCollectionRef.doc(mealDocID).set({
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        }).then(function () {
                             console.log("Bookmark has been saved for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Added!';
-                        })
-                }
+                        });
+                    }
+                });
             }
+
         })
 }
 
@@ -281,8 +282,94 @@ function sortBookmarksByRating(user, sortOrder) {
     document.getElementById("meals-go-here").innerHTML = ""; // Clear existing meals
     document.getElementById("noMealsMessage").style.display = "none";
 
-    db.collection("users").doc(user.uid).get().then(userDoc => {
-        var bookmarks = userDoc.data().bookmarks;
+    db.collection("users").doc(user.uid).collection("bookmarks")
+        .get()
+        .then(snapshot => {
+            const bookmarks = [];
+            snapshot.forEach(doc => {
+                bookmarks.push(doc.id);
+            });
+
+            if (!bookmarks || bookmarks.length === 0) {
+                document.getElementById("noBookmarksMessage").style.display = "block";
+                document.getElementById("meals-go-here").style.display = "none";
+                return;
+            }
+
+            document.getElementById("noBookmarksMessage").style.display = "none";
+            document.getElementById("meals-go-here").style.display = "block";
+
+            // Get details for each bookmarked meal
+            Promise.all(bookmarks.map(bookmark => {
+                return db.collection("meals").doc(bookmark).get();
+            })).then(bookmarkDocs => {
+                // Sort bookmarks by averagerating
+                bookmarkDocs.sort((a, b) => {
+                    const ratingA = a.data().averagerating || 0; // Use 0 if averagerating is undefined
+                    const ratingB = b.data().averagerating || 0;
+
+                    return sortOrder === "highest" ? ratingB - ratingA : ratingA - ratingB;
+                });
+
+                // Display sorted bookmarks
+                bookmarkDocs.forEach(doc => {
+                    var docID = doc.id;
+                    var mealPoster = doc.data().name;
+                    var image = doc.data().image;
+                    var mealName = doc.data().mealTitle;
+                    var mealType = doc.data().mealTime;
+                    var update = doc.data().last_updated.toDate().toLocaleDateString();
+                    var arating = doc.data().averagerating;
+
+                    // Clone the new card template
+                    let newmeal = mealTemplate.content.cloneNode(true);
+
+                    // Update title and some pertinent information
+                    let imgEvent = newmeal.querySelector(".meal-img");
+                    imgEvent.src = image;
+                    newmeal.querySelector('a').href = "meal.html?docID=" + docID;
+                    newmeal.querySelector(".card-title").innerHTML = mealName;
+                    newmeal.querySelector(".card-text").innerHTML = mealType;
+                    newmeal.querySelector(".update").innerHTML = update;
+                    newmeal.querySelector(".rating-number").innerHTML = arating;
+                    newmeal.querySelector(".card-poster").innerHTML = mealPoster;
+
+                    // Assigning unique ID to the bookmark icon
+                    // Attaching an onclick. Calling callback function (with meal's ID)
+                    let bookmarkIcon = newmeal.querySelector("i");
+                    if (bookmarkIcon) {
+                        bookmarkIcon.id = 'save-' + docID;
+                        bookmarkIcon.onclick = (function (mealID) {
+                            return function () {
+                                toggleBookmark(mealID);
+                            };
+                        })(docID);
+                    }
+
+                    let bookmarksCollectionRef = db.collection("users").doc(user.uid).collection("bookmarks");
+                    bookmarksCollectionRef.doc(docID).get().then(bookmarkDoc => {
+                        if (bookmarkDoc.exists) {
+                            if (bookmarkIcon) {
+                                bookmarkIcon.innerText = 'bookmark';
+                            }
+                        }
+                    });
+
+                    document.getElementById("meals-go-here").appendChild(newmeal);
+                });
+            });
+        });
+}
+
+function sortBookmarksByDate(user, sortOrder) {
+    document.getElementById("meals-go-here").innerHTML = ""; // Clear existing meals
+    document.getElementById("noMealsMessage").style.display = "none";
+
+    db.collection("users").doc(user.uid).collection("bookmarks").get().then(snapshot => {
+        const bookmarks = [];
+        snapshot.forEach(doc => {
+            bookmarks.push({ id: doc.id, timestamp: doc.data().timestamp });
+        });
 
         if (!bookmarks || bookmarks.length === 0) {
             document.getElementById("noBookmarksMessage").style.display = "block";
@@ -293,32 +380,29 @@ function sortBookmarksByRating(user, sortOrder) {
         document.getElementById("noBookmarksMessage").style.display = "none";
         document.getElementById("meals-go-here").style.display = "block";
 
-        // Get details for each bookmarked meal
-        Promise.all(bookmarks.map(bookmark => {
-            return db.collection("meals").doc(bookmark).get();
-        })).then(bookmarkDocs => {
-            // Sort bookmarks by averagerating
-            bookmarkDocs.sort((a, b) => {
-                const ratingA = a.data().averagerating || 0; // Use 0 if averagerating is undefined
-                const ratingB = b.data().averagerating || 0;
+        // Sort bookmarks by timestamp
+        bookmarks.sort((a, b) => {
+            const timestampA = a.timestamp || 0;
+            const timestampB = b.timestamp || 0;
 
-                return sortOrder === "highest" ? ratingB - ratingA : ratingA - ratingB;
-            });
+            return sortOrder === "recentlyAdded" ? timestampB - timestampA : timestampA - timestampB;
+        });
 
-            // Display sorted bookmarks
-            bookmarkDocs.forEach(doc => {
-                var docID = doc.id;
+        // Display sorted bookmarks
+        bookmarks.forEach(bookmark => {
+            const bookmarkID = bookmark.id;
+            db.collection("meals").doc(bookmarkID).get().then(doc => {
+                var docID = doc.id;  //this is the autogenerated ID of the document
                 var mealPoster = doc.data().name;
                 var image = doc.data().image;
                 var mealName = doc.data().mealTitle;
                 var mealType = doc.data().mealTime;
                 var update = doc.data().last_updated.toDate().toLocaleDateString();
                 var arating = doc.data().averagerating;
-
-                // Clone the new card template
+                //clone the new card
                 let newmeal = mealTemplate.content.cloneNode(true);
 
-                // Update title and some pertinent information
+                //update title and some pertinant information
                 let imgEvent = newmeal.querySelector(".meal-img");
                 imgEvent.src = image;
                 newmeal.querySelector('a').href = "meal.html?docID=" + docID;
@@ -340,22 +424,18 @@ function sortBookmarksByRating(user, sortOrder) {
                     })(docID);
                 }
 
-                // Check if the meal is bookmarked by the current user
-                db.collection("users").doc(user.uid).get().then(userDoc => {
-                    // get the username
-                    let bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
+                let bookmarksCollectionRef = db.collection("users").doc(user.uid).collection("bookmarks");
+                bookmarksCollectionRef.doc(docID).get().then(bookmarkDoc => {
+                    if (bookmarkDoc.exists) {
                         if (bookmarkIcon) {
                             bookmarkIcon.innerText = 'bookmark';
                         }
                     }
                 });
-
                 document.getElementById("meals-go-here").appendChild(newmeal);
             });
+
         });
-    });
+
+    })
 }
-
-
-
