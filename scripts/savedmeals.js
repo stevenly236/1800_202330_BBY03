@@ -283,7 +283,8 @@ function refreshPage() {
 }
 
 function sortBookmarksByRating(user, sortOrder) {
-    document.getElementById("meals-go-here").innerHTML = ""; // Clear existing meals
+    // Clear existing meals
+    document.getElementById("meals-go-here").innerHTML = ""; 
     document.getElementById("noMealsMessage").style.display = "none";
 
     db.collection("users").doc(user.uid).collection("bookmarks")
@@ -309,7 +310,8 @@ function sortBookmarksByRating(user, sortOrder) {
             })).then(bookmarkDocs => {
                 // Sort bookmarks by averagerating
                 bookmarkDocs.sort((a, b) => {
-                    const ratingA = a.data().averagerating || 0; // Use 0 if averagerating is undefined
+                    // Use 0 if averagerating is undefined
+                    const ratingA = a.data().averagerating || 0; 
                     const ratingB = b.data().averagerating || 0;
 
                     return sortOrder === "highest" ? ratingB - ratingA : ratingA - ratingB;
