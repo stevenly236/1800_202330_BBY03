@@ -37,7 +37,6 @@ document.getElementById("noBookmarkMealButton").addEventListener('click', functi
 
 function getBookmarks(user) {
     document.getElementById("noMealsMessage").style.display = "none";
-    var currentUser = firebase.auth().currentUser;
     db.collection("users").doc(user.uid).collection("bookmarks")
         .get()
         .then(snapshot => {
@@ -57,11 +56,14 @@ function getBookmarks(user) {
                 document.getElementById("meals-go-here").style.display = "none"; // Hide the meals container
                 document.getElementById("mealTimeDropdown").style.display = "none";
                 document.querySelector(".btn-group").style.display = "none";
+                document.querySelector(".header-bar").style.display = "none";
                 return;
             }
 
+            document.querySelector(".btn-group").style.display = "flex";
             document.getElementById("noBookmarksMessage").style.display = "none";
             document.getElementById("meals-go-here").style.display = "block";
+            document.querySelector(".header-bar").style.display = "flex";
 
             // Iterate through the ARRAY of bookmarked hikes (document ID's)
 
@@ -202,7 +204,9 @@ function filterMealsByTimeAndBookmarks(mealTime) {
                     if (document.getElementById("meals-go-here").childElementCount === 0) {
                         document.querySelector(".btn-group").style.display = "none";
                         document.getElementById("noMealsMessage").style.display = "block";
-                    }
+                        document.querySelector(".header-bar").style.display = "none";
+                    } 
+                    
                 })
 
         } else {

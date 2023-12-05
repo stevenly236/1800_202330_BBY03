@@ -144,15 +144,15 @@ body {
 
 #noBookmarkButton {
     background-color: #3A833A;
-    margin-top: 2%;
     color: #fff;
+    width: 22vw;
     box-shadow: 0 4px 8px rgba(1, 0, 0, 1), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 #noBookmarkMealButton {
     background-color: #3A833A;
-    margin-top: 2%;
     color: #fff;
+    width: 22vw;
     box-shadow: 0 4px 8px rgba(1, 0, 0, 1), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 

@@ -54,15 +54,11 @@ function displaymealInfo() {
                     document.getElementById("mealPoster").innerHTML = mealPoster;
                     document.getElementById("mealType").innerHTML = mealType;
 
-
                     // Populate title, image, and star rating
                     document.getElementById("mealName").innerHTML = mealName;
                     let imgEvent = document.querySelector(".meal-img");
                     imgEvent.src = doc.data().image;
 
-                    let animationEvent = document.querySelector("#mascot");
-
-                
 
                     // Assigning unique ID to the bookmark icon
                     // Attaching an onclick. Calling callback function (with meal's ID)
@@ -75,12 +71,12 @@ function displaymealInfo() {
                         let bookmarksCollectionRef = currentUser.collection("bookmarks");
                         bookmarksCollectionRef.doc(ID).get().then(bookmarkDoc => {
                             if (bookmarkDoc.exists) {
-                            document.querySelector('i').innerText = 'bookmark';
+                                document.querySelector('i').innerText = 'bookmark';
                             }
                         });
                     });
 
-                    // Retrieve the rating from the "rating" subcollection
+                    // Retrieve and display user's rating from the "rating" subcollection
                     db.collection("meals")
                         .doc(ID)
                         .collection("rating")
@@ -104,6 +100,7 @@ function displaymealInfo() {
                             }
                             document.querySelector(".star-rating").innerHTML = starRating;
 
+                            // Calculate and display the average rating for the meal
                             calculateAverageRating(ID).then(averageRating => {
                                 // Round the average rating to a single decimal place
                                 const roundedAverageRating = Math.round(averageRating || 0);
@@ -121,6 +118,7 @@ function displaymealInfo() {
                                 }
                                 document.querySelector(".average-rating").innerHTML = starRating;
 
+                                // Updates the average rating field in the meal document
                                 return db.collection("meals")
                                     .doc(ID)
                                     .update({ averagerating: Math.round(roundedAverageRating) })
@@ -128,23 +126,24 @@ function displaymealInfo() {
                                         console.log("Average rating updated in the meal document");
                                     })
                             });
-
                         })
-                        switch (mealType) {
-                            case 'Breakfast':
-                                animationEvent.src = './images/egg.png';
-                                break;
-                            case 'Lunch':
-                                animationEvent.src = './images/sushi.png';
-                                break;
-                            case 'Dinner':
-                                animationEvent.src = './images/burger.png';
-                                break;
-                            case 'Snack':
-                                animationEvent.src = './images/avacado.png';
-                                break;
-                        }
-                        animateMascot();
+                    // Switches image for mascot based on meal type
+                    let animationEvent = document.querySelector("#mascot");
+                    switch (mealType) {
+                        case 'Breakfast':
+                            animationEvent.src = './images/egg.png';
+                            break;
+                        case 'Lunch':
+                            animationEvent.src = './images/sushi.png';
+                            break;
+                        case 'Dinner':
+                            animationEvent.src = './images/burger.png';
+                            break;
+                        case 'Snack':
+                            animationEvent.src = './images/avacado.png';
+                            break;
+                    }
+                    animateMascot();
                 })
         } else {
             console.log("No user is signed in");
@@ -153,6 +152,7 @@ function displaymealInfo() {
 }
 displaymealInfo();
 
+// Function to delete comment from collection
 function deleteComment(commentID, collection) {
     db.collection(collection).doc(commentID).delete()
         .then(() => {
@@ -161,6 +161,7 @@ function deleteComment(commentID, collection) {
         })
 }
 
+// Function to clear comments from container 
 function clearComments(collection) {
     // Clear the existing comments before fetching and displaying the updated ones
     let commentsContainer = document.getElementById(collection + "-go-here");
@@ -169,7 +170,7 @@ function clearComments(collection) {
     }
 }
 
-
+// Function to display comments for Meal 
 function displayCommentsDynamically(collection) {
     let commentTemplate = document.getElementById("commentTemplate");
     let params = new URL(window.location.href);
@@ -181,6 +182,7 @@ function displayCommentsDynamically(collection) {
         .where("docID", "==", ID)
         .get()
         .then(allComments => {
+            // Checks if theres any comments for this Meal
             if (allComments.size === 0) {
                 displayNoCommentsAlert();
             } else {
@@ -193,6 +195,7 @@ function displayCommentsDynamically(collection) {
                     var date = doc.data().timestamp.toDate();
                     let newcomment = commentTemplate.content.cloneNode(true);
 
+                    // Gets the time difference between now and comment's time stamp
                     var timeDiff = Date.now() - date.getTime();
                     const minutesDiff = Math.floor(timeDiff / (1000 * 60));
 
@@ -203,6 +206,7 @@ function displayCommentsDynamically(collection) {
 
                     let timeAgo;
 
+                    // Changes display from days -> hours -> minutes 
                     if (daysDiff > 0) {
                         timeAgo = daysDiff + " days ago";
                     } else if (hoursDiff > 0) {
@@ -219,10 +223,12 @@ function displayCommentsDynamically(collection) {
 
                     // Check if the current user created the comment
                     if (user && user.uid == userID) {
+                        // Allows user to delete comment if they did
                         let deleteButton = document.createElement("span");
                         deleteButton.innerHTML = '<span class="material-icons">delete</span>';
                         deleteButton.classList.add("delete-button");
                         deleteButton.addEventListener("click", () => {
+                            // Modal opens to double check
                             openDeleteModal(commentID, collection);
                         });
 
@@ -254,6 +260,7 @@ function openDeleteModal(commentID, collection) {
     $('#deleteModal').modal('show');
 }
 
+// Function to display alert to be first commenter
 function displayNoCommentsAlert() {
     let alertContainer = document.getElementById("alert-container");
 
@@ -269,11 +276,13 @@ function displayNoCommentsAlert() {
     alertContainer.appendChild(alertElement);
 }
 
+// Function to remove first comment alert
 function removeNoCommentsAlert() {
     let alertContainer = document.getElementById("alert-container");
     alertContainer.innerHTML = "";
 }
 
+// Function to calculate average rating of meal based on data from firebase 
 function calculateAverageRating(mealID) {
     // Reference to the "rating" subcollection for the specified meal
     const ratingsRef = db.collection("meals").doc(mealID).collection("rating");
@@ -304,12 +313,7 @@ function calculateAverageRating(mealID) {
     });
 }
 
-const mealID = "MealID";
-calculateAverageRating(mealID).then(averageRating => {
-    console.log("Average Rating:", averageRating);
-});
-
-
+// Function to save meal to bookmarks 
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
@@ -318,6 +322,7 @@ function toggleBookmark(mealDocID) {
     userDocRef.get()
         .then(function (doc) {
             if (doc.exists) {
+                // Checks if meal is already bookmarked
                 return bookmarksCollectionRef.doc(mealDocID).get().then(bookmarkDoc => {
                     var isBookmarked = bookmarkDoc.exists;
 
@@ -325,14 +330,19 @@ function toggleBookmark(mealDocID) {
                         // If already bookmarked, remove it from the bookmarks array
                         return bookmarksCollectionRef.doc(mealDocID).delete().then(function () {
                             console.log("Bookmark has been removed for " + mealDocID);
+
+                            // Update bookmark icon + Modal popup
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark_border';
                             document.getElementById('bookmarkModalLabel').innerHTML = 'Bookmark Removed!';
                         });
                     } else {
+                        // If not bookmarked, add to bookmarks
                         return bookmarksCollectionRef.doc(mealDocID).set({
                             timestamp: firebase.firestore.FieldValue.serverTimestamp()
                         }).then(function () {
+
+                            // Update bookmark icon + Modal popup
                             console.log("Bookmark has been saved for " + mealDocID);
                             var iconID = 'save-' + mealDocID;
                             document.getElementById(iconID).innerText = 'bookmark';
@@ -361,10 +371,11 @@ stars.forEach((star, index) => {
     });
 });
 
+// Function that writes a rating number into firebase
 function writeRating() {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
-    // Get the star rating
+
     // Get all the elements with the class "star" and store them in the 'stars' variable
     const stars = document.querySelectorAll('.star');
     // Initialize a variable 'mealRating' to keep track of the rating count
@@ -385,6 +396,7 @@ function writeRating() {
 
         db.collection("meals").doc(ID).collection("rating").doc(userID).set({
             rating: mealRating,
+            // reloads page
         }).then(() => {
             window.location.href = "meal.html?docID=" + ID;
         });
@@ -394,6 +406,7 @@ function writeRating() {
     }
 }
 
+// Event listener that directs to Meal post author's profile page
 document.querySelector("#viewPoster").addEventListener('click', function () {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
@@ -418,7 +431,8 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
 
 })
 
-$(function() {
+// Animation function for mascot @ footer navbar
+$(function () {
     var img = $("#mascot"),
         width = img.get(0).width,
         screenWidth = $(window).width(),
@@ -430,7 +444,7 @@ $(function() {
             "left": fraction * screenWidth
         }, duration, function () {
             img.css("left", (screenWidth + 120) - width);
-            
+
             img.animate({
                 "left": -110
             }, duration, animateMascot);
@@ -440,21 +454,22 @@ $(function() {
     animateMascot();
 });
 
+// Removes mascot from footer navbar by making its container display 'none'
 document.addEventListener("DOMContentLoaded", function () {
     const animationContainer = document.getElementById("animation-container");
     const toggleButton = document.getElementById("toggleButton");
-  
+
     let isContainerVisible = true;
-  
+
     toggleButton.addEventListener("click", function () {
-      if (isContainerVisible) {
-        animationContainer.style.display = "none";
-        toggleButton.innerHTML = '<span class="material-icons">visibility_off</span>';
-      } else {
-        animationContainer.style.display = "block";
-        toggleButton.innerHTML = '<span class="material-icons">visibility</span>';
-      }
-  
-      isContainerVisible = !isContainerVisible;
+        if (isContainerVisible) {
+            animationContainer.style.display = "none";
+            toggleButton.innerHTML = '<span class="material-icons">visibility_off</span>';
+        } else {
+            animationContainer.style.display = "block";
+            toggleButton.innerHTML = '<span class="material-icons">visibility</span>';
+        }
+
+        isContainerVisible = !isContainerVisible;
     });
-  });
+});
