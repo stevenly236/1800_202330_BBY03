@@ -4,17 +4,23 @@
 
 .card {
     text-align: center;
-    margin-left: 15%;
     background-color: #fff;
     border: none;
     border-radius: 10px;
-    width: 250px;
+    width: 80vw;
+    max-width: 500px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1);
 }
 
 #containerone {
     padding-top: 0;
     padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+.page-title {
+    color: #333;
 }
 
 .detail-container {
@@ -39,6 +45,14 @@
 #sortHighestRatingButton.btn:hover {
     background-color: #4CAF50;
     color: #fff;
+}
+
+#sortHighestRatingButton .material-icons {
+    font-size: 20.4pt !important
+}
+
+#sortLowestRatingButton .material-icons {
+    font-size: 20.4pt !important
 }
 
 #sortLowestRatingButton.btn {
@@ -72,7 +86,7 @@
 .btn {
     height: 50px;
     width: 70px;
-    font-size: 12px;
+    font-size: 0.9em;
 }
 
 .thumbnail-image {
@@ -142,10 +156,6 @@ body {
     box-shadow: 0 4px 8px rgba(1, 0, 0, 1), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-#meals-go-here {
-    padding-left: 3%;
-}
-
 
 
 #noMealsMessage {
@@ -162,8 +172,8 @@ body {
 }
 
 .dropdown {
-    position: relative;
     display: inline-block;
+
 }
 
 .dropdown-content {

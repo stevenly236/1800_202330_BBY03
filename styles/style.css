@@ -137,3 +137,25 @@ body {
 .heading {
   text-align: center;
 }
+
+#scrollToTopButton {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background-color: #FF7F50;
+  color: #333;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+#up-arrow {
+  font-size: 24pt !important
+}
+

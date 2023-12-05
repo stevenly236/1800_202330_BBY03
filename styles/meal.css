@@ -26,7 +26,7 @@ body {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
     padding: 20px;
-    max-width: 580px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -38,7 +38,8 @@ body {
     margin-bottom: 20px;
     padding: 20px;
     margin: 0 auto;
-    width: 23rem;
+    width: 85vw;
+    max-width: 600px;
 }
 
 
@@ -224,7 +225,6 @@ body {
     padding-bottom: 0px;
     padding-left: 4px;
     padding-right: 4px;
-    margin-left: 45%;
     margin-bottom: 10px;
 
 }
@@ -275,7 +275,6 @@ body {
 
 #mealRating {
     display: inline-block;
-    margin-left: 32%;
     cursor: default;
 
 
@@ -306,8 +305,8 @@ body {
 }
 
 #animation-container {
-    bottom: 145px;
+    bottom: 18vh;
     width: 100%;
     pointer-events: none; 
     display: block;
-  }
+}

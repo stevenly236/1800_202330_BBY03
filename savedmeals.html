@@ -43,11 +43,11 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-<header class="header-bar">
+<header id="title" class="header-bar d-flex justify-content-center">
     <h1 class="page-title">Saved Meals</h1>
 </header>
 
-<div class="btn-group" role="group">
+<div class="btn-group d-flex justify-content-center" role="group">
   <button id="sortHighestRatingButton" class="btn card-href">Highest <i class="material-icons">star_outline</i></button>
   <button id="sortLowestRatingButton" class="btn card-href">Lowest <i class="material-icons">star_outline</i></button>
   <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
@@ -55,19 +55,20 @@
   <button id="sortOldestButton" class="btn card-href">Oldest</button>
 </div>
 
-  <div id="containerone" class="container">
-    <div class="dropdown" id="mealTimeDropdown">
-      <button class="dropdown-item" onclick="toggleDropdown()">
-          <span class="material-icons">filter_list</span>
-      </button>
-      <div class="dropdown-content">
-          <a class="dropdown-item" id="breakfast" href="#">Breakfast</a>
-          <a class="dropdown-item" id="lunch" href="#">Lunch</a>
-          <a class="dropdown-item" id="dinner" href="#">Dinner</a>
-          <a class="dropdown-item" id="snack" href="#">Snack</a>
-          <a class="dropdown-item" id="clearFilter" href="#">Clear</a>
-      </div>
-    </div>
+
+<div class="dropdown" id="mealTimeDropdown">
+  <button class="dropdown-item" onclick="toggleDropdown()">
+      <span class="material-icons">filter_list</span>
+  </button>
+  <div class="dropdown-content">
+      <a class="dropdown-item" id="breakfast" href="#">Breakfast</a>
+      <a class="dropdown-item" id="lunch" href="#">Lunch</a>
+      <a class="dropdown-item" id="dinner" href="#">Dinner</a>
+      <a class="dropdown-item" id="snack" href="#">Snack</a>
+      <a class="dropdown-item" id="clearFilter" href="#">Clear</a>
+  </div>
+</div>
+  <div id="containerone" class="container d-flex justify-content-center">
     <div id="meals-go-here"></div>
   </div>
 
@@ -146,6 +147,9 @@
       </div>
   </div>
 </div>
+
+<button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
+
 
 
   <nav id="footerPlaceholder"></nav>

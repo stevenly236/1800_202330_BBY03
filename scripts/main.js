@@ -44,4 +44,3 @@ function displayCardsDynamically(collection) {
 
 displayCardsDynamically("meals");  //input param is the name of the collection
 
-
