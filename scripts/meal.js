@@ -1,5 +1,3 @@
-var currentUser;
-
 function writeComment() {
     console.log("inside comments");
     let usercontent = document.getElementById("usercomment").value;
@@ -143,7 +141,8 @@ function displaymealInfo() {
                             animationEvent.src = './images/avacado.png';
                             break;
                     }
-                    animateMascot();
+                    deletepost();
+
                 })
         } else {
             console.log("No user is signed in");
@@ -231,10 +230,8 @@ function displayCommentsDynamically(collection) {
                             // Modal opens to double check
                             openDeleteModal(commentID, collection);
                         });
-
                         newcomment.getElementById("delete-icon").appendChild(deleteButton);
                     }
-
                     document.getElementById(collection + "-go-here").appendChild(newcomment);
                     removeNoCommentsAlert();
 
@@ -473,3 +470,79 @@ document.addEventListener("DOMContentLoaded", function () {
         isContainerVisible = !isContainerVisible;
     });
 });
+
+// Function that checks if meal is users' post, creates delete button if it is
+function deletepost() {
+    let params = new URL(window.location.href);
+    let ID = params.searchParams.get("docID");
+
+    let user = firebase.auth().currentUser;
+
+    if (user) {
+        let userID = user.uid;
+        console.log(userID);
+        // Check if the current user is the author of the meal
+        db.collection("meals").doc(ID)
+            .get()
+            .then(mealDoc => {
+                if (userID === mealDoc.data().author) {
+                    // User is the author, show delete button
+                    let deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Delete Meal";
+                    deleteButton.classList.add("btn", "btn-danger");
+                    deleteButton.id = "deleteMealButton";
+                    deleteButton.addEventListener("click", () => {
+                        // Call the openDeleteMealModal function when the delete button is clicked
+                        openDeleteMealModal(ID);
+                    });
+                    // Append the delete button to the container
+                    document.getElementById("delete-stuff").appendChild(deleteButton);
+                }
+            })
+    }
+}
+
+// Function to open the delete confirmation modal
+function openDeleteMealModal(ID) {
+    // Get the modal element
+    document.getElementById("deleteMealModal")
+        .querySelector("#modalMealDeleteButton")
+        .onclick = function () {
+            // Call the deleteMeal function when the modal delete button is clicked
+            deleteMeal(ID);
+            deleteAllCommentsForMeal(ID);
+            // Close the modal after deletion
+            $('#deleteMealModal').modal('hide');
+        };
+    // Open the modal
+    $('#deleteMealModal').modal('show');
+}
+
+// Function to delete meal from firebase
+function deleteMeal(mealID) {
+    // Call the delete function for the meal document
+    db.collection("meals").doc(mealID)
+        .delete()
+        .then(() => {
+            console.log("Meal deleted successfully");
+            window.location.href = 'main.html';
+        })
+}
+
+// Function to delete the comments from firebase when meal is deleted
+function deleteAllCommentsForMeal(mealID) {
+    // Reference to the "comments" collection where comments are stored
+    db.collection("comments")
+        .where("docID", "==", mealID)
+        .get()
+        .then(snapshot => {
+            // Iterate through each comment and delete it
+            snapshot.forEach(commentDoc => {
+                db.collection("comments").doc(commentDoc.id)
+                    .delete()
+                    .then(() => {
+                        console.log("Comment deleted successfully");
+                    })
+            });
+        })
+}
