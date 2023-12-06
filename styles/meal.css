@@ -239,7 +239,6 @@ body {
     padding-left: 4px;
     padding-right: 4px;
     margin-bottom: 10px;
-    margin-right: 35px;
 }
 
 #rating {
@@ -250,7 +249,6 @@ body {
 #profile {
     display: flex;
     padding-bottom: 5%;
-    padding-left: 2%;
     justify-content: center;
     padding-top: 0;
 }

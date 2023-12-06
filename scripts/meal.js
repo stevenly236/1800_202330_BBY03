@@ -125,22 +125,7 @@ function displaymealInfo() {
                                     })
                             });
                         })
-                    // Switches image for mascot based on meal type
-                    let animationEvent = document.querySelector("#mascot");
-                    switch (mealType) {
-                        case 'Breakfast':
-                            animationEvent.src = './images/egg.png';
-                            break;
-                        case 'Lunch':
-                            animationEvent.src = './images/sushi.png';
-                            break;
-                        case 'Dinner':
-                            animationEvent.src = './images/burger.png';
-                            break;
-                        case 'Snack':
-                            animationEvent.src = './images/avacado.png';
-                            break;
-                    }
+
                     deletepost();
 
                 })
@@ -206,13 +191,20 @@ function displayCommentsDynamically(collection) {
                     let timeAgo;
 
                     // Changes display from days -> hours -> minutes 
-                    if (daysDiff > 0) {
+                    if (daysDiff > 1) {
                         timeAgo = daysDiff + " days ago";
+                    } else if (daysDiff == 1) {
+                        timeAgo = daysDiff + " day ago";
+                    } else if (hoursDiff == 1) {
+                        timeAgo = hoursDiff + " hour ago";
                     } else if (hoursDiff > 0) {
                         timeAgo = hoursDiff + " hours ago";
-                    } else {
+                    } else if (remainingMinutes == 0) {
+                        timeAgo = "Just posted!";
+                    } else if (remainingMinutes == 1) {
+                        timeAgo = remainingMinutes + " minute ago";
+                    } else
                         timeAgo = remainingMinutes + " minutes ago";
-                    }
 
                     newcomment.querySelector(".content").innerHTML = content;
                     newcomment.querySelector(".username").innerHTML = usernamee;
@@ -428,48 +420,6 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
 
 })
 
-// Animation function for mascot @ footer navbar
-$(function () {
-    var img = $("#mascot"),
-        width = img.get(0).width,
-        screenWidth = $(window).width(),
-        fraction = 1,
-        duration = 4000;
-
-    function animateMascot() {
-        img.css("left", -width).animate({
-            "left": fraction * screenWidth
-        }, duration, function () {
-            img.css("left", (screenWidth + 120) - width);
-
-            img.animate({
-                "left": -110
-            }, duration, animateMascot);
-        });
-    }
-
-    animateMascot();
-});
-
-// Removes mascot from footer navbar by making its container display 'none'
-document.addEventListener("DOMContentLoaded", function () {
-    const animationContainer = document.getElementById("animation-container");
-    const toggleButton = document.getElementById("toggleButton");
-
-    let isContainerVisible = true;
-
-    toggleButton.addEventListener("click", function () {
-        if (isContainerVisible) {
-            animationContainer.style.display = "none";
-            toggleButton.innerHTML = '<span class="material-icons">visibility_off</span>';
-        } else {
-            animationContainer.style.display = "block";
-            toggleButton.innerHTML = '<span class="material-icons">visibility</span>';
-        }
-
-        isContainerVisible = !isContainerVisible;
-    });
-});
 
 // Function that checks if meal is users' post, creates delete button if it is
 function deletepost() {
@@ -553,28 +503,28 @@ function deleteAllCommentsForMeal(mealID) {
 function deleteFromBookmarks(mealID, userID) {
     // Check if the meal is bookmarked
     db.collection("users").doc(userID).collection("bookmarks")
-    .doc(mealID)
-    .get()
-    .then(bookmarkDoc => {
-        if (bookmarkDoc.exists) {
-            // Meal is bookmarked, delete it from bookmarks
-            db.collection("users").doc(userID).collection("bookmarks")
-            .doc(mealID)
-            .delete()
-            .then(() => {
-                console.log("Meal removed from bookmarks");
-            })
-        }
-    });
+        .doc(mealID)
+        .get()
+        .then(bookmarkDoc => {
+            if (bookmarkDoc.exists) {
+                // Meal is bookmarked, delete it from bookmarks
+                db.collection("users").doc(userID).collection("bookmarks")
+                    .doc(mealID)
+                    .delete()
+                    .then(() => {
+                        console.log("Meal removed from bookmarks");
+                    })
+            }
+        });
 }
 
 // Function to remove deleted meal from mymeal array. 
 function deleteFromMyMeals(mealID, userID) {
     return db.collection("users").doc(userID)
-    .update({
-        mymeals: firebase.firestore.FieldValue.arrayRemove(mealID)
-    })
-    .then(() => {
-        console.log("Meal removed from user's array");
-    })
+        .update({
+            mymeals: firebase.firestore.FieldValue.arrayRemove(mealID)
+        })
+        .then(() => {
+            console.log("Meal removed from user's array");
+        })
 }
