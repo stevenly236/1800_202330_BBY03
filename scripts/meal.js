@@ -494,6 +494,8 @@ function deletepost() {
                     deleteButton.addEventListener("click", () => {
                         // Call the openDeleteMealModal function when the delete button is clicked
                         openDeleteMealModal(ID);
+                        deleteFromBookmarks(ID, userID);
+                        deleteFromMyMeals(ID, userID);
                     });
                     // Append the delete button to the container
                     document.getElementById("delete-stuff").appendChild(deleteButton);
@@ -545,4 +547,34 @@ function deleteAllCommentsForMeal(mealID) {
                     })
             });
         })
+}
+
+// Function to remove deleted meal from bookmark, if bookmarked.
+function deleteFromBookmarks(mealID, userID) {
+    // Check if the meal is bookmarked
+    db.collection("users").doc(userID).collection("bookmarks")
+    .doc(mealID)
+    .get()
+    .then(bookmarkDoc => {
+        if (bookmarkDoc.exists) {
+            // Meal is bookmarked, delete it from bookmarks
+            db.collection("users").doc(userID).collection("bookmarks")
+            .doc(mealID)
+            .delete()
+            .then(() => {
+                console.log("Meal removed from bookmarks");
+            })
+        }
+    });
+}
+
+// Function to remove deleted meal from mymeal array. 
+function deleteFromMyMeals(mealID, userID) {
+    return db.collection("users").doc(userID)
+    .update({
+        mymeals: firebase.firestore.FieldValue.arrayRemove(mealID)
+    })
+    .then(() => {
+        console.log("Meal removed from user's array");
+    })
 }
