@@ -46,37 +46,41 @@
 
   <div class="container">
     <h1 class="heading">Explore</h1>
-      <div id="meals-go-here" class="row row-cols-auto"></div>
+    <div id="meals-go-here" class="row row-cols-auto"></div>
   </div>
 
   <template id="mealTemplate">
     <div class="container">
-        <div class="row g-0">
-            <div class="col-12">
-                <div class="h-100 border bg-light">
-                    <img class="image" alt="Meal Image">
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="h-100 p-5 border bg-light text-start">
-                    <b><p class="mealTitle"></p></b>
-                    <p class="description"></p>
-                    <br>
-                    <div class="post-info">
-                        <b class="postedBy">Posted by:</b><p class="name"></p>
-                        <b class="whatMeal">What Meal:</b><p class="mealType"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <a class="btn btn-success card-href w-100">View this meal!</a>
-            </div>
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="h-100 meal-image-container">
+            <img class="image meal-image" alt="Meal Image">
+          </div>
         </div>
-</template>
+        <div class="col-12">
+          <div class="h-100 p-5 text-start meal-details-container">
+            <b>
+              <p class="mealTitle"></p>
+            </b>
+            <p class="description"></p>
+            <br>
+            <div class="post-info">
+              <b class="postedBy">Posted by:</b>
+              <p class="name"></p>
+              <b class="whatMeal">What Meal:</b>
+              <p class="mealType"></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <a class="btn btn-success card-href w-100 view-meal-button">View this meal!</a>
+        </div>
+      </div>
+    </div>
+  </template>
 
-
-<button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
-
+  <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow"
+      class="material-icons">expand_less</span></button>
 
   <nav id="footerPlaceholder"></nav>
 

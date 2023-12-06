@@ -159,3 +159,25 @@ body {
   font-size: 24pt !important
 }
 
+.view-meal-button {
+  background-color: green;
+  border: 1px solid #FF6347;
+  color: black; 
+}
+
+.meal-image-container {
+  border-radius: 10px; 
+  overflow: hidden;
+}
+
+.meal-image {
+  border-radius: 10px; 
+  border: 2px solid #FF6347;
+}
+
+.meal-details-container {
+  border: 1px solid #FF6347;
+  border-radius: 10px; /* Adjust the value to control the roundness of the corners */
+  background-color: #ffeeba;
+  
+}
