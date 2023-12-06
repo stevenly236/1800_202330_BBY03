@@ -10,8 +10,8 @@ function searchAndDisplayUsers(searchTerm) {
     searchResultsContainer.innerHTML = '';
 
     db.collection('users')
-        .where('name', '>=', searchTerm.toLowerCase())
-        .where('name', '<=', searchTerm.toLowerCase() + '\uf8ff')
+        .where('name', '>=', searchTerm)
+        .where('name', '<=', searchTerm + '\uf8ff')
         .get()
         .then((querySnapshot) => {
             const searchTemplate = document.getElementById('searchTemplate');
@@ -63,6 +63,7 @@ async function isUserFollowed(userID) {
     });
 }
 
+// The rest of your existing code for changeButtonText, saveFollowedUserID, and removeFollowedUserID...
 
 function changeButtonText(followButton) {
     if (followButton.innerHTML === 'Follow') {
