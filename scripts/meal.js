@@ -125,22 +125,7 @@ function displaymealInfo() {
                                     })
                             });
                         })
-                    // Switches image for mascot based on meal type
-                    let animationEvent = document.querySelector("#mascot");
-                    switch (mealType) {
-                        case 'Breakfast':
-                            animationEvent.src = './images/breakfast.png';
-                            break;
-                        case 'Lunch':
-                            animationEvent.src = './images/lunch.png';
-                            break;
-                        case 'Dinner':
-                            animationEvent.src = './images/dinner.png';
-                            break;
-                        case 'Snack':
-                            animationEvent.src = './images/snack.png';
-                            break;
-                    }
+
                     deletepost();
 
                 })
@@ -543,46 +528,3 @@ function deleteFromMyMeals(mealID, userID) {
             console.log("Meal removed from user's array");
         })
 }
-
-// Animation function for mascot @ footer navbar
-$(function () {
-    var img = $("#mascot"),
-        width = img.get(0).width,
-        screenWidth = $(window).width(),
-        fraction = 1,
-        duration = 4000;
-
-    function animateMascot() {
-        img.css("left", -width).animate({
-            "left": fraction * screenWidth
-        }, duration, function () {
-            img.css("left", (screenWidth + 120) - width);
-
-            img.animate({
-                "left": -110
-            }, duration, animateMascot);
-        });
-    }
-
-    animateMascot();
-});
-
-// Removes mascot from footer navbar by making its container display 'none'
-document.addEventListener("DOMContentLoaded", function () {
-    const animationContainer = document.getElementById("animation-container");
-    const toggleButton = document.getElementById("toggleButton");
-
-    let isContainerVisible = true;
-
-    toggleButton.addEventListener("click", function () {
-        if (isContainerVisible) {
-            animationContainer.style.display = "none";
-            toggleButton.innerHTML = '<span class="material-icons">visibility_off</span>';
-        } else {
-            animationContainer.style.display = "block";
-            toggleButton.innerHTML = '<span class="material-icons">visibility</span>';
-        }
-
-        isContainerVisible = !isContainerVisible;
-    });
-});
