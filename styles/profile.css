@@ -12,6 +12,7 @@ body {
     font-size: 20pt;
 }
 
+
 .profile-picture {
     position: relative;
     right: -5%;
@@ -82,3 +83,4 @@ body {
 #editButton:hover {
     background-color: green;
 }
+

@@ -35,56 +35,75 @@
 
   <nav id="navbarPlaceholder"></nav>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="profile-picturecontainer" onclick="toggleGallery()">
-          <img src="./images/logo.jpg" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 50%;">
-        </div>
-        <div class="col-md-6">
-          <h1 class="name"><span id="name-goes-here"></span></h1>
-          <h2 class="username">@<span id="username-goes-here"></span></h2>
-            <div class="bio"><span id="bio-goes-here"></span>
-            </div>
-        </div>
+  <div class="profile-grid">
+    <div class="left">
+      <div class="profile-picturecontainer">
+        <img src="./images/logo.jpg" alt="Profile Picture" id="profilePicture" class="profile-picture">
+      </div>
+
+      <div class="container">
+
+        <section>
+          <template id="followerTemplate">
+            <h1 class="followers"></h1>
+          </template>
+        </section>
+      </div>
+      <button id="followButton" class="follow-button" onclick="changeButtonText()">Follow</button>
     </div>
-    <div id="meals-go-here" class="row row-cols-auto"></div>
+    <div class="right">
+
+      <h1 class="name"><span id="name-goes-here"></span></h1>
+      <h2 class="username">@<span id="username-goes-here"></span></h2>
+      <div class="bio"><span id="bio-goes-here"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5" id="meals-go-here">
+    <!-- Meals will be dynamically added here -->
   </div>
 
   <template id="mealTemplate">
     <div class="container">
-      <div class="row g-5">
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="h-100 border bg-light">
             <img class="image" alt="Meal Image">
           </div>
         </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">
-            <p class="description"></p>
-            <br>
-            <b></b><p id="name2" class="name"></p>
-          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-3 border bg-light text-start">
+          <p class="description"></p>
+          <br>
+          <b></b>
+          <p id="name2" class="name"></p>
         </div>
       </div>
-    </template>
-
-    <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow"
-        class="material-icons">expand_less</span></button>
-
-    <nav id="footerPlaceholder"></nav>
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+    </div>
+    </div>
+  </template>
 
 
-    <!-- Link to scripts of your own -->
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/firebaseAPI_BBY03.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/profile.js"></script>
-    <script src="./scripts/profileSelf.js"></script>
+
+
+  <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow"
+      class="material-icons">expand_less</span></button>
+
+  <nav id="footerPlaceholder"></nav>
+
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
+
+
+  <!-- Link to scripts of your own -->
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/firebaseAPI_BBY03.js"></script>
+  <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/profile.js"></script>
+  <script src="./scripts/profileSelf.js"></script>
 
 </body>
 
