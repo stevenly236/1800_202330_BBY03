@@ -44,32 +44,26 @@
         <div class="col-md-6">
           <h1 class="name"><span id="name-goes-here"></span></h1>
           <h2 class="username">@<span id="username-goes-here"></span></h2>
-          <div class="bio"><span id="bio-goes-here"></span></div>
-          <button id="editButton" class="btn btn-primary mt-3" onclick="saveProfileDocumentIDAndRedirect()">Edit
-            Profile</button>
+            <div class="bio"><span id="bio-goes-here"></span>
+            </div>
         </div>
-      </div>
     </div>
+    <div id="meals-go-here" class="row row-cols-auto"></div>
+  </div>
 
-    <div class="container mt-5" id="meals-go-here">
-      <!-- Meals will be dynamically added here -->
-    </div>
-
-    <template id="mealTemplate">
-      <div class="container">
-        <div class="row g-0">
-          <div class="col-12">
-            <div class="h-100 border bg-light">
-              <img class="image" alt="Meal Image">
-            </div>
+  <template id="mealTemplate">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-6">
+          <div class="h-100 p-5 border bg-light">
+            <img class="image" alt="Meal Image">
           </div>
-          <div class="col-md-6">
-            <div class="h-100 p-3 border bg-light text-start">
-              <p class="description"></p>
-              <br>
-              <b></b>
-              <p id="name2" class="name"></p>
-            </div>
+        </div>
+        <div class="col-6">
+          <div class="h-100 p-5 border bg-light text-start">
+            <p class="description"></p>
+            <br>
+            <b></b><p id="name2" class="name"></p>
           </div>
         </div>
       </div>
