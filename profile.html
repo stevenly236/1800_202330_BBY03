@@ -60,27 +60,28 @@
               </div>
           </div>
       </div>
+   
       <div id="meals-go-here" class="row row-cols-auto"></div>
-    </div>
   
-    <template id="mealTemplate">
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light">
-              <img class="image" alt="Meal Image">
+      <template id="mealTemplate">
+        <div class="container">
+            <div class="row g-0">
+              <div class="col-12">
+                <div class="h-100 border bg-light">
+                    <img class="image" alt="Meal Image">
+                </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="h-100 p-5 border bg-light text-start">
-              <p id="description2" class="description"></p>
-              <br>
-              <b></b><p id="name2" class="name"></p>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-3 border bg-light text-start">
+                        <p class="description"></p>
+                        <br>
+                        <b></b><p id="name2" class="name"></p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        </div>
-    </template>
+      </template>
 
     <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
 

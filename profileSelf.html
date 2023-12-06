@@ -35,42 +35,57 @@
 
   <nav id="navbarPlaceholder"></nav>
   
-    <div class="profile-grid" >
-        <div class="left">
-          <div class="profile-picturecontainer" onclick="toggleGallery()">
-            <img src="./images/logo.jpg" alt="Profile Picture" id="profilePicture" class="profile-picture">
-          </div>
-        
-        
-        </div> 
-        <button id="editButton" class="edit-button" onclick="saveProfileDocumentIDAndRedirect()">Edit Profile</button>
-        <div class="right">
-          <h1 class="name"><span id="name-goes-here"></span></h1>
-          <h2 class="username">@<span id="username-goes-here"></span></h2>
-            <div class="bio"><span id="bio-goes-here"></span>
-            </div>
+  <div class="profile-grid">
+    <div class="left">
+      <div class="profile-picturecontainer" >
+        <img src="./images/logo.jpg" alt="Profile Picture" id="profilePicture" class="profile-picture">
+      </div>
+    
+        <div class="container">
+
+            <section>
+                <template id="followerTemplate">
+                    <h1 class="followers"></h1>
+                </template>
+            </section>
         </div>
+        <button id="editButton" class="edit-button" onclick="saveProfileDocumentIDAndRedirect()">Edit Profile</button>
     </div>
-    <div id="meals-go-here" class="row row-cols-auto"></div>
+    <div class="right">
+     
+        <h1 class="name"><span id="name-goes-here"></span></h1>
+        <h2 class="username">@<span id="username-goes-here"></span></h2>
+          <div class="bio"><span id="bio-goes-here"></span>
+          </div>
+      </div>
   </div>
 
-  <template id="mealTemplate">
-    <div class="container">
-      <div class="row g-5">
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light">
-            <img class="image" alt="Meal Image">
+<div class="container mt-5" id="meals-go-here">
+    <!-- Meals will be dynamically added here -->
+</div>
+
+<template id="mealTemplate">
+  <div class="container">
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="h-100 border bg-light">
+              <img class="image" alt="Meal Image">
           </div>
-        </div>
-        <div class="col-6">
-          <div class="h-100 p-5 border bg-light text-start">
-            <p class="description"></p>
-            <br>
-            <b></b><p id="name2" class="name"></p>
-          </div>
-        </div>
       </div>
-  </template>
+          </div>
+          <div class="col-md-6">
+              <div class="h-100 p-3 border bg-light text-start">
+                  <p class="description"></p>
+                  <br>
+                  <b></b><p id="name2" class="name"></p>
+              </div>
+          </div>
+      </div>
+  </div>
+</template>
+
+
+
 
   <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
    

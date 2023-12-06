@@ -1,5 +1,43 @@
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
-      
+/* Adjustments to fit within the viewport */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 40vw; /* Adjust width as needed */
+    font-size: 20pt;
+}
+
+
+.profile-picture {
+    position: relative;
+    right: -5%;
+    width: 50%; /* Adjust width as needed */
+}
+
+.col-6 {
+    display: flex;
+    height: 100%;
+    width: 100%; /* Fill the parent container */
+    justify-items: center;
+}
+
+.description {
+    display: flex;
+    max-width: 80vw; /* Adjust width as needed */
+    overflow-wrap: break-word; /* Wrap long content */
+}
+
+/* Ensure elements fit within the viewport width */
+#meals-go-here {
+    width: 100%;
+    overflow: hidden; /* Prevent content from causing scrolling */
+}
+
 .follow-button {
     background-color: green;
     color: #ffffff;
@@ -11,71 +49,38 @@
     outline: none;
     transition: background-color 0.3s ease;
     width: 100%;
-    float:bottom;
 }
 
 .follow-button:hover {
     background-color: green;
 }
 
-
-.bg {
-    background-color: black;
-}
-
-
-.profile-grid{
-    display: grid;
-    grid-template-columns: 50vw;
-    grid-template-rows: auto;
-    font-size: 20pt;
-}
-
-.profile-picture {
-    position: relative;
-    right: -5%;
-    width: 50%;
-  }
-
-
 .left {
     grid-row: 1;
     grid-column: 1;
 }
+
 .right {
     grid-row: 1;
     grid-column: 2;
-}
-.first-lastname {
-    display: flex;
-    font-size: 30pt;
-    align-items: center;
-    justify-content: center;
-}
-.bio {
-    display: flex;
-    font-size: 14pt;
-    align-content: center;
+    float: right; /* Float the element to the right */
 }
 
-
-.col-6 {
-    display: flex;
+#editButton {
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
     width: 100%;
-    justify-items: center;
 }
 
-.description {
-    display: flex;
-    width: 80vw;
-    height: 0.5vh;
+/* Hover effect for the edit button */
+#editButton:hover {
+    background-color: green;
 }
 
-#name2 {
-    display: none;
-}
-
-#description2 {
-    display: flex;
-    height: 1px;
-}
