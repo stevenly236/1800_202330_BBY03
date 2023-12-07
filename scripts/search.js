@@ -1,3 +1,9 @@
+/**
+ * Event listener for the search form submission.
+ * Prevents the default form submission and calls the searchAndDisplayUsers function with the entered search term.
+ *
+ * @param {Event} event - The form submission event.
+ */
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
     const searchTerm = document.getElementById('searchInput').value;
@@ -5,6 +11,11 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     searchAndDisplayUsers(searchTerm);
 });
 
+/**
+ * Fetches users from Firestore based on the provided search term and displays the results in the searchResultsContainer.
+ *
+ * @param {string} searchTerm - The term to search for in user names.
+ */
 function searchAndDisplayUsers(searchTerm) {
     const searchResultsContainer = document.getElementById('searchResultsContainer');
     searchResultsContainer.innerHTML = '';
@@ -48,6 +59,13 @@ function searchAndDisplayUsers(searchTerm) {
         });
 }
 
+
+/**
+ * Checks if the current authenticated user is following the user with the provided userID.
+ *
+ * @param {string} userID - The user ID to check for following.
+ * @returns {Promise<boolean>} - A promise that resolves to true if the user is followed, otherwise false.
+ */
 async function isUserFollowed(userID) {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(user => {
@@ -63,8 +81,14 @@ async function isUserFollowed(userID) {
     });
 }
 
-// The rest of your existing code for changeButtonText, saveFollowedUserID, and removeFollowedUserID...
 
+/**
+ * Changes the text content of the follow button based on its current state.
+ * If the button currently says 'Follow', it changes to 'Following' and vice versa.
+ * Also calls the respective functions to save or remove the followed user ID.
+ *
+ * @param {HTMLElement} followButton - The follow button element.
+ */
 function changeButtonText(followButton) {
     if (followButton.innerHTML === 'Follow') {
         followButton.innerHTML = 'Following';
@@ -77,6 +101,11 @@ function changeButtonText(followButton) {
     }
 }
 
+/**
+ * Saves the provided userID as a followed user for the current authenticated user.
+ *
+ * @param {string} userID - The user ID to save as a followed user.
+ */
 function saveFollowedUserID(userID) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -89,6 +118,12 @@ function saveFollowedUserID(userID) {
     });
 }
 
+
+/**
+ * Removes the provided userID from the followed users for the current authenticated user.
+ *
+ * @param {string} userID - The user ID to remove from followed users.
+ */
 function removeFollowedUserID(userID) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
