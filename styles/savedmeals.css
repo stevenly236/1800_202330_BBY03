@@ -19,6 +19,7 @@
     margin-left: 0;
     margin-right: 0;
 }
+
 .page-title {
     color: #333;
 }
@@ -178,7 +179,7 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
 }

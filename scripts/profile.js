@@ -52,16 +52,16 @@ function removeFollowedUserID(userID) {
  */
 function doAll() {
   firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-          currentUser = db.collection("users").doc(user.uid); //global
-          console.log(currentUser);
+    if (user) {
+      currentUser = db.collection("users").doc(user.uid); //global
+      console.log(currentUser);
 
-          // the following functions are always called when someone is logged in
-      } else {
-          // No user is signed in.
-          console.log("No user is signed in");
-          window.location.href = "login.html";
-      }
+      // the following functions are always called when someone is logged in
+    } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+      window.location.href = "login.html";
+    }
   });
 }
 å
@@ -82,12 +82,12 @@ function insertUserNameFromFirestore(currentUser) {
   })
 }
 
-function insertBiographyFirestore(currentUser) {    
+function insertBiographyFirestore(currentUser) {
   db.collection("users").doc(currentUser).get().then((userDoc) => {
-      //get the user name
-      var biography = userDoc.data().biography;
-      console.log(biography);
-      $("#bio-goes-here").text(biography); //jquery
+    //get the user name
+    var biography = userDoc.data().biography;
+    console.log(biography);
+    $("#bio-goes-here").text(biography); //jquery
   })
 }
 
@@ -99,7 +99,7 @@ function insertBiographyFirestore(currentUser) {
  * @param {string} collection - The Firestore collection name containing meal data.
  */
 function displayCardsDynamically(collection) {
-  let cardTemplate = document.getElementById("mealTemplate"); 
+  let cardTemplate = document.getElementById("mealTemplate");
 
   // Fetch meals from Firestore and order them by last_updated in descending order
   db.collection(collection)
@@ -117,7 +117,7 @@ function displayCardsDynamically(collection) {
             let currentUser = mealDoc.data().author;
 
             // Iterate through all meals and display only those by the current user
-            allMeals.forEach(doc => { 
+            allMeals.forEach(doc => {
               if (doc.data().author.includes(currentUser)) {
                 db.collection("users").doc(currentUser).get().then((userDoc) => {
                   // Insert user information into the respective HTML elements
@@ -134,7 +134,7 @@ function displayCardsDynamically(collection) {
                   });
 
                   // Add event listener to the "Follow" button
-                  followButton.addEventListener('click', function() {
+                  followButton.addEventListener('click', function () {
                     changeButtonText(this, userID); // Pass the button and user ID as arguments
                   }, { once: true });
 
@@ -144,7 +144,7 @@ function displayCardsDynamically(collection) {
                 var cap = mealDoc.data().description;
                 var user = mealDoc.data().name;
                 var imageURL = mealDoc.data().image;
-                let newcard = mealTemplate.content.cloneNode(true); 
+                let newcard = mealTemplate.content.cloneNode(true);
 
                 // Update the card elements with meal information
                 newcard.querySelector('.image').src = imageURL;
@@ -158,7 +158,7 @@ function displayCardsDynamically(collection) {
           });
         }
       });
-    }) 
+    })
 }
 
 // Display meals dynamically for the specified collection (e.g., "meals")

@@ -2,6 +2,10 @@
 // This function loads the parts of your skeleton 
 // (navbar, footer, and other things) into html doc. 
 //---------------------------------------------------
+/**
+ * Loads skeleton components (navbar and footer) based on the user's authentication status.
+ * @returns {void}
+ */
 function loadSkeleton() {
 
     firebase.auth().onAuthStateChanged(function (user) {

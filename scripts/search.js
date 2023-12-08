@@ -4,8 +4,8 @@
  *
  * @param {Event} event - The form submission event.
  */
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
     const searchTerm = document.getElementById('searchInput').value;
 
     searchAndDisplayUsers(searchTerm);
@@ -41,9 +41,9 @@ function searchAndDisplayUsers(searchTerm) {
                     followButton.innerHTML = isFollowed ? 'Following' : 'Follow';
                 });
 
-                followButton.addEventListener('click', function() {
+                followButton.addEventListener('click', function () {
                     changeButtonText(this);
-                }, { once: true }); 
+                }, { once: true });
 
                 searchResultsContainer.appendChild(newUserCard);
             });

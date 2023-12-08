@@ -43,31 +43,32 @@
   <!-- Stuff for body goes here -->
   <nav id="navbarPlaceholder"></nav>
 
-<header id="title" class="header-bar justify-content-center">
+  <header id="title" class="header-bar justify-content-center">
     <h1 class="page-title">Saved Meals</h1>
-</header>
+  </header>
 
-<div class="btn-group justify-content-center" role="group">
-  <button id="sortHighestRatingButton" class="btn card-href">Highest <i class="material-icons">star_outline</i></button>
-  <button id="sortLowestRatingButton" class="btn card-href">Lowest <i class="material-icons">star_outline</i></button>
-  <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
-  <button id="sortRecentButton" class="btn card-href">Recent</button>
-  <button id="sortOldestButton" class="btn card-href">Oldest</button>
-</div>
+  <div class="btn-group justify-content-center" role="group">
+    <button id="sortHighestRatingButton" class="btn card-href">Highest <i
+        class="material-icons">star_outline</i></button>
+    <button id="sortLowestRatingButton" class="btn card-href">Lowest <i class="material-icons">star_outline</i></button>
+    <button id="refresh" class="btn card-href" onclick="refreshPage()">Save List</button>
+    <button id="sortRecentButton" class="btn card-href">Recent</button>
+    <button id="sortOldestButton" class="btn card-href">Oldest</button>
+  </div>
 
 
-<div class="dropdown" id="mealTimeDropdown">
-  <button class="dropdown-item" onclick="toggleDropdown()">
+  <div class="dropdown" id="mealTimeDropdown">
+    <button class="dropdown-item" onclick="toggleDropdown()">
       <span class="material-icons">filter_list</span>
-  </button>
-  <div class="dropdown-content">
+    </button>
+    <div class="dropdown-content">
       <a class="dropdown-item" id="breakfast" href="#">Breakfast</a>
       <a class="dropdown-item" id="lunch" href="#">Lunch</a>
       <a class="dropdown-item" id="dinner" href="#">Dinner</a>
       <a class="dropdown-item" id="snack" href="#">Snack</a>
       <a class="dropdown-item" id="clearFilter" href="#">Clear</a>
+    </div>
   </div>
-</div>
   <div id="containerone" class="container d-flex justify-content-center">
     <div id="meals-go-here"></div>
   </div>
@@ -90,47 +91,50 @@
   </div>
 
   <template id="mealTemplate">
-  <div class="card">
-    <div class="image-container">
+    <div class="card">
+      <div class="image-container">
         <div class="first">
-            <div class="d-flex justify-content-between align-items-center"><span></span><span class="bookmark"><i id="bookmarkicon" class="material-icons bookmark-icon" data-bs-toggle="modal"
-              data-bs-target="#bookmarkModal">bookmark_border</i></span> </div>
+          <div class="d-flex justify-content-between align-items-center"><span></span><span class="bookmark"><i
+                id="bookmarkicon" class="material-icons bookmark-icon" data-bs-toggle="modal"
+                data-bs-target="#bookmarkModal">bookmark_border</i></span> </div>
         </div> <img src="" class="img-fluid rounded thumbnail-image meal-img">
-    </div>
-    <div class="detail-container p-2">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-title"></h5>
-        </div>
-        <div class="d-flex justify-content-between align-items-center pt-1">
-        <p class="card-poster"></p>
-        </div>
-        <div class="d-flex justify-content-between align-items-center pt-1">
-            <p class="card-text"></p>
-            <p class="update"></p>
-        </div>
-        <div class="d-flex justify-content-between align-items-center pt-1">
-            <div> <i class="material-icons">star_outline</i> <span class="rating-number"></span></div> 
-            <a id="viewMore" class="btn card-href">View more</a>
-        </div>
-    </div>
-</div>
-<br>
-</template>
-
-<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-          <div class="modal-header text-center">
-              <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5> 
-          </div>
-          <div class="modal-body align-content-center" id="bookmarkModalBody">
-            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
-          </div>
       </div>
-  </div>
-</div>
+      <div class="detail-container p-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title"></h5>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+          <p class="card-poster"></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+          <p class="card-text"></p>
+          <p class="update"></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-1">
+          <div> <i class="material-icons">star_outline</i> <span class="rating-number"></span></div>
+          <a id="viewMore" class="btn card-href">View more</a>
+        </div>
+      </div>
+    </div>
+    <br>
+  </template>
 
-<button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
+  <div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5>
+        </div>
+        <div class="modal-body align-content-center" id="bookmarkModalBody">
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow"
+      class="material-icons">expand_less</span></button>
 
 
 

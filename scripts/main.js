@@ -12,7 +12,7 @@ function getNameFromAuth() {
             userName = user.displayName;
 
             // Update the DOM element with the user's display name
-            document.getElementById("name-goes-here").innerText = userName;    
+            document.getElementById("name-goes-here").innerText = userName;
         } else {
             // If no user is signed in
             console.log("Please log in"); // Log a message to console
@@ -32,7 +32,7 @@ getNameFromAuth();
  */
 function displayCardsDynamically(collection) {
     // Get the meal template element
-    let cardTemplate = document.getElementById("mealTemplate"); 
+    let cardTemplate = document.getElementById("mealTemplate");
 
     // Query the Firestore collection for meals, order them by last updated timestamp in descending order
     db.collection(collection)
@@ -49,8 +49,8 @@ function displayCardsDynamically(collection) {
                 var title = doc.data().mealTitle;
 
                 // Clone the meal template
-                let newcard = cardTemplate.content.cloneNode(true); 
-                
+                let newcard = cardTemplate.content.cloneNode(true);
+
                 // Set meal details in the cloned template
                 newcard.querySelector('.mealTitle').innerHTML = title;
                 newcard.querySelector('.image').src = imageURL;

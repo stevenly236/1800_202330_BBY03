@@ -1,137 +1,138 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    padding: 0;
-    overflow-x: hidden;
-    margin-top: 7vh;
-    margin-bottom: 7vh;
-    background-color: #FFFACD;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  overflow-x: hidden;
+  margin-top: 7vh;
+  margin-bottom: 7vh;
+  background-color: #FFFACD;
 }
 
 .navbar {
-    background-color: #FF7F50;
-    overflow: hidden;
-    color: black;
+  background-color: #FF7F50;
+  overflow: hidden;
+  color: black;
 }
 
 .navbar a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
 }
 
 .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #ddd;
+  color: black;
 }
 
 .navbar-toggler-icon {
-    background-color: white;
+  background-color: white;
 }
+
 .navbar-toggler {
-    background-color: white;
+  background-color: white;
 }
 
 .bg {
-    background-color: #FF7F50; 
+  background-color: #FF7F50;
 }
 
 .icon {
-    color: black;
+  color: black;
 }
 
 .responsive {
-    width: 60%;
-    height: auto;
-  }
+  width: 60%;
+  height: auto;
+}
 
 .container {
-    padding-top: 7%;
-    padding-bottom: 7%;
+  padding-top: 7%;
+  padding-bottom: 7%;
 }
 
 .responsive {
-    width: 60%;
-    height: auto;
-  }
+  width: 60%;
+  height: auto;
+}
 
 .bookmark {
-    float: right;
+  float: right;
 }
 
 .edit-button {
-    background-color: green;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    transition: background-color 0.3s ease;
-    width: 75%;
-    float:bottom;
+  background-color: green;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  width: 75%;
+  float: bottom;
 }
 
 .follow-button:hover {
-    background-color: green;
+  background-color: green;
 }
 
 .image {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .profile-picture-container {
-    width: 200px; 
-    height: 200px; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    border: 2px solid #ccc; 
-  }
-  
-  .profile-picture {
-    max-width: 200px; 
-    max-height: 200px; 
-    display: block; 
-  }
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+}
 
-  .gallery {
-    display: none; 
-    flex-wrap: wrap; 
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 20px;
-  }
+.profile-picture {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+}
 
-  .gallery img {
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border: 2px solid transparent;
-  }
+.gallery {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
 
-  .post-info {
-    font-size: 1em;
-  }
+.gallery img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
 
-  #image-container {
-    width: 50vw;
-    height: auto;
-  }
-  
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
+.post-info {
+  font-size: 1em;
+}
 
-  #submit {
-    background-color:green;
-    }
+#image-container {
+  width: 50vw;
+  height: auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#submit {
+  background-color: green;
+}
 
 .heading {
   text-align: center;
@@ -161,22 +162,22 @@ body {
 .view-meal-button {
   background-color: green;
   border: 1px solid #FF6347;
-  color: black; 
+  color: black;
 }
 
 .meal-image-container {
-  border-radius: 10px; 
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .meal-image {
-  border-radius: 10px; 
+  border-radius: 10px;
   border: 2px solid #FF6347;
 }
 
 .meal-details-container {
   border: 1px solid #FF6347;
-  border-radius: 10px; 
+  border-radius: 10px;
   background-color: #ffeeba;
-  
+
 }

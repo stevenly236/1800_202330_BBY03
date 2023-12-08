@@ -1,5 +1,7 @@
-
- //Sets up event listeners for sorting buttons and retrieves bookmarks for the authenticated user.
+/**
+ * Sets up event listeners for sorting buttons and retrieves bookmarks for the authenticated user.
+ * @returns {void}
+ */
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -30,18 +32,30 @@ function doAll() {
 }
 doAll();
 
-
+/**
+ * Sets up event listeners for sorting buttons and retrieves bookmarks for the authenticated user.
+ * @returns {void}
+ */
 document.getElementById("noBookmarkButton").addEventListener('click', function () {
     window.location.assign('main.html');
 });
 
+/**
+ * Event listener that redirects to the main page when the "No Bookmark Meal" button is clicked.
+ * @returns {void}
+ */
 document.getElementById("noBookmarkMealButton").addEventListener('click', function () {
     window.location.assign('main.html');
 });
 
-// Function that retreives bookmarks from collection and displays it 
+/**
+ * Function that retrieves bookmarks from the subcollection and displays them.
+ * @param {object} user - The authenticated user object.
+ * @returns {void}
+ */
 function getBookmarks(user) {
     document.getElementById("noMealsMessage").style.display = "none";
+    // Retrieves bookmarks subcollection from the User collection
     db.collection("users").doc(user.uid).collection("bookmarks")
         .get()
         .then(snapshot => {
@@ -124,7 +138,11 @@ function getBookmarks(user) {
 
 
 
- // Filters and displays meals based on mealTime and bookmarks for the authenticated user.
+/**
+ * Filters and displays meals based on mealTime and bookmarks for the authenticated user.
+ * @param {string} mealTime - The specified mealTime to filter meals.
+ * @returns {void}
+ */
 function filterMealsByTimeAndBookmarks(mealTime) {
     // Clear the existing meals in the container
     document.getElementById("meals-go-here").innerHTML = "";
@@ -210,8 +228,8 @@ function filterMealsByTimeAndBookmarks(mealTime) {
                         document.querySelector(".btn-group").style.display = "none";
                         document.getElementById("noMealsMessage").style.display = "block";
                         document.querySelector(".header-bar").style.display = "none";
-                    } 
-                    
+                    }
+
                 })
 
         } else {
@@ -220,34 +238,61 @@ function filterMealsByTimeAndBookmarks(mealTime) {
     });
 }
 
-// Example usage when the user selects a mealTime
+/**
+ * Event listener for Breakfast button click to filter meals by mealTime and bookmarks.
+ * @returns {void}
+ */
 document.getElementById("breakfast").addEventListener("click", function () {
     filterMealsByTimeAndBookmarks("Breakfast");
 });
 
+/**
+ * Event listener for Lunch button click to filter meals by mealTime and bookmarks.
+ * @returns {void}
+ */
 document.getElementById("lunch").addEventListener("click", function () {
     filterMealsByTimeAndBookmarks("Lunch");
 });
 
+/**
+ * Event listener for Dinner button click to filter meals by mealTime and bookmarks.
+ * @returns {void}
+ */
 document.getElementById("dinner").addEventListener("click", function () {
     filterMealsByTimeAndBookmarks("Dinner");
 });
 
+/**
+ * Event listener for Snack button click to filter meals by mealTime and bookmarks.
+ * @returns {void}
+ */
 document.getElementById("snack").addEventListener("click", function () {
     filterMealsByTimeAndBookmarks("Snack");
 });
 
+/**
+ * Event listener for Clear button click to refresh page.
+ * @returns {void}
+ */
 document.getElementById("clearFilter").addEventListener("click", function () {
     refreshPage();
     document.getElementById("refresh").style.display = "";
 });
 
+/**
+ * Function to toggle the dropdown for mealTime selection.
+ * @returns {void}
+ */
 function toggleDropdown() {
     var dropdown = document.getElementById("mealTimeDropdown");
     dropdown.classList.toggle("active");
 }
 
-// Function to change bookmark icon + open modal
+/**
+ * Function to change the bookmark icon and open the modal.
+ * @param {string} mealDocID - The ID of the meal document to toggle bookmark status.
+ * @returns {void}
+ */
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
@@ -284,11 +329,20 @@ function toggleBookmark(mealDocID) {
         })
 }
 
+/**
+ * Function to refresh the page.
+ * @returns {void}
+ */
 function refreshPage() {
     location.reload();
 }
 
-// Function to sort bookmarks by rating and display it
+/**
+ * Function to sort bookmarks by rating and display them.
+ * @param {object} user - The authenticated user object.
+ * @param {string} sortOrder - The sorting order, either "highest" or "lowest".
+ * @returns {void}
+ */
 function sortBookmarksByRating(user, sortOrder) {
     // Clear existing meals and hide the noMealsMessage
     document.getElementById("meals-go-here").innerHTML = "";
@@ -382,7 +436,12 @@ function sortBookmarksByRating(user, sortOrder) {
 
 
 
-// Function to sort bookmarks by how recently they were added
+/**
+ * Function to sort bookmarks by how recently they were added and display them.
+ * @param {object} user - The authenticated user object.
+ * @param {string} sortOrder - The sorting order, either "recentlyAdded" or "oldest".
+ * @returns {void}
+ */
 function sortBookmarksByDate(user, sortOrder) {
     // Clear existing meals and hide the noMealsMessage
     document.getElementById("meals-go-here").innerHTML = "";

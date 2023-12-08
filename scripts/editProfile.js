@@ -1,4 +1,4 @@
-var currentUser;   
+var currentUser;
 
 //Function that calls everything needed for the main page  
 function doAll() {
@@ -8,9 +8,9 @@ function doAll() {
             console.log(currentUser);
 
             // the following functions are always called when someone is logged in
-           
+
             insertNameFromFirestore();
-    
+
         } else {
             // No user is signed in.
             console.log("No user is signed in");
@@ -25,56 +25,56 @@ function insertNameFromFirestore() {
         //get the user name
         var user_Name = userDoc.data().name;
         console.log(user_Name);
-        $("#name-goes-here").text(user_Name); 
+        $("#name-goes-here").text(user_Name);
     })
-  }
+}
 
-  var currentUser;               //points to the document of the user who is logged in
-  function populateUserInfo() {
-      firebase.auth().onAuthStateChanged(user => {
-          // Check if user is signed in:
-          if (user) {
-  
-              //go to the correct user document by referencing to the user uid
-              currentUser = db.collection("users").doc(user.uid)
-              //get the document for current user.
-              currentUser.get()
-                  .then(userDoc => {
-                      //get the data fields of the user
-                      var userName = userDoc.data().name;
-                      var userUsername = userDoc.data().username;
-                      var userGender = userDoc.data().gender;
-                      var userBiography= userDoc.data().biography;
-                      
-  
-                      //if the data fields are not empty, then write them in to the form.
-                      if (userName != null) {
-                          document.getElementById("name").value = userName;
-                      }
-                      if (userUsername != null) {
-                          document.getElementById("username").value = userUsername;
-                      }
-                      if (userGender != null) {
-                          document.getElementById("gender").value = userGender;
-                      }
-                      if (userBiography != null) {
+var currentUser;               //points to the document of the user who is logged in
+function populateUserInfo() {
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+
+            //go to the correct user document by referencing to the user uid
+            currentUser = db.collection("users").doc(user.uid)
+            //get the document for current user.
+            currentUser.get()
+                .then(userDoc => {
+                    //get the data fields of the user
+                    var userName = userDoc.data().name;
+                    var userUsername = userDoc.data().username;
+                    var userGender = userDoc.data().gender;
+                    var userBiography = userDoc.data().biography;
+
+
+                    //if the data fields are not empty, then write them in to the form.
+                    if (userName != null) {
+                        document.getElementById("name").value = userName;
+                    }
+                    if (userUsername != null) {
+                        document.getElementById("username").value = userUsername;
+                    }
+                    if (userGender != null) {
+                        document.getElementById("gender").value = userGender;
+                    }
+                    if (userBiography != null) {
                         document.getElementById("biography").value = userBiography;
                     }
 
-                  })
-          } else {
-              // No user is signed in.
-              console.log("No user is signed in");
-          }
-      });
-  }
-  
-  //call the function to run it 
-  populateUserInfo();
-  
- 
-  
-  function saveProfile() {
+                })
+        } else {
+            // No user is signed in.
+            console.log("No user is signed in");
+        }
+    });
+}
+
+//call the function to run it 
+populateUserInfo();
+
+
+
+function saveProfile() {
     // Get user entered values
     var userName = document.getElementById('name').value.trim();
     var userUsername = document.getElementById('username').value.trim();
@@ -115,13 +115,13 @@ function insertNameFromFirestore() {
             gender: userGender,
             biography: userBiography
         })
-        .then(() => {
-            console.log("Document successfully updated!");
-            window.location.href = "profileSelf.html";
-        })
-        .catch((error) => {
-            console.error("Error updating document: ", error);
-        });
+            .then(() => {
+                console.log("Document successfully updated!");
+                window.location.href = "profileSelf.html";
+            })
+            .catch((error) => {
+                console.error("Error updating document: ", error);
+            });
     } else {
         // Highlight the empty fields by adding a red border or changing background color
         if (userName === '') {
@@ -133,7 +133,7 @@ function insertNameFromFirestore() {
         if (userBiography === '') {
             document.getElementById('biography').style.borderColor = 'red';
         }
-        
+
     }
 }
 

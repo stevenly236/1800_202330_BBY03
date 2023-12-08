@@ -48,12 +48,12 @@
   <!-- the body of your page goes here -->
   <br>
 
-  <div id= "mealPoster1" class="d-flex justify-content-center text-align-center">
+  <div id="mealPoster1" class="d-flex justify-content-center text-align-center">
     <h1><span id="mealPoster"></span></h1>
   </div>
   <br>
   <div id="profile" class="container">
-   <div class="btn btn-success card-href" id="viewPoster">View Profile</div>
+    <div class="btn btn-success card-href" id="viewPoster">View Profile</div>
   </div>
 
   <div id="delete-stuff" class="d-flex justify-content-center">
@@ -70,8 +70,8 @@
       <p class="average-rating"></p>
     </div>
     <div id="bookmark">
-      <i class="material-icons" data-bs-toggle="modal"
-      data-bs-target="#bookmarkModal" id="mealBookmark">bookmark_border</i>
+      <i class="material-icons" data-bs-toggle="modal" data-bs-target="#bookmarkModal"
+        id="mealBookmark">bookmark_border</i>
     </div>
     <img src="" class="meal-img" alt="">
     <br>
@@ -109,7 +109,7 @@
         <div class="modal-footer align-content-center">
           <button type="button" class="btn btn-success w-100" onclick="writeRating()">Save changes</button>
           <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
-        
+
         </div>
       </div>
     </div>
@@ -130,18 +130,19 @@
 
   <div id="alert-container"></div>
 
-<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="bookmarkModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-          <div class="modal-header text-center">
-              <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5> 
-          </div>
-          <div class="modal-body align-content-center" id="bookmarkModalBody">
-            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
-          </div>
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="bookmarkModalLabel"></h5>
+        </div>
+        <div class="modal-body align-content-center" id="bookmarkModalBody">
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
   </div>
-</div>
 
   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -160,36 +161,36 @@
   </div>
 
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title w-100" id="Comment-Label">Delete Comment?</h5>
-      </div>
-      <div class="modal-footer align-content-center">
-        <button type="button" class="btn btn-success w-100" id="modalDeleteButton">Yes</button>
-        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="Comment-Label">Delete Comment?</h5>
+        </div>
+        <div class="modal-footer align-content-center">
+          <button type="button" class="btn btn-success w-100" id="modalDeleteButton">Yes</button>
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="deleteMealModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header text-center">
-      <h5 class="modal-title w-100" id="Meal-Label">Are you Sure?</h5>
-    </div>
-    <div class="modal-footer align-content-center">
-      <button type="button" class="btn btn-success w-100" id="modalMealDeleteButton">Yes</button>
-      <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
+  <div class="modal fade" id="deleteMealModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="Meal-Label">Are you Sure?</h5>
+        </div>
+        <div class="modal-footer align-content-center">
+          <button type="button" class="btn btn-success w-100" id="modalMealDeleteButton">Yes</button>
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
 
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 
   <div class="container">
     <div class="container">
@@ -204,7 +205,7 @@ aria-hidden="true">
         <div class="username card-header"></div>
         <ul class="list-group list-group-flush">
           <br>
-          <p class="content"></p> 
+          <p class="content"></p>
           <div class="delete-section">
             <div id="timeAgo"></div>
             <div id="delete-icon"></div>
@@ -216,7 +217,8 @@ aria-hidden="true">
     <br>
   </template>
 
-  <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow" class="material-icons">expand_less</span></button>
+  <button id="scrollToTopButton" onclick="scrollToTop()"><span id="up-arrow"
+      class="material-icons">expand_less</span></button>
 
 
   <!-- our own footer goes here-->

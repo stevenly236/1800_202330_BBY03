@@ -2,13 +2,13 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 
 .profile-grid {
     display: grid;
-    grid-template-columns: 40vw; 
+    grid-template-columns: 40vw;
     font-size: 20pt;
 }
 
@@ -16,26 +16,26 @@ body {
 .profile-picture {
     position: relative;
     right: -5%;
-    width: 50%; 
+    width: 50%;
 }
 
 .col-6 {
     display: flex;
     height: 100%;
-    width: 100%; 
+    width: 100%;
     justify-items: center;
 }
 
 .description {
     display: flex;
-    max-width: 80vw; 
-    overflow-wrap: break-word; 
+    max-width: 80vw;
+    overflow-wrap: break-word;
 }
 
 
 #meals-go-here {
     width: 100%;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .follow-button {
@@ -63,7 +63,7 @@ body {
 .right {
     grid-row: 1;
     grid-column: 2;
-    float: right; 
+    float: right;
 }
 
 #editButton {
@@ -86,20 +86,18 @@ body {
 
 
 .meal-image-container {
-    border-radius: 10px; 
+    border-radius: 10px;
     overflow: hidden;
-  }
-  
-  .meal-image {
-    border-radius: 10px; 
-    border: 2px solid #FF6347;
-  }
-  
-  .meal-details-container {
-    border: 1px solid #FF6347;
-    border-radius: 10px; 
-    background-color: #ffeeba;
-    
-  }
+}
 
-  
+.meal-image {
+    border-radius: 10px;
+    border: 2px solid #FF6347;
+}
+
+.meal-details-container {
+    border: 1px solid #FF6347;
+    border-radius: 10px;
+    background-color: #ffeeba;
+
+}

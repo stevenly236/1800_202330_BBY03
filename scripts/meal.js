@@ -1,4 +1,7 @@
-// Function to write comments, store them in comments collection
+/**
+ * Function to write comments, store them in comments collection
+ * @returns {void}
+ */
 function writeComment() {
     console.log("inside comments");
     let usercontent = document.getElementById("usercomment").value;
@@ -28,7 +31,10 @@ function writeComment() {
     }
 }
 
-// Function to display Meals with all their info.
+/**
+ * Function to display Meals with all their info.
+ * @returns {void}
+ */
 function displaymealInfo() {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
@@ -137,7 +143,12 @@ function displaymealInfo() {
 }
 displaymealInfo();
 
-// Function to delete comment from collection
+/**
+ * Function to delete comment from collection.
+ * @param {string} commentID - The ID of the comment to be deleted.
+ * @param {string} collection - The name of the collection containing the comment.
+ * @returns {void}
+ */
 function deleteComment(commentID, collection) {
     db.collection(collection).doc(commentID).delete()
         .then(() => {
@@ -146,7 +157,11 @@ function deleteComment(commentID, collection) {
         })
 }
 
-// Function to clear comments from container 
+/**
+ * Function to clear comments from container.
+ * @param {string} collection - The name of the collection containing the comments.
+ * @returns {void}
+ */
 function clearComments(collection) {
     // Clear the existing comments before fetching and displaying the updated ones
     let commentsContainer = document.getElementById(collection + "-go-here");
@@ -155,7 +170,11 @@ function clearComments(collection) {
     }
 }
 
-// Function to display comments for Meal 
+/**
+ * Function to display comments for Meal.
+ * @param {string} collection - The name of the collection containing the comments.
+ * @returns {void}
+ */
 function displayCommentsDynamically(collection) {
     let commentTemplate = document.getElementById("commentTemplate");
     let params = new URL(window.location.href);
@@ -235,7 +254,12 @@ function displayCommentsDynamically(collection) {
 }
 displayCommentsDynamically("comments");
 
-// Function to open the delete confirmation modal
+/**
+ * Function to open the delete confirmation modal.
+ * @param {string} commentID - The ID of the comment to be deleted.
+ * @param {string} collection - The name of the collection containing the comment.
+ * @returns {void}
+ */
 function openDeleteModal(commentID, collection) {
     // Get the modal element
     document.getElementById("deleteModal")
@@ -250,7 +274,10 @@ function openDeleteModal(commentID, collection) {
     $('#deleteModal').modal('show');
 }
 
-// Function to display alert to be first commenter
+/**
+ * Function to display alert to be the first commenter.
+ * @returns {void}
+ */
 function displayNoCommentsAlert() {
     let alertContainer = document.getElementById("alert-container");
 
@@ -266,13 +293,20 @@ function displayNoCommentsAlert() {
     alertContainer.appendChild(alertElement);
 }
 
-// Function to remove first comment alert
+/**
+ * Function to remove first comment alert.
+ * @returns {void}
+ */
 function removeNoCommentsAlert() {
     let alertContainer = document.getElementById("alert-container");
     alertContainer.innerHTML = "";
 }
 
-// Function to calculate average rating of meal based on data from firebase 
+/**
+ * Function to calculate average rating of meal based on data from firebase.
+ * @param {string} mealID - The ID of the meal for which to calculate the average rating.
+ * @returns {Promise<number>} - A Promise that resolves to the average rating.
+ */
 function calculateAverageRating(mealID) {
     // Reference to the "rating" subcollection for the specified meal
     const ratingsRef = db.collection("meals").doc(mealID).collection("rating");
@@ -303,7 +337,11 @@ function calculateAverageRating(mealID) {
     });
 }
 
-// Function to save meal to bookmarks 
+/**
+ * Function to save meal to bookmarks.
+ * @param {string} mealDocID - The ID of the meal document to toggle bookmark status.
+ * @returns {void}
+ */
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
@@ -345,8 +383,10 @@ function toggleBookmark(mealDocID) {
 }
 
 
-
-// Select all elements with the class name "star" and store them in the "stars" variable
+/**
+ * Selects all elements with the class name "star" and stores them in the "stars" variable.
+ * @type {NodeList}
+ */
 const stars = document.querySelectorAll('.star');
 
 // Iterate through each star element
@@ -361,7 +401,10 @@ stars.forEach((star, index) => {
     });
 });
 
-// Function that writes a rating number into firebase
+/**
+ * Function that writes a rating number into firebase.
+ * @returns {void}
+ */
 function writeRating() {
     let params = new URL(window.location.href); //get URL of search bar
     let ID = params.searchParams.get("docID"); //get value for key "id"
@@ -383,7 +426,7 @@ function writeRating() {
     if (user) {
         let currentUser = db.collection("users").doc(user.uid);
         let userID = user.uid;
-
+        // Sets rating subcollection to be mealRating
         db.collection("meals").doc(ID).collection("rating").doc(userID).set({
             rating: mealRating,
             // reloads page
@@ -396,12 +439,16 @@ function writeRating() {
     }
 }
 
-// Event listener that directs to Meal post author's profile page
+/**
+ * Event listener that directs to Meal post author's profile page.
+ * @returns {void}
+ */
 document.querySelector("#viewPoster").addEventListener('click', function () {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
     console.log("working");
 
+    // Assigns meal Author in meal collection to be set to posterID
     db.collection('meals').doc(ID).get().then(mealDoc => {
         let posterID = mealDoc.data().author
 
@@ -422,7 +469,10 @@ document.querySelector("#viewPoster").addEventListener('click', function () {
 })
 
 
-// Function that checks if meal is users' post, creates delete button if it is
+/**
+ * Function that checks if meal is user's post, creates delete button if it is.
+ * @returns {void}
+ */
 function deletepost() {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
@@ -455,7 +505,11 @@ function deletepost() {
     }
 }
 
-// Function to open the delete confirmation modal
+/**
+ * Function to open the delete confirmation modal for meal.
+ * @param {string} ID - The ID of the meal to be deleted.
+ * @returns {void}
+ */
 function openDeleteMealModal(ID) {
     // Get the modal element
     document.getElementById("deleteMealModal")
@@ -471,7 +525,11 @@ function openDeleteMealModal(ID) {
     $('#deleteMealModal').modal('show');
 }
 
-// Function to delete meal from firebase
+/**
+ * Function to delete meal from firebase.
+ * @param {string} mealID - The ID of the meal to be deleted.
+ * @returns {void}
+ */
 function deleteMeal(mealID) {
     // Call the delete function for the meal document
     db.collection("meals").doc(mealID)
@@ -482,7 +540,11 @@ function deleteMeal(mealID) {
         })
 }
 
-// Function to delete the comments from firebase when meal is deleted
+/**
+ * Function to delete all comments for a meal from firebase.
+ * @param {string} mealID - The ID of the meal for which to delete comments.
+ * @returns {void}
+ */
 function deleteAllCommentsForMeal(mealID) {
     // Reference to the "comments" collection where comments are stored
     db.collection("comments")
@@ -500,7 +562,12 @@ function deleteAllCommentsForMeal(mealID) {
         })
 }
 
-// Function to remove deleted meal from bookmark, if bookmarked.
+/**
+ * Function to remove deleted meal from bookmark, if bookmarked.
+ * @param {string} mealID - The ID of the deleted meal.
+ * @param {string} userID - The ID of the user.
+ * @returns {void}
+ */
 function deleteFromBookmarks(mealID, userID) {
     // Check if the meal is bookmarked
     db.collection("users").doc(userID).collection("bookmarks")
@@ -519,8 +586,14 @@ function deleteFromBookmarks(mealID, userID) {
         });
 }
 
-// Function to remove deleted meal from mymeal array. 
+/**
+ * Function to remove deleted meal from mymeal array.
+ * @param {string} mealID - The ID of the deleted meal.
+ * @param {string} userID - The ID of the user.
+ * @returns {void}
+ */
 function deleteFromMyMeals(mealID, userID) {
+    // Retreives user collection and updates meal array
     return db.collection("users").doc(userID)
         .update({
             mymeals: firebase.firestore.FieldValue.arrayRemove(mealID)

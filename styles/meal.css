@@ -320,6 +320,6 @@ body {
 #animation-container {
     bottom: 18vh;
     width: 100%;
-    pointer-events: none; 
+    pointer-events: none;
     display: block;
 }

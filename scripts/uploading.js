@@ -5,13 +5,13 @@
 var ImageFile;
 
 function listenFileSelect() {
-    var fileInput = document.getElementById("mypic-input"); 
-    const image = document.getElementById("mypic-goes-here"); 
+    var fileInput = document.getElementById("mypic-input");
+    const image = document.getElementById("mypic-goes-here");
 
     fileInput.addEventListener('change', function (e) {
-        ImageFile = e.target.files[0];   
+        ImageFile = e.target.files[0];
         var blob = URL.createObjectURL(ImageFile);
-        image.src = blob; 
+        image.src = blob;
     });
 }
 
@@ -67,7 +67,7 @@ function uploadPic(mealDocID) {
                     console.log("3. Got the download URL.");
 
                     db.collection("meals").doc(mealDocID).update({
-                        "image": url 
+                        "image": url
                     }).then(function () {
                         console.log('4. Added pic URL to Firestore.');
                         saveMealIDforUser(mealDocID);
