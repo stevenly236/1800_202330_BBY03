@@ -1,6 +1,5 @@
-/**
- * Sets up event listeners for sorting buttons and retrieves bookmarks for the authenticated user.
- */
+
+ //Sets up event listeners for sorting buttons and retrieves bookmarks for the authenticated user.
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -40,11 +39,7 @@ document.getElementById("noBookmarkMealButton").addEventListener('click', functi
     window.location.assign('main.html');
 });
 
-/**
- * Retrieves and displays bookmarks for the authenticated user.
- * Sets up event listeners for bookmark icons.
- * @param {Object} user - Firebase authentication user object.
- */
+// Function that retreives bookmarks from collection and displays it 
 function getBookmarks(user) {
     document.getElementById("noMealsMessage").style.display = "none";
     db.collection("users").doc(user.uid).collection("bookmarks")
@@ -55,7 +50,7 @@ function getBookmarks(user) {
                 bookmarks.push(doc.id);
             });
 
-            // Check if there are no bookmarks
+            // Check if there are no bookmarks removes certain elements to display/not display
             if (!bookmarks || bookmarks.length === 0) {
                 document.getElementById("noBookmarksMessage").style.display = "block";
                 document.getElementById("meals-go-here").style.display = "none";
@@ -64,7 +59,7 @@ function getBookmarks(user) {
                 document.querySelector(".header-bar").style.display = "none";
                 return;
             }
-
+            // Otherwise, display them
             document.querySelector(".btn-group").style.display = "flex";
             document.getElementById("noBookmarksMessage").style.display = "none";
             document.getElementById("meals-go-here").style.display = "block";
@@ -128,10 +123,8 @@ function getBookmarks(user) {
 }
 
 
-/** 
- * Filters and displays meals based on mealTime and bookmarks for the authenticated user.
- * @param {string} mealTime - The mealTime to filter by.
- */
+
+ // Filters and displays meals based on mealTime and bookmarks for the authenticated user.
 function filterMealsByTimeAndBookmarks(mealTime) {
     // Clear the existing meals in the container
     document.getElementById("meals-go-here").innerHTML = "";
@@ -254,6 +247,7 @@ function toggleDropdown() {
     dropdown.classList.toggle("active");
 }
 
+// Function to change bookmark icon + open modal
 function toggleBookmark(mealDocID) {
     var currentUser = firebase.auth().currentUser;
     var userDocRef = db.collection("users").doc(currentUser.uid);
@@ -294,12 +288,7 @@ function refreshPage() {
     location.reload();
 }
 
-/**
- * Sorts and displays bookmarks by average rating either in descending or ascending order.
- *
- * @param {Object} user - The authenticated user object.
- * @param {string} sortOrder - The sorting order ('highest' for descending, 'lowest' for ascending).
- */
+// Function to sort bookmarks by rating and display it
 function sortBookmarksByRating(user, sortOrder) {
     // Clear existing meals and hide the noMealsMessage
     document.getElementById("meals-go-here").innerHTML = "";
@@ -314,7 +303,7 @@ function sortBookmarksByRating(user, sortOrder) {
                 bookmarks.push(doc.id);
             });
 
-            // Check if there are no bookmarks
+            // Check if there are no bookmarks display/not display certain elements
             if (!bookmarks || bookmarks.length === 0) {
                 document.getElementById("noBookmarksMessage").style.display = "block";
                 document.getElementById("meals-go-here").style.display = "none";
@@ -393,12 +382,7 @@ function sortBookmarksByRating(user, sortOrder) {
 
 
 
-/**
- * Sorts and displays bookmarks by date either in descending or ascending order.
- *
- * @param {Object} user - The authenticated user object.
- * @param {string} sortOrder - The sorting order ('recentlyAdded' for descending, 'oldest' for ascending).
- */
+// Function to sort bookmarks by how recently they were added
 function sortBookmarksByDate(user, sortOrder) {
     // Clear existing meals and hide the noMealsMessage
     document.getElementById("meals-go-here").innerHTML = "";

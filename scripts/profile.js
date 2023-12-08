@@ -64,21 +64,12 @@ function doAll() {
       }
   });
 }
-
-
-//THIS SHOULD BE YOUR CODE TO MAKE ONLY USERS POSTS APPEAR
-//function x{
-  // db.collection.get whatever ...
-// if (user.uid === doc.data().author){
-  // document.query whatever to display it
-//}
-
+å
 function insertNameFromFirestore(currentUser) {
   db.collection("users").doc(currentUser).get().then((userDoc) => {
     var user_Name = userDoc.data().name;
     console.log(user_Name);
     $("#name-goes-here").text(user_Name); //jquery
-    // document.getElementByID("name-goes-here").innetText=user_Name;
   })
 
 }
@@ -88,7 +79,6 @@ function insertUserNameFromFirestore(currentUser) {
     var user_Name = userDoc.data().username;
     console.log(user_Name);
     $("#username-goes-here").text(user_Name); //jquery
-    // document.getElementByID("name-goes-here").innetText=user_Name;
   })
 }
 
@@ -98,10 +88,8 @@ function insertBiographyFirestore(currentUser) {
       var biography = userDoc.data().biography;
       console.log(biography);
       $("#bio-goes-here").text(biography); //jquery
-      // document.getElementByID("name-goes-here").innetText=user_Name;
   })
 }
-
 
 /**
  * Displays meal cards dynamically based on the provided collection.

@@ -25,8 +25,7 @@ function insertNameFromFirestore() {
         //get the user name
         var user_Name = userDoc.data().name;
         console.log(user_Name);
-        $("#name-goes-here").text(user_Name); //jquery
-        // document.getElementByID("name-goes-here").innetText=user_Name;
+        $("#name-goes-here").text(user_Name); 
     })
   }
 
@@ -134,7 +133,7 @@ function insertNameFromFirestore() {
         if (userBiography === '') {
             document.getElementById('biography').style.borderColor = 'red';
         }
-        // You can add more specific styling or customize as needed
+        
     }
 }
 

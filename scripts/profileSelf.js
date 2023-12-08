@@ -39,14 +39,6 @@ function doAll() {
 }
 doAll();
 
-
-//THIS SHOULD BE YOUR CODE TO MAKE ONLY USERS POSTS APPEAR
-//function x{
-// db.collection.get whatever ...
-// if (user.uid === doc.data().author){
-// document.query whatever to display it
-//}
-
 /**
  * Inserts the user's name, username, and biography from Firestore into the respective HTML elements.
  */

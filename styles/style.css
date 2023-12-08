@@ -85,24 +85,23 @@ body {
     width: 100%;
 }
 
-/* Example CSS for styling the profile picture container and image */
 .profile-picture-container {
-    width: 200px; /* Set the width of the container */
-    height: 200px; /* Set the height of the container */
-    border-radius: 50%; /* Make it circular */
-    overflow: hidden; /* Hide overflow to ensure the circular shape */
-    border: 2px solid #ccc; /* Add a border for aesthetics */
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 2px solid #ccc; 
   }
   
   .profile-picture {
-    max-width: 200px; /* Ensure the image fills its container */
-    max-height: 200px; /* Maintain aspect ratio */
-    display: block; /* Ensure the image behaves as a block element */
+    max-width: 200px; 
+    max-height: 200px; 
+    display: block; 
   }
 
   .gallery {
-    display: none; /* Initially hide the gallery */
-    flex-wrap: wrap; /* Allow images to wrap */
+    display: none; 
+    flex-wrap: wrap; 
     justify-content: space-around;
     align-items: center;
     margin-top: 20px;
@@ -177,7 +176,7 @@ body {
 
 .meal-details-container {
   border: 1px solid #FF6347;
-  border-radius: 10px; /* Adjust the value to control the roundness of the corners */
+  border-radius: 10px; 
   background-color: #ffeeba;
   
 }

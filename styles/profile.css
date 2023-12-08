@@ -2,13 +2,13 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden; 
 }
 
-/* Adjustments to fit within the viewport */
+
 .profile-grid {
     display: grid;
-    grid-template-columns: 40vw; /* Adjust width as needed */
+    grid-template-columns: 40vw; 
     font-size: 20pt;
 }
 
@@ -16,26 +16,26 @@ body {
 .profile-picture {
     position: relative;
     right: -5%;
-    width: 50%; /* Adjust width as needed */
+    width: 50%; 
 }
 
 .col-6 {
     display: flex;
     height: 100%;
-    width: 100%; /* Fill the parent container */
+    width: 100%; 
     justify-items: center;
 }
 
 .description {
     display: flex;
-    max-width: 80vw; /* Adjust width as needed */
-    overflow-wrap: break-word; /* Wrap long content */
+    max-width: 80vw; 
+    overflow-wrap: break-word; 
 }
 
-/* Ensure elements fit within the viewport width */
+
 #meals-go-here {
     width: 100%;
-    overflow: hidden; /* Prevent content from causing scrolling */
+    overflow: hidden; 
 }
 
 .follow-button {
@@ -63,7 +63,7 @@ body {
 .right {
     grid-row: 1;
     grid-column: 2;
-    float: right; /* Float the element to the right */
+    float: right; 
 }
 
 #editButton {
@@ -79,7 +79,6 @@ body {
     width: 100%;
 }
 
-/* Hover effect for the edit button */
 #editButton:hover {
     background-color: green;
 }
@@ -98,7 +97,7 @@ body {
   
   .meal-details-container {
     border: 1px solid #FF6347;
-    border-radius: 10px; /* Adjust the value to control the roundness of the corners */
+    border-radius: 10px; 
     background-color: #ffeeba;
     
   }

@@ -1,3 +1,4 @@
+// Function to write comments, store them in comments collection
 function writeComment() {
     console.log("inside comments");
     let usercontent = document.getElementById("usercomment").value;
@@ -27,7 +28,7 @@ function writeComment() {
     }
 }
 
-
+// Function to display Meals with all their info.
 function displaymealInfo() {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("docID");
