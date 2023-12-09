@@ -1,5 +1,10 @@
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+/**
+ * Firebase UI configuration object for authentication.
+ * Defines callbacks and settings for user sign-in and authentication flow.
+ * @type {Object}
+ */
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {

@@ -64,7 +64,7 @@ function doAll() {
     }
   });
 }
-å
+
 function insertNameFromFirestore(currentUser) {
   db.collection("users").doc(currentUser).get().then((userDoc) => {
     var user_Name = userDoc.data().name;

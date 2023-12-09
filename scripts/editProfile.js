@@ -1,6 +1,9 @@
 var currentUser;
 
-//Function that calls everything needed for the main page  
+/**
+ * Function that calls everything needed for editProfile page
+ * @returns {void}
+ */
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -20,6 +23,10 @@ function doAll() {
 }
 doAll();
 
+/**
+ * Inserts the user's name from Firestore into a specific element.
+ * @returns {void}
+ */
 function insertNameFromFirestore() {
     currentUser.get().then(userDoc => {
         //get the user name
@@ -30,6 +37,10 @@ function insertNameFromFirestore() {
 }
 
 var currentUser;               //points to the document of the user who is logged in
+/**
+ * Populates user information in a form.
+ * @returns {void}
+ */
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -73,7 +84,10 @@ function populateUserInfo() {
 populateUserInfo();
 
 
-
+/**
+ * Saves user profile information.
+ * @returns {void}
+ */
 function saveProfile() {
     // Get user entered values
     var userName = document.getElementById('name').value.trim();
